@@ -4,6 +4,7 @@
 
 #define SPNG_USE_MINIZ
 #define SPNG_DISABLE_OPT
+#define SPNG_STATIC
 
 #ifdef __cplusplus
 extern "C" {
