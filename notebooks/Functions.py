@@ -5,17 +5,21 @@ import numpy as np
 import matplotlib.pyplot as plt
 def contrast_enh(img, p):
     chans = cv.split(img)
-    for channel in chans:
-        hist = cv.calcHist([channel], [0], None, [256], [0, 256])
-        high_threshold = max(hist)*p
-        low_threshold = min(hist)*(1+p)
+
+    hists = [cv.calcHist([img], [i], None, [256], [0, 256]) for i in range(3)]
+
+    threshold = max([max(hist) for hist in  hists]) * p
+
+    for i in range(3):
+        channel = chans[i]
+        hist = hists[i]
         
         for first in range(hist.size):
-            if hist[first] > low_threshold:
+            if hist[first] > threshold:
                 break;
 
         for last in range(255,-1,-1):
-            if hist[last] > high_threshold:
+            if hist[last] > threshold:
                 break;
 
         if last == first:
