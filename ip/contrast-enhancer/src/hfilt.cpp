@@ -41,21 +41,26 @@ void hfilt(pixel_stream &src, pixel_stream &dst, uint8_t l, uint8_t c, uint8_t r
 
     // Pixel data to be stored across 'function calls'
     static pixel_data p_out;
-    static uint32_t dl = 0;
-    static uint32_t dc = 0;
+
+    uint8_t first = 20;
+    uint8_t last = 255 - 20;
+    uint16_t scaler = 255 / (last - first);
+    uint16_t offset = first;
+
 
     // Current (incoming) pixel data
     uint32_t dr = p_in.data;
 
-    // Compute outgoing pixel data
-    uint32_t dn =
-            SR((GR(dl) * l + GR(dc) * c + GR(dr) * r) >> 8) +
-            SG((GG(dl) * l + GG(dc) * c + GG(dr) * r) >> 8) +
-            SB((GB(dl) * l + GB(dc) * c + GB(dr) * r) >> 8);
+    uint8_t red = GR(dr);
+    uint8_t green = GG(dr);
+    uint8_t blue = GB(dr);
 
-    // Move one pixel to the right
-    dl = dc;
-    dc = dr;
+    uint8_t out_red = red < first ? 0 : red > last ? 255 : (red * scaler) - offset;
+    uint8_t out_green = green < fi                                                                             rst ? 0 : green > last ? 255 : (green  * scaler) - offset;
+    uint8_t out_blue = blue < first ? 0 : blue > last ? 255 : (blue * scaler) - offset;
+
+
+    uint32_t dn = SR(out_red) | SG(out_green) | SB(out_blue);
 
     p_out.data = dn;
 

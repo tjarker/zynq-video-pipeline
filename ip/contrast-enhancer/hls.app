@@ -1,8 +1,8 @@
-<project xmlns="com.autoesl.autopilot.project" top="hfilt" name="contrast-enhancer" projectType="C/C++">
+<project xmlns="com.autoesl.autopilot.project" name="contrast-enhancer" top="hfilt" projectType="C/C++">
     <includePaths/>
     <libraryPaths/>
     <Simulation>
-        <SimFlow name="csim" clean="true" csimMode="0" lastCsimMode="0"/>
+        <SimFlow name="csim" csimMode="0" lastCsimMode="0"/>
     </Simulation>
     <files xmlns="">
         <file name="contrast-enhancer/src/hfilt.cpp" sc="0" tb="false" cflags="" csimflags="" blackbox="false"/>

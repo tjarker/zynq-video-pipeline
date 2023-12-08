@@ -19,10 +19,10 @@
 #define HEIGHT 720
 
 // Image paths
-#define INPUT_DIR  "../../../../inframes/"
-#define OUTPUT_DIR "../../../../outframes/"
+#define INPUT_DIR  "../../../../../inframes/"
+#define OUTPUT_DIR "../../../../../outframes/"
 
-#define FRAMES_LIST "../../../../inframes/frames.txt"
+#define FRAMES_LIST "../../../../../inframes/frames.txt"
 
 //#define RAW_FILENAME "../../../../outframes/raw.png"
 
