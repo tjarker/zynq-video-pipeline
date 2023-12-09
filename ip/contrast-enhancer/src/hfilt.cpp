@@ -56,7 +56,7 @@ void hfilt(pixel_stream &src, pixel_stream &dst, uint8_t l, uint8_t c, uint8_t r
     uint8_t blue = GB(dr);
 
     uint8_t out_red = red < first ? 0 : red > last ? 255 : (red * scaler) - offset;
-    uint8_t out_green = green < fi                                                                             rst ? 0 : green > last ? 255 : (green  * scaler) - offset;
+    uint8_t out_green = green < first ? 0 : green > last ? 255 : (green  * scaler) - offset;
     uint8_t out_blue = blue < first ? 0 : blue > last ? 255 : (blue * scaler) - offset;
 
 
