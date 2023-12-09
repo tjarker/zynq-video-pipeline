@@ -28,25 +28,37 @@ void hfilt(pixel_stream &src, pixel_stream &dst, uint8_t l, uint8_t c, uint8_t r
     static uint16_t x = 0;
     static uint16_t y = 0;
 
+    static uint32_t hist[256] = {0};
+    static uint8_t hist_ptr = 0;
+    static uint32_t maxIntensity = 0;
+    #define PROCESS_TIME 256
+
+    static uint8_t first = 20;
+    static uint8_t last = 255 - 20;
+    static uint16_t scaler = 255 / (last - first);
+    static uint16_t offset = first;
+
     pixel_data p_in;
 
     // Load input data from source
     src >> p_in;
 
     // Reset X and Y counters on user signal
-    if (p_in.user)
+    if (p_in.user) {
         x = y = 0;
-
+        hist_ptr = 0;
+        maxIntensity = 0;
+        first = 0;
+        last = 255;
+    }
     ////////////////////////////////
 
     // Pixel data to be stored across 'function calls'
     static pixel_data p_out;
 
-    uint8_t first = 20;
-    uint8_t last = 255 - 20;
-    uint16_t scaler = 255 / (last - first);
-    uint16_t offset = first;
+    
 
+    
 
     // Current (incoming) pixel data
     uint32_t dr = p_in.data;
@@ -55,12 +67,26 @@ void hfilt(pixel_stream &src, pixel_stream &dst, uint8_t l, uint8_t c, uint8_t r
     uint8_t green = GG(dr);
     uint8_t blue = GB(dr);
 
+    hist[blue]++;
+
     uint8_t out_red = red < first ? 0 : red > last ? 255 : (red * scaler) - offset;
     uint8_t out_green = green < first ? 0 : green > last ? 255 : (green  * scaler) - offset;
     uint8_t out_blue = blue < first ? 0 : blue > last ? 255 : (blue * scaler) - offset;
 
 
     uint32_t dn = SR(out_red) | SG(out_green) | SB(out_blue);
+
+    if (y == (HEIGHT - 1) && (x > (WIDTH - 1) - PROCESS_TIME)) {
+        uint32_t intensity = hist[hist_ptr];
+        
+        if (intensity > maxIntensity) {
+            maxIntensity = intensity;
+        }
+
+        uint8_t truncated = intensity >> 1;
+        dn = SR(truncated) | SG(truncated) | SB(truncated);
+        hist_ptr++;
+    }
 
     p_out.data = dn;
 
@@ -71,6 +97,9 @@ void hfilt(pixel_stream &src, pixel_stream &dst, uint8_t l, uint8_t c, uint8_t r
 
     // Copy previous pixel data to next output pixel
     p_out = p_in;
+
+
+    
 
     // Increment X and Y counters
     if (p_in.last) {
