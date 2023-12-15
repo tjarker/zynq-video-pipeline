@@ -39,11 +39,11 @@ void invstripe (pixel_stream &src, pixel_stream &dst, float f)
 		static float scale_g = 1.645;
 		static float scale_b = 1.645;
 		static uint16_t counter;
+		static uint8_t stop = 0;
+		static uint16_t threshold = 0;
 
 		pixel_data p;
 		uint8_t r,g,b;
-		uint8_t stop = 0;
-
 
 
 		// Load pixel data from source
@@ -62,7 +62,7 @@ void invstripe (pixel_stream &src, pixel_stream &dst, float f)
 
 		////////////////////////////////
 		//COMPUTE NEW INTENSITIES
-		if(y < HEIGHT - 1 and x < WIDTH - 514){
+		if(y < HEIGHT - 1){
 
 			// increase histogram entries
 			hist[2][GR(p.data)]++;
@@ -70,40 +70,13 @@ void invstripe (pixel_stream &src, pixel_stream &dst, float f)
 			hist[0][GB(p.data)]++;
 
 			//apply transformation first on blues
-			if(GB(p.data) < first_b){
-				b = 0;
-			}
-			if(GB(p.data) > last_b){
-				b = 255;
-			}
-			if(GB(p.data)< last_b and GB(p.data) > first_b){
-				b = (scale_b*GB(p.data)) - first_b;
-			}
+			r = r < first_r ? 0 : r > last_r ? 255 : (r * scale_r) - first_r;
+			g = g < first_g ? 0 : g > last_g ? 255 : (g  * scale_g) - first_g;
+			b = b < first_b ? 0 : b > last_b ? 255 : (b * scale_b) - first_b;
 
-			//then on greens
-			if(GG(p.data) < first_g){
-				g = 0;
-			}
-			if(GG(p.data) > last_g){
-				g = 255;
-			}
-			if(GG(p.data)< last_g and GG(p.data) > first_g){
-				g = (scale_g*GG(p.data)) - first_g;
-			}
-
-			//and finally on reds
-			if(GR(p.data) < first_r){
-				r = 0;
-			}
-			if(GR(p.data) > last_r){
-				r = 255;
-			}
-			if(GR(p.data)< last_r and GR(p.data) > first_r){
-				r = (scale_r*GR(p.data)) - first_r;
-			}
 
 			// COMPUTE OUTGOING PIXEL DATA
-			uint32_t d = SB(b) + SG(g) + SR(r);
+			uint32_t d = SR(r) | SG(g) | SB(b);
 			p.data = d;
 		}
 
@@ -112,46 +85,54 @@ void invstripe (pixel_stream &src, pixel_stream &dst, float f)
 		if(y == HEIGHT - 1){
 			if(x >= WIDTH - 514 and x < WIDTH - 257){
 				counter = x - WIDTH + 514;
-				if(hist[0][counter] > max){
-					max = hist[0][counter];
-				}
+				max = max < hist[0][counter]?hist[0][counter]: max;
+				threshold = counter == 255? max * f : 0;
 			}
 
 			//find FIRTS and LAST
-			if(x >= WIDTH - 257 and x < WIDTH - 129){
-				uint16_t threshold = max * f;
+		    //stop = 00000000  							231 = 11100111
+			if(x >= WIDTH - 257 and x < WIDTH - 129 and stop != 231){
 				counter = x - WIDTH + 257;
-				if(hist[0][counter] > threshold and ((stop and 1) == 0)){
+													//1 = 00000001
+				if(hist[0][counter] > threshold and !(stop & 1)){
 					first_b = counter;
-					stop = 1 or stop;
+					stop = 1 | stop;
 				}
-				if(hist[0][255-counter] > threshold and ((stop and 128) == 0)){
+														//128 = 10000000
+				if(hist[0][255-counter] > threshold and !(stop & 128)){
 					last_b = 255 - counter;
-					stop = 128 or stop;
+					stop = 128 | stop;
 				}
-				if(hist[1][counter] > threshold and ((stop and 2) == 0)){
+														//2 = 00000010
+				if(hist[1][counter] > threshold and !(stop & 2)){
 					first_g = counter;
-					stop = 2 or stop;
+					stop = 2 | stop;
 				}
-				if(hist[1][255-counter] > threshold and ((stop and 64) == 0)){
+
+														//64 = 01000000
+				if(hist[1][255-counter] > threshold and !(stop & 64)){
 					last_g = 255 - counter;
-					stop = 64 or stop;
+					stop = 64 | stop;
 				}
-				if(hist[2][counter] > threshold and ((stop and 4) == 0)){
+														//4 = 00000100
+				if(hist[2][counter] > threshold and !(stop & 4)){
 					first_r = counter;
-					stop = 4 or stop;
+					stop = 4 | stop;
 				}
-				if(hist[2][255-counter] > threshold and ((stop and 32) == 0)){
+														//32 = 00100000
+				if(hist[2][255-counter] > threshold and !(stop & 32)){
 					last_r = 255 - counter;
-					stop = 32 or stop;
+					stop = 32 | stop;
 				}
 			}
+
 			if(stop == 231){
 				scale_r = 255.0f/(last_r - first_r);
 				scale_b = 255.0f/(last_b - first_b);
 				scale_g = 255.0f/(last_g - first_g);
-
 			}
+
+
 			if(x >= WIDTH - 129){
 				counter = x - WIDTH + 129;
 				hist[0][counter] = 0;
@@ -182,5 +163,5 @@ void invstripe (pixel_stream &src, pixel_stream &dst, float f)
 
 void stream (pixel_stream &src, pixel_stream &dst, int frame)
 {
-	invstripe(src, dst, 0.001);
+	invstripe(src, dst, 0.01);
 }
