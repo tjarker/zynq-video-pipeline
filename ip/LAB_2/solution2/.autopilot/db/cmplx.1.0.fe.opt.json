@@ -1,0 +1,115 @@
+{
+  "0": {
+    "basicblocks": 61,
+    "calls": "1 1 1 2",
+    "file": "invstripe.cpp",
+    "fileloc": 19,
+    "instructions": 459,
+    "loads": {
+      "G": 84,
+      "L": 1
+    },
+    "name": "invstripe",
+    "stores": {
+      "G": 35,
+      "L": 1
+    },
+    "total_instructions": 9127
+  },
+  "1": {
+    "basicblocks": 1,
+    "calls": "6",
+    "file": "lib_floatconversion.cpp",
+    "fileloc": 63,
+    "instructions": 2,
+    "name": "__hls_fptoui_float_i8",
+    "total_instructions": 2013
+  },
+  "10": {
+    "basicblocks": 1,
+    "calls": "7",
+    "file": "hls_case_IEEE754.h",
+    "fileloc": 116,
+    "instructions": 2,
+    "name": "generic_cast_IEEE754<unsigned int, float>",
+    "total_instructions": 1998
+  },
+  "2": {
+    "basicblocks": 1,
+    "calls": "10",
+    "file": "lib_floatconversion.cpp",
+    "fileloc": 65,
+    "instructions": 2,
+    "name": "__hls_fptoui_float_i32",
+    "total_instructions": 2000
+  },
+  "3": {
+    "basicblocks": 15,
+    "calls": "5 9 8 8 4 4",
+    "file": "hls_case_IEEE754.h",
+    "fileloc": 65,
+    "instructions": 108,
+    "name": "generic_cast_IEEE754<unsigned char, AP_TRN_ZERO, float>",
+    "total_instructions": 2009
+  },
+  "4": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "x_hls_utils.h",
+    "fileloc": 378,
+    "instructions": 4,
+    "name": "__signbit",
+    "total_instructions": 9
+  },
+  "5": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "x_hls_utils.h",
+    "fileloc": 312,
+    "instructions": 58,
+    "loads": {
+      "L": 1
+    },
+    "name": "fp_struct",
+    "stores": {
+      "L": 1
+    },
+    "total_instructions": 349
+  },
+  "6": {
+    "basicblocks": 1,
+    "calls": "3",
+    "file": "hls_case_IEEE754.h",
+    "fileloc": 116,
+    "instructions": 2,
+    "name": "generic_cast_IEEE754<unsigned char, float>",
+    "total_instructions": 2011
+  },
+  "7": {
+    "basicblocks": 15,
+    "calls": "5 9 8 8 4 4",
+    "file": "hls_case_IEEE754.h",
+    "fileloc": 65,
+    "instructions": 108,
+    "name": "generic_cast_IEEE754<unsigned int, AP_TRN_ZERO, float>",
+    "total_instructions": 1996
+  },
+  "8": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "x_hls_utils.h",
+    "fileloc": 345,
+    "instructions": 8,
+    "name": "expv",
+    "total_instructions": 109
+  },
+  "9": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "x_hls_utils.h",
+    "fileloc": 369,
+    "instructions": 24,
+    "name": "mantissa",
+    "total_instructions": 188
+  }
+}

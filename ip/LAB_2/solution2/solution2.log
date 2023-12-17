@@ -1,0 +1,851 @@
+==============================================================
+Vitis HLS - High-Level Synthesis from C, C++ and OpenCL v2023.1 (64-bit)
+Tool Version Limit: 2023.05
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
+
+==============================================================
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 7ns.
+INFO: [HLS 200-1611] Setting target device to 'xc7z020-clg400-1'
+INFO: [HLS 200-1505] Using flow_target 'vivado'
+INFO: [HLS 200-1464] Running solution command: config_export -vivado_clock=7
+INFO: [HLS 200-1510] Running: set_part xc7z020-clg400-1 
+INFO: [HLS 200-1510] Running: create_clock -period 7 -name default 
+INFO: [HLS 200-1510] Running: config_export -vivado_clock 7 
+INFO: [HLS 200-1510] Running: source ./LAB_2/solution2/directives.tcl
+INFO: [HLS 200-1510] Running: set_directive_top -name invstripe invstripe 
+INFO: [HLS 200-1510] Running: set_directive_reset invstripe hist 
+INFO: [HLS 200-1510] Running: csynth_design 
+INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0 seconds. CPU system time: 1 seconds. Elapsed time: 0.419 seconds; current allocated memory: 87.082 MB.
+INFO: [HLS 200-10] Analyzing design file 'PYNQ-Z2/hls/invstripe.cpp' ... 
+WARNING: [HLS 207-5292] unused parameter 'frame' (PYNQ-Z2/hls/invstripe.cpp:170:56)
+INFO: [HLS 200-111] Finished Source Code Analysis and Preprocessing: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 6.196 seconds; current allocated memory: 89.270 MB.
+INFO: [HLS 200-777] Using interface defaults for 'Vivado' flow target.
+INFO: [HLS 214-178] Inlining function 'fp_struct<float>::fp_struct(float)' into 'unsigned char generic_cast_IEEE754<unsigned char, (ap_q_mode)6, float>(float, bool, hls::enable_if<!(std::numeric_limits<unsigned char>::is_signed), bool>::type)' (C:\scratch\2023.1\hls_product\1026\2023.1\src\shared\hls\clib/hlsmath/include/FloatingPoint\hls_case_IEEE754.h:65:0)
+INFO: [HLS 214-178] Inlining function 'fp_struct<float>::mantissa() const' into 'unsigned char generic_cast_IEEE754<unsigned char, (ap_q_mode)6, float>(float, bool, hls::enable_if<!(std::numeric_limits<unsigned char>::is_signed), bool>::type)' (C:\scratch\2023.1\hls_product\1026\2023.1\src\shared\hls\clib/hlsmath/include/FloatingPoint\hls_case_IEEE754.h:65:0)
+INFO: [HLS 214-178] Inlining function 'fp_struct<float>::expv() const' into 'unsigned char generic_cast_IEEE754<unsigned char, (ap_q_mode)6, float>(float, bool, hls::enable_if<!(std::numeric_limits<unsigned char>::is_signed), bool>::type)' (C:\scratch\2023.1\hls_product\1026\2023.1\src\shared\hls\clib/hlsmath/include/FloatingPoint\hls_case_IEEE754.h:65:0)
+INFO: [HLS 214-178] Inlining function 'unsigned char generic_cast_IEEE754<unsigned char, (ap_q_mode)6, float>(float, bool, hls::enable_if<!(std::numeric_limits<unsigned char>::is_signed), bool>::type)' into 'unsigned char generic_cast_IEEE754<unsigned char, float>(float, bool)' (C:\scratch\2023.1\hls_product\1026\2023.1\src\shared\hls\clib/hlsmath/include/FloatingPoint\hls_case_IEEE754.h:116:0)
+INFO: [HLS 214-178] Inlining function 'unsigned char generic_cast_IEEE754<unsigned char, float>(float, bool)' into '__hls_fptoui_float_i8' (C:\scratch\2023.1\hls_product\1026\2023.1\src\shared\hls\clib\hlsmath\src\lib_floatconversion.cpp:63:0)
+INFO: [HLS 214-178] Inlining function 'fp_struct<float>::fp_struct(float)' into 'unsigned int generic_cast_IEEE754<unsigned int, (ap_q_mode)6, float>(float, bool, hls::enable_if<!(std::numeric_limits<unsigned int>::is_signed), bool>::type)' (C:\scratch\2023.1\hls_product\1026\2023.1\src\shared\hls\clib/hlsmath/include/FloatingPoint\hls_case_IEEE754.h:65:0)
+INFO: [HLS 214-178] Inlining function 'fp_struct<float>::mantissa() const' into 'unsigned int generic_cast_IEEE754<unsigned int, (ap_q_mode)6, float>(float, bool, hls::enable_if<!(std::numeric_limits<unsigned int>::is_signed), bool>::type)' (C:\scratch\2023.1\hls_product\1026\2023.1\src\shared\hls\clib/hlsmath/include/FloatingPoint\hls_case_IEEE754.h:65:0)
+INFO: [HLS 214-178] Inlining function 'fp_struct<float>::expv() const' into 'unsigned int generic_cast_IEEE754<unsigned int, (ap_q_mode)6, float>(float, bool, hls::enable_if<!(std::numeric_limits<unsigned int>::is_signed), bool>::type)' (C:\scratch\2023.1\hls_product\1026\2023.1\src\shared\hls\clib/hlsmath/include/FloatingPoint\hls_case_IEEE754.h:65:0)
+INFO: [HLS 214-178] Inlining function 'unsigned int generic_cast_IEEE754<unsigned int, (ap_q_mode)6, float>(float, bool, hls::enable_if<!(std::numeric_limits<unsigned int>::is_signed), bool>::type)' into 'unsigned int generic_cast_IEEE754<unsigned int, float>(float, bool)' (C:\scratch\2023.1\hls_product\1026\2023.1\src\shared\hls\clib/hlsmath/include/FloatingPoint\hls_case_IEEE754.h:116:0)
+INFO: [HLS 214-178] Inlining function 'unsigned int generic_cast_IEEE754<unsigned int, float>(float, bool)' into '__hls_fptoui_float_i32' (C:\scratch\2023.1\hls_product\1026\2023.1\src\shared\hls\clib\hlsmath\src\lib_floatconversion.cpp:65:0)
+INFO: [HLS 214-178] Inlining function '__hls_fptoui_float_i32' into 'invstripe(hls::stream<hls::axis<ap_uint<32>, 1ul, 1ul, 1ul>, 0>&, hls::stream<hls::axis<ap_uint<32>, 1ul, 1ul, 1ul>, 0>&, float)' (PYNQ-Z2/hls/invstripe.cpp:20:0)
+INFO: [HLS 214-270] Inferring pragma 'array_partition type=cyclic factor=2 dim=2' for array 'invstripe(hls::stream<hls::axis<ap_uint<32>, 1ul, 1ul, 1ul>, 0>&, hls::stream<hls::axis<ap_uint<32>, 1ul, 1ul, 1ul>, 0>&, float)::hist' due to pipeline pragma (PYNQ-Z2/hls/invstripe.cpp:25:9)
+INFO: [HLS 214-248] Applying array_partition to '_ZZ9invstripeRN3hls6streamINS_4axisI7ap_uintILi32EELm1ELm1ELm1EEELi0EEES6_fE4hist': Cyclic partitioning with factor 2 on dimension 2. (PYNQ-Z2/hls/invstripe.cpp:29:0)
+INFO: [HLS 200-111] Finished Compiling Optimization and Transform: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 5.183 seconds; current allocated memory: 90.461 MB.
+INFO: [HLS 200-111] Finished Checking Pragmas: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.006 seconds; current allocated memory: 90.469 MB.
+INFO: [HLS 200-10] Starting code transformations ...
+INFO: [HLS 200-111] Finished Standard Transforms: CPU user time: 1 seconds. CPU system time: 0 seconds. Elapsed time: 0.18 seconds; current allocated memory: 98.195 MB.
+INFO: [HLS 200-10] Checking synthesizability ...
+INFO: [XFORM 203-602] Inlining function '__hls_fptoui_float_i8' into 'invstripe' (PYNQ-Z2/hls/invstripe.cpp:74) automatically.
+INFO: [HLS 200-111] Finished Checking Synthesizability: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.089 seconds; current allocated memory: 102.668 MB.
+INFO: [XFORM 203-602] Inlining function '__hls_fptoui_float_i8' into 'invstripe' (PYNQ-Z2/hls/invstripe.cpp:74) automatically.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (PYNQ-Z2/hls/invstripe.cpp:74:17) to (PYNQ-Z2/hls/invstripe.cpp:82:3) in function 'invstripe'... converting 10 basic blocks.
+INFO: [HLS 200-111] Finished Loop, function and other optimizations: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.27 seconds; current allocated memory: 127.270 MB.
+INFO: [HLS 200-111] Finished Architecture Synthesis: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.226 seconds; current allocated memory: 127.523 MB.
+INFO: [HLS 200-10] Starting hardware synthesis ...
+INFO: [HLS 200-10] Synthesizing 'invstripe' ...
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'invstripe' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining function 'invstripe'.
+WARNING: [HLS 200-880] The II Violation in module 'invstripe' (function 'invstripe'): Unable to enforce a carried dependence constraint (II = 1, distance = 1, offset = 1) between 'store' operation ('invstripe_stream_stream_axis_ap_uint_32_1ul_1ul_1ul_0_float_hist_addr_write_ln68', PYNQ-Z2/hls/invstripe.cpp:68) of variable 'add_ln68', PYNQ-Z2/hls/invstripe.cpp:68 on array 'invstripe_stream_stream_axis_ap_uint_32_1ul_1ul_1ul_0_float_hist' and 'load' operation ('invstripe_stream_stream_axis_ap_uint_32_1ul_1ul_1ul_0_float_hist_load', PYNQ-Z2/hls/invstripe.cpp:68) on array 'invstripe_stream_stream_axis_ap_uint_32_1ul_1ul_1ul_0_float_hist'.
+WARNING: [HLS 200-880] The II Violation in module 'invstripe' (function 'invstripe'): Unable to enforce a carried dependence constraint (II = 2, distance = 1, offset = 1) between 'store' operation ('invstripe_stream_stream_axis_ap_uint_32_1ul_1ul_1ul_0_float_hist_addr_12_write_ln148', PYNQ-Z2/hls/invstripe.cpp:148) of constant 0 on array 'invstripe_stream_stream_axis_ap_uint_32_1ul_1ul_1ul_0_float_hist' and 'load' operation ('invstripe_stream_stream_axis_ap_uint_32_1ul_1ul_1ul_0_float_hist_load', PYNQ-Z2/hls/invstripe.cpp:68) on array 'invstripe_stream_stream_axis_ap_uint_32_1ul_1ul_1ul_0_float_hist'.
+WARNING: [HLS 200-880] The II Violation in module 'invstripe' (function 'invstripe'): Unable to enforce a carried dependence constraint (II = 3, distance = 1, offset = 1) between 'store' operation ('invstripe_stream_stream_axis_ap_uint_32_1ul_1ul_1ul_0_float_hist_addr_15_write_ln149', PYNQ-Z2/hls/invstripe.cpp:149) of constant 0 on array 'invstripe_stream_stream_axis_ap_uint_32_1ul_1ul_1ul_0_float_hist' and 'load' operation ('invstripe_stream_stream_axis_ap_uint_32_1ul_1ul_1ul_0_float_hist_load', PYNQ-Z2/hls/invstripe.cpp:68) on array 'invstripe_stream_stream_axis_ap_uint_32_1ul_1ul_1ul_0_float_hist'.
+WARNING: [HLS 200-880] The II Violation in module 'invstripe' (function 'invstripe'): Unable to enforce a carried dependence constraint (II = 4, distance = 1, offset = 0) between 'load' operation ('invstripe_stream_stream_axis_ap_uint_32_1ul_1ul_1ul_0_float_hist_load_4', PYNQ-Z2/hls/invstripe.cpp:103) on array 'invstripe_stream_stream_axis_ap_uint_32_1ul_1ul_1ul_0_float_hist' and 'store' operation ('invstripe_stream_stream_axis_ap_uint_32_1ul_1ul_1ul_0_float_hist_addr_2_write_ln70', PYNQ-Z2/hls/invstripe.cpp:70) of variable 'add_ln70', PYNQ-Z2/hls/invstripe.cpp:70 on array 'invstripe_stream_stream_axis_ap_uint_32_1ul_1ul_1ul_0_float_hist'.
+WARNING: [HLS 200-885] The II Violation in module 'invstripe' (function 'invstripe'): Unable to schedule 'load' operation ('invstripe_stream_stream_axis_ap_uint_32_1ul_1ul_1ul_0_float_hist_load_5', PYNQ-Z2/hls/invstripe.cpp:108) on array 'invstripe_stream_stream_axis_ap_uint_32_1ul_1ul_1ul_0_float_hist' due to limited memory ports (II = 19). Please consider using a memory core with more ports or partitioning the array 'invstripe_stream_stream_axis_ap_uint_32_1ul_1ul_1ul_0_float_hist'.
+WARNING: [HLS 200-885] The II Violation in module 'invstripe' (function 'invstripe'): Unable to schedule 'load' operation ('invstripe_stream_stream_axis_ap_uint_32_1ul_1ul_1ul_0_float_hist_1_load_5', PYNQ-Z2/hls/invstripe.cpp:108) on array 'invstripe_stream_stream_axis_ap_uint_32_1ul_1ul_1ul_0_float_hist_1' due to limited memory ports (II = 21). Please consider using a memory core with more ports or partitioning the array 'invstripe_stream_stream_axis_ap_uint_32_1ul_1ul_1ul_0_float_hist_1'.
+INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 22, Depth = 46, function 'invstripe'
+WARNING: [HLS 200-871] Estimated clock period (8.701 ns) exceeds the target (target clock period: 7.000 ns, clock uncertainty: 1.890 ns, effective delay budget: 5.110 ns).
+WARNING: [HLS 200-1016] The critical path in module 'invstripe' consists of the following:
+	'fmul' operation ('mul', PYNQ-Z2/hls/invstripe.cpp:74) [142]  (4.353 ns)
+	multiplexor before operation 'fsub' with delay (1.707 ns)
+'fsub' operation ('sub', PYNQ-Z2/hls/invstripe.cpp:74) [145]  (2.641 ns)
+
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 3 seconds. CPU system time: 0 seconds. Elapsed time: 2.836 seconds; current allocated memory: 135.469 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.78 seconds; current allocated memory: 136.984 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'invstripe' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+WARNING: [RTGEN 206-101] Design contains AXI ports. Reset is fixed to synchronous and active low.
+INFO: [RTGEN 206-500] Setting interface mode on port 'invstripe/src_V_data_V' to 'axis' (register, both mode).
+INFO: [RTGEN 206-500] Setting interface mode on port 'invstripe/src_V_keep_V' to 'axis' (register, both mode).
+INFO: [RTGEN 206-500] Setting interface mode on port 'invstripe/src_V_strb_V' to 'axis' (register, both mode).
+INFO: [RTGEN 206-500] Setting interface mode on port 'invstripe/src_V_user_V' to 'axis' (register, both mode).
+INFO: [RTGEN 206-500] Setting interface mode on port 'invstripe/src_V_last_V' to 'axis' (register, both mode).
+INFO: [RTGEN 206-500] Setting interface mode on port 'invstripe/src_V_id_V' to 'axis' (register, both mode).
+INFO: [RTGEN 206-500] Setting interface mode on port 'invstripe/src_V_dest_V' to 'axis' (register, both mode).
+INFO: [RTGEN 206-500] Setting interface mode on port 'invstripe/dst_V_data_V' to 'axis' (register, both mode).
+INFO: [RTGEN 206-500] Setting interface mode on port 'invstripe/dst_V_keep_V' to 'axis' (register, both mode).
+INFO: [RTGEN 206-500] Setting interface mode on port 'invstripe/dst_V_strb_V' to 'axis' (register, both mode).
+INFO: [RTGEN 206-500] Setting interface mode on port 'invstripe/dst_V_user_V' to 'axis' (register, both mode).
+INFO: [RTGEN 206-500] Setting interface mode on port 'invstripe/dst_V_last_V' to 'axis' (register, both mode).
+INFO: [RTGEN 206-500] Setting interface mode on port 'invstripe/dst_V_id_V' to 'axis' (register, both mode).
+INFO: [RTGEN 206-500] Setting interface mode on port 'invstripe/dst_V_dest_V' to 'axis' (register, both mode).
+INFO: [RTGEN 206-500] Setting interface mode on port 'invstripe/f' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on function 'invstripe' to 'ap_ctrl_none'.
+WARNING: [RTGEN 206-101] Register 'y' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'x' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'first_r' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'last_r' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'first_g' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'last_g' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'first_b' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'last_b' is power-on initialization.
+INFO: [SYN 201-210] Renamed object name 'invstripe_stream_stream_axis_ap_uint_32_1ul_1ul_1ul_0_float_hist_1_RAM_AUTO_1R1W' to 'invstripe_stream_stream_axis_ap_uint_32_1ul_1ul_1ul_0_float_hist_1_RAM_AUTO_1bkb' due to the length limit 80
+WARNING: [RTGEN 206-101] Register 'scale_r' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'scale_g' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'scale_b' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'threshold' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'stop' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'max' is power-on initialization.
+INFO: [HLS 200-1030] Apply Unified Pipeline Control on module 'invstripe' pipeline 'invstripe' pipeline type 'function pipeline'
+INFO: [RTGEN 206-100] Generating core module 'fmul_32ns_32ns_32_5_max_dsp_1': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'fsub_32ns_32ns_32_9_full_dsp_1': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'mux_2_1_32_1_1': 8 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'sdiv_9ns_9ns_9_13_1': 3 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'sitofp_32ns_32_7_no_dsp_1': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'uitofp_32ns_32_7_no_dsp_1': 1 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'invstripe'.
+INFO: [RTMG 210-278] Implementing memory 'invstripe_invstripe_stream_stream_axis_ap_uint_32_1ul_1ul_1ul_0_float_hist_1_RAM_AUTO_1bkb_ram' using auto RAMs.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 1 seconds. CPU system time: 0 seconds. Elapsed time: 0.733 seconds; current allocated memory: 142.762 MB.
+INFO: [HLS 200-111] Finished Generating all RTL models: CPU user time: 2 seconds. CPU system time: 2 seconds. Elapsed time: 3.693 seconds; current allocated memory: 155.297 MB.
+INFO: [HLS 200-111] Finished Updating report files: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 1.233 seconds; current allocated memory: 160.246 MB.
+INFO: [VHDL 208-304] Generating VHDL RTL for invstripe.
+INFO: [VLOG 209-307] Generating Verilog RTL for invstripe.
+INFO: [HLS 200-789] **** Estimated Fmax: 114.93 MHz
+INFO: [HLS 200-111] Finished Command csynth_design CPU user time: 7 seconds. CPU system time: 3 seconds. Elapsed time: 21.883 seconds; current allocated memory: 73.477 MB.
+==============================================================
+Vitis HLS - High-Level Synthesis from C, C++ and OpenCL v2023.1 (64-bit)
+Tool Version Limit: 2023.05
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
+
+==============================================================
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 7ns.
+INFO: [HLS 200-1611] Setting target device to 'xc7z020-clg400-1'
+INFO: [HLS 200-1505] Using flow_target 'vivado'
+INFO: [HLS 200-1464] Running solution command: config_export -vivado_clock=7
+INFO: [HLS 200-1510] Running: set_part xc7z020-clg400-1 
+INFO: [HLS 200-1510] Running: create_clock -period 7 -name default 
+INFO: [HLS 200-1510] Running: config_export -vivado_clock 7 
+INFO: [HLS 200-1510] Running: source ./LAB_2/solution2/directives.tcl
+INFO: [HLS 200-1510] Running: set_directive_top -name invstripe invstripe 
+INFO: [HLS 200-1510] Running: set_directive_reset invstripe hist 
+INFO: [HLS 200-1510] Running: csim_design -quiet 
+INFO: [SIM 211-2] *************** CSIM start ***************
+INFO: [SIM 211-4] CSIM will launch GCC as the compiler.
+INFO: [HLS 200-2036] Building debug C Simulation binaries
+INFO: [SIM 211-1] CSim done with 0 errors.
+INFO: [SIM 211-3] *************** CSIM finish ***************
+INFO: [HLS 200-111] Finished Command csim_design CPU user time: 0 seconds. CPU system time: 1 seconds. Elapsed time: 246.365 seconds; current allocated memory: 0.371 MB.
+==============================================================
+Vitis HLS - High-Level Synthesis from C, C++ and OpenCL v2023.1 (64-bit)
+Tool Version Limit: 2023.05
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
+
+==============================================================
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 7ns.
+INFO: [HLS 200-1611] Setting target device to 'xc7z020-clg400-1'
+INFO: [HLS 200-1505] Using flow_target 'vivado'
+INFO: [HLS 200-1464] Running solution command: config_export -vivado_clock=7
+INFO: [HLS 200-1510] Running: set_part xc7z020-clg400-1 
+INFO: [HLS 200-1510] Running: create_clock -period 7 -name default 
+INFO: [HLS 200-1510] Running: config_export -vivado_clock 7 
+INFO: [HLS 200-1510] Running: source ./LAB_2/solution2/directives.tcl
+INFO: [HLS 200-1510] Running: set_directive_top -name invstripe invstripe 
+INFO: [HLS 200-1510] Running: set_directive_reset invstripe hist 
+INFO: [HLS 200-1510] Running: csynth_design 
+INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.382 seconds; current allocated memory: 83.926 MB.
+INFO: [HLS 200-10] Analyzing design file 'PYNQ-Z2/hls/invstripe.cpp' ... 
+ERROR: [HLS 207-3776] use of undeclared identifier 'condition' (PYNQ-Z2/hls/invstripe.cpp:78:7)
+ERROR: [HLS 207-3776] use of undeclared identifier 'd' (PYNQ-Z2/hls/invstripe.cpp:81:4)
+ERROR: [HLS 207-3776] use of undeclared identifier 'd' (PYNQ-Z2/hls/invstripe.cpp:84:13)
+INFO: [HLS 200-111] Finished Command csynth_design CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 1.668 seconds; current allocated memory: 0.797 MB.
+==============================================================
+Vitis HLS - High-Level Synthesis from C, C++ and OpenCL v2023.1 (64-bit)
+Tool Version Limit: 2023.05
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
+
+==============================================================
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 7ns.
+INFO: [HLS 200-1611] Setting target device to 'xc7z020-clg400-1'
+INFO: [HLS 200-1505] Using flow_target 'vivado'
+INFO: [HLS 200-1464] Running solution command: config_export -vivado_clock=7
+INFO: [HLS 200-1510] Running: set_part xc7z020-clg400-1 
+INFO: [HLS 200-1510] Running: create_clock -period 7 -name default 
+INFO: [HLS 200-1510] Running: config_export -vivado_clock 7 
+INFO: [HLS 200-1510] Running: source ./LAB_2/solution2/directives.tcl
+INFO: [HLS 200-1510] Running: set_directive_top -name invstripe invstripe 
+INFO: [HLS 200-1510] Running: set_directive_reset invstripe hist 
+INFO: [HLS 200-1510] Running: csynth_design 
+INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.376 seconds; current allocated memory: 84.484 MB.
+INFO: [HLS 200-10] Analyzing design file 'PYNQ-Z2/hls/invstripe.cpp' ... 
+WARNING: [HLS 207-5292] unused parameter 'frame' (PYNQ-Z2/hls/invstripe.cpp:170:56)
+INFO: [HLS 200-111] Finished Source Code Analysis and Preprocessing: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 6.066 seconds; current allocated memory: 86.316 MB.
+INFO: [HLS 200-777] Using interface defaults for 'Vivado' flow target.
+INFO: [HLS 214-178] Inlining function 'fp_struct<float>::fp_struct(float)' into 'unsigned char generic_cast_IEEE754<unsigned char, (ap_q_mode)6, float>(float, bool, hls::enable_if<!(std::numeric_limits<unsigned char>::is_signed), bool>::type)' (C:\scratch\2023.1\hls_product\1026\2023.1\src\shared\hls\clib/hlsmath/include/FloatingPoint\hls_case_IEEE754.h:65:0)
+INFO: [HLS 214-178] Inlining function 'fp_struct<float>::mantissa() const' into 'unsigned char generic_cast_IEEE754<unsigned char, (ap_q_mode)6, float>(float, bool, hls::enable_if<!(std::numeric_limits<unsigned char>::is_signed), bool>::type)' (C:\scratch\2023.1\hls_product\1026\2023.1\src\shared\hls\clib/hlsmath/include/FloatingPoint\hls_case_IEEE754.h:65:0)
+INFO: [HLS 214-178] Inlining function 'fp_struct<float>::expv() const' into 'unsigned char generic_cast_IEEE754<unsigned char, (ap_q_mode)6, float>(float, bool, hls::enable_if<!(std::numeric_limits<unsigned char>::is_signed), bool>::type)' (C:\scratch\2023.1\hls_product\1026\2023.1\src\shared\hls\clib/hlsmath/include/FloatingPoint\hls_case_IEEE754.h:65:0)
+INFO: [HLS 214-178] Inlining function 'unsigned char generic_cast_IEEE754<unsigned char, (ap_q_mode)6, float>(float, bool, hls::enable_if<!(std::numeric_limits<unsigned char>::is_signed), bool>::type)' into 'unsigned char generic_cast_IEEE754<unsigned char, float>(float, bool)' (C:\scratch\2023.1\hls_product\1026\2023.1\src\shared\hls\clib/hlsmath/include/FloatingPoint\hls_case_IEEE754.h:116:0)
+INFO: [HLS 214-178] Inlining function 'unsigned char generic_cast_IEEE754<unsigned char, float>(float, bool)' into '__hls_fptoui_float_i8' (C:\scratch\2023.1\hls_product\1026\2023.1\src\shared\hls\clib\hlsmath\src\lib_floatconversion.cpp:63:0)
+INFO: [HLS 214-178] Inlining function 'fp_struct<float>::fp_struct(float)' into 'unsigned int generic_cast_IEEE754<unsigned int, (ap_q_mode)6, float>(float, bool, hls::enable_if<!(std::numeric_limits<unsigned int>::is_signed), bool>::type)' (C:\scratch\2023.1\hls_product\1026\2023.1\src\shared\hls\clib/hlsmath/include/FloatingPoint\hls_case_IEEE754.h:65:0)
+INFO: [HLS 214-178] Inlining function 'fp_struct<float>::mantissa() const' into 'unsigned int generic_cast_IEEE754<unsigned int, (ap_q_mode)6, float>(float, bool, hls::enable_if<!(std::numeric_limits<unsigned int>::is_signed), bool>::type)' (C:\scratch\2023.1\hls_product\1026\2023.1\src\shared\hls\clib/hlsmath/include/FloatingPoint\hls_case_IEEE754.h:65:0)
+INFO: [HLS 214-178] Inlining function 'fp_struct<float>::expv() const' into 'unsigned int generic_cast_IEEE754<unsigned int, (ap_q_mode)6, float>(float, bool, hls::enable_if<!(std::numeric_limits<unsigned int>::is_signed), bool>::type)' (C:\scratch\2023.1\hls_product\1026\2023.1\src\shared\hls\clib/hlsmath/include/FloatingPoint\hls_case_IEEE754.h:65:0)
+INFO: [HLS 214-178] Inlining function 'unsigned int generic_cast_IEEE754<unsigned int, (ap_q_mode)6, float>(float, bool, hls::enable_if<!(std::numeric_limits<unsigned int>::is_signed), bool>::type)' into 'unsigned int generic_cast_IEEE754<unsigned int, float>(float, bool)' (C:\scratch\2023.1\hls_product\1026\2023.1\src\shared\hls\clib/hlsmath/include/FloatingPoint\hls_case_IEEE754.h:116:0)
+INFO: [HLS 214-178] Inlining function 'unsigned int generic_cast_IEEE754<unsigned int, float>(float, bool)' into '__hls_fptoui_float_i32' (C:\scratch\2023.1\hls_product\1026\2023.1\src\shared\hls\clib\hlsmath\src\lib_floatconversion.cpp:65:0)
+INFO: [HLS 214-178] Inlining function '__hls_fptoui_float_i32' into 'invstripe(hls::stream<hls::axis<ap_uint<32>, 1ul, 1ul, 1ul>, 0>&, hls::stream<hls::axis<ap_uint<32>, 1ul, 1ul, 1ul>, 0>&, float)' (PYNQ-Z2/hls/invstripe.cpp:20:0)
+INFO: [HLS 214-270] Inferring pragma 'array_partition type=cyclic factor=2 dim=2' for array 'invstripe(hls::stream<hls::axis<ap_uint<32>, 1ul, 1ul, 1ul>, 0>&, hls::stream<hls::axis<ap_uint<32>, 1ul, 1ul, 1ul>, 0>&, float)::hist' due to pipeline pragma (PYNQ-Z2/hls/invstripe.cpp:25:9)
+INFO: [HLS 214-248] Applying array_partition to '_ZZ9invstripeRN3hls6streamINS_4axisI7ap_uintILi32EELm1ELm1ELm1EEELi0EEES6_fE4hist': Cyclic partitioning with factor 2 on dimension 2. (PYNQ-Z2/hls/invstripe.cpp:29:0)
+INFO: [HLS 200-111] Finished Compiling Optimization and Transform: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 4.818 seconds; current allocated memory: 87.684 MB.
+INFO: [HLS 200-111] Finished Checking Pragmas: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.006 seconds; current allocated memory: 87.684 MB.
+INFO: [HLS 200-10] Starting code transformations ...
+INFO: [HLS 200-111] Finished Standard Transforms: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.058 seconds; current allocated memory: 94.824 MB.
+INFO: [HLS 200-10] Checking synthesizability ...
+INFO: [XFORM 203-602] Inlining function '__hls_fptoui_float_i8' into 'invstripe' (PYNQ-Z2/hls/invstripe.cpp:74) automatically.
+INFO: [HLS 200-111] Finished Checking Synthesizability: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.068 seconds; current allocated memory: 99.711 MB.
+INFO: [XFORM 203-602] Inlining function '__hls_fptoui_float_i8' into 'invstripe' (PYNQ-Z2/hls/invstripe.cpp:74) automatically.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (PYNQ-Z2/hls/invstripe.cpp:74:17) to (PYNQ-Z2/hls/invstripe.cpp:82:3) in function 'invstripe'... converting 10 basic blocks.
+INFO: [HLS 200-111] Finished Loop, function and other optimizations: CPU user time: 1 seconds. CPU system time: 0 seconds. Elapsed time: 0.255 seconds; current allocated memory: 124.133 MB.
+INFO: [HLS 200-111] Finished Architecture Synthesis: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.203 seconds; current allocated memory: 124.422 MB.
+INFO: [HLS 200-10] Starting hardware synthesis ...
+INFO: [HLS 200-10] Synthesizing 'invstripe' ...
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'invstripe' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining function 'invstripe'.
+WARNING: [HLS 200-880] The II Violation in module 'invstripe' (function 'invstripe'): Unable to enforce a carried dependence constraint (II = 1, distance = 1, offset = 1) between 'store' operation ('invstripe_stream_stream_axis_ap_uint_32_1ul_1ul_1ul_0_float_hist_addr_write_ln68', PYNQ-Z2/hls/invstripe.cpp:68) of variable 'add_ln68', PYNQ-Z2/hls/invstripe.cpp:68 on array 'invstripe_stream_stream_axis_ap_uint_32_1ul_1ul_1ul_0_float_hist' and 'load' operation ('invstripe_stream_stream_axis_ap_uint_32_1ul_1ul_1ul_0_float_hist_load', PYNQ-Z2/hls/invstripe.cpp:68) on array 'invstripe_stream_stream_axis_ap_uint_32_1ul_1ul_1ul_0_float_hist'.
+WARNING: [HLS 200-880] The II Violation in module 'invstripe' (function 'invstripe'): Unable to enforce a carried dependence constraint (II = 2, distance = 1, offset = 1) between 'store' operation ('invstripe_stream_stream_axis_ap_uint_32_1ul_1ul_1ul_0_float_hist_addr_12_write_ln148', PYNQ-Z2/hls/invstripe.cpp:148) of constant 0 on array 'invstripe_stream_stream_axis_ap_uint_32_1ul_1ul_1ul_0_float_hist' and 'load' operation ('invstripe_stream_stream_axis_ap_uint_32_1ul_1ul_1ul_0_float_hist_load', PYNQ-Z2/hls/invstripe.cpp:68) on array 'invstripe_stream_stream_axis_ap_uint_32_1ul_1ul_1ul_0_float_hist'.
+WARNING: [HLS 200-880] The II Violation in module 'invstripe' (function 'invstripe'): Unable to enforce a carried dependence constraint (II = 3, distance = 1, offset = 1) between 'store' operation ('invstripe_stream_stream_axis_ap_uint_32_1ul_1ul_1ul_0_float_hist_addr_15_write_ln149', PYNQ-Z2/hls/invstripe.cpp:149) of constant 0 on array 'invstripe_stream_stream_axis_ap_uint_32_1ul_1ul_1ul_0_float_hist' and 'load' operation ('invstripe_stream_stream_axis_ap_uint_32_1ul_1ul_1ul_0_float_hist_load', PYNQ-Z2/hls/invstripe.cpp:68) on array 'invstripe_stream_stream_axis_ap_uint_32_1ul_1ul_1ul_0_float_hist'.
+WARNING: [HLS 200-880] The II Violation in module 'invstripe' (function 'invstripe'): Unable to enforce a carried dependence constraint (II = 4, distance = 1, offset = 0) between 'load' operation ('invstripe_stream_stream_axis_ap_uint_32_1ul_1ul_1ul_0_float_hist_load_4', PYNQ-Z2/hls/invstripe.cpp:103) on array 'invstripe_stream_stream_axis_ap_uint_32_1ul_1ul_1ul_0_float_hist' and 'store' operation ('invstripe_stream_stream_axis_ap_uint_32_1ul_1ul_1ul_0_float_hist_addr_2_write_ln70', PYNQ-Z2/hls/invstripe.cpp:70) of variable 'add_ln70', PYNQ-Z2/hls/invstripe.cpp:70 on array 'invstripe_stream_stream_axis_ap_uint_32_1ul_1ul_1ul_0_float_hist'.
+WARNING: [HLS 200-885] The II Violation in module 'invstripe' (function 'invstripe'): Unable to schedule 'load' operation ('invstripe_stream_stream_axis_ap_uint_32_1ul_1ul_1ul_0_float_hist_load_5', PYNQ-Z2/hls/invstripe.cpp:108) on array 'invstripe_stream_stream_axis_ap_uint_32_1ul_1ul_1ul_0_float_hist' due to limited memory ports (II = 19). Please consider using a memory core with more ports or partitioning the array 'invstripe_stream_stream_axis_ap_uint_32_1ul_1ul_1ul_0_float_hist'.
+WARNING: [HLS 200-885] The II Violation in module 'invstripe' (function 'invstripe'): Unable to schedule 'load' operation ('invstripe_stream_stream_axis_ap_uint_32_1ul_1ul_1ul_0_float_hist_1_load_5', PYNQ-Z2/hls/invstripe.cpp:108) on array 'invstripe_stream_stream_axis_ap_uint_32_1ul_1ul_1ul_0_float_hist_1' due to limited memory ports (II = 21). Please consider using a memory core with more ports or partitioning the array 'invstripe_stream_stream_axis_ap_uint_32_1ul_1ul_1ul_0_float_hist_1'.
+INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 22, Depth = 46, function 'invstripe'
+WARNING: [HLS 200-871] Estimated clock period (8.701 ns) exceeds the target (target clock period: 7.000 ns, clock uncertainty: 1.890 ns, effective delay budget: 5.110 ns).
+WARNING: [HLS 200-1016] The critical path in module 'invstripe' consists of the following:
+	'fmul' operation ('mul', PYNQ-Z2/hls/invstripe.cpp:74) [142]  (4.353 ns)
+	multiplexor before operation 'fsub' with delay (1.707 ns)
+'fsub' operation ('sub', PYNQ-Z2/hls/invstripe.cpp:74) [145]  (2.641 ns)
+
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 2 seconds. CPU system time: 0 seconds. Elapsed time: 2.703 seconds; current allocated memory: 132.480 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 1 seconds. CPU system time: 0 seconds. Elapsed time: 0.786 seconds; current allocated memory: 133.793 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'invstripe' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+WARNING: [RTGEN 206-101] Design contains AXI ports. Reset is fixed to synchronous and active low.
+INFO: [RTGEN 206-500] Setting interface mode on port 'invstripe/src_V_data_V' to 'axis' (register, both mode).
+INFO: [RTGEN 206-500] Setting interface mode on port 'invstripe/src_V_keep_V' to 'axis' (register, both mode).
+INFO: [RTGEN 206-500] Setting interface mode on port 'invstripe/src_V_strb_V' to 'axis' (register, both mode).
+INFO: [RTGEN 206-500] Setting interface mode on port 'invstripe/src_V_user_V' to 'axis' (register, both mode).
+INFO: [RTGEN 206-500] Setting interface mode on port 'invstripe/src_V_last_V' to 'axis' (register, both mode).
+INFO: [RTGEN 206-500] Setting interface mode on port 'invstripe/src_V_id_V' to 'axis' (register, both mode).
+INFO: [RTGEN 206-500] Setting interface mode on port 'invstripe/src_V_dest_V' to 'axis' (register, both mode).
+INFO: [RTGEN 206-500] Setting interface mode on port 'invstripe/dst_V_data_V' to 'axis' (register, both mode).
+INFO: [RTGEN 206-500] Setting interface mode on port 'invstripe/dst_V_keep_V' to 'axis' (register, both mode).
+INFO: [RTGEN 206-500] Setting interface mode on port 'invstripe/dst_V_strb_V' to 'axis' (register, both mode).
+INFO: [RTGEN 206-500] Setting interface mode on port 'invstripe/dst_V_user_V' to 'axis' (register, both mode).
+INFO: [RTGEN 206-500] Setting interface mode on port 'invstripe/dst_V_last_V' to 'axis' (register, both mode).
+INFO: [RTGEN 206-500] Setting interface mode on port 'invstripe/dst_V_id_V' to 'axis' (register, both mode).
+INFO: [RTGEN 206-500] Setting interface mode on port 'invstripe/dst_V_dest_V' to 'axis' (register, both mode).
+INFO: [RTGEN 206-500] Setting interface mode on port 'invstripe/f' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on function 'invstripe' to 'ap_ctrl_none'.
+WARNING: [RTGEN 206-101] Register 'y' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'x' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'first_r' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'last_r' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'first_g' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'last_g' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'first_b' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'last_b' is power-on initialization.
+INFO: [SYN 201-210] Renamed object name 'invstripe_stream_stream_axis_ap_uint_32_1ul_1ul_1ul_0_float_hist_1_RAM_AUTO_1R1W' to 'invstripe_stream_stream_axis_ap_uint_32_1ul_1ul_1ul_0_float_hist_1_RAM_AUTO_1bkb' due to the length limit 80
+WARNING: [RTGEN 206-101] Register 'scale_r' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'scale_g' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'scale_b' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'threshold' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'stop' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'max' is power-on initialization.
+INFO: [HLS 200-1030] Apply Unified Pipeline Control on module 'invstripe' pipeline 'invstripe' pipeline type 'function pipeline'
+INFO: [RTGEN 206-100] Generating core module 'fmul_32ns_32ns_32_5_max_dsp_1': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'fsub_32ns_32ns_32_9_full_dsp_1': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'mux_2_1_32_1_1': 8 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'sdiv_9ns_9ns_9_13_1': 3 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'sitofp_32ns_32_7_no_dsp_1': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'uitofp_32ns_32_7_no_dsp_1': 1 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'invstripe'.
+INFO: [RTMG 210-278] Implementing memory 'invstripe_invstripe_stream_stream_axis_ap_uint_32_1ul_1ul_1ul_0_float_hist_1_RAM_AUTO_1bkb_ram' using auto RAMs.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 1 seconds. CPU system time: 1 seconds. Elapsed time: 0.81 seconds; current allocated memory: 139.422 MB.
+INFO: [HLS 200-111] Finished Generating all RTL models: CPU user time: 2 seconds. CPU system time: 1 seconds. Elapsed time: 3.753 seconds; current allocated memory: 151.461 MB.
+INFO: [HLS 200-111] Finished Updating report files: CPU user time: 0 seconds. CPU system time: 1 seconds. Elapsed time: 1.21 seconds; current allocated memory: 156.711 MB.
+INFO: [VHDL 208-304] Generating VHDL RTL for invstripe.
+INFO: [VLOG 209-307] Generating Verilog RTL for invstripe.
+INFO: [HLS 200-789] **** Estimated Fmax: 114.93 MHz
+INFO: [HLS 200-111] Finished Command csynth_design CPU user time: 7 seconds. CPU system time: 3 seconds. Elapsed time: 21.144 seconds; current allocated memory: 72.613 MB.
+==============================================================
+Vitis HLS - High-Level Synthesis from C, C++ and OpenCL v2023.1 (64-bit)
+Tool Version Limit: 2023.05
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
+
+==============================================================
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 7ns.
+INFO: [HLS 200-1611] Setting target device to 'xc7z020-clg400-1'
+INFO: [HLS 200-1505] Using flow_target 'vivado'
+INFO: [HLS 200-1464] Running solution command: config_export -vivado_clock=7
+INFO: [HLS 200-1510] Running: set_part xc7z020-clg400-1 
+INFO: [HLS 200-1510] Running: create_clock -period 7 -name default 
+INFO: [HLS 200-1510] Running: config_export -vivado_clock 7 
+INFO: [HLS 200-1510] Running: source ./LAB_2/solution2/directives.tcl
+INFO: [HLS 200-1510] Running: set_directive_top -name invstripe invstripe 
+INFO: [HLS 200-1510] Running: set_directive_reset invstripe hist 
+INFO: [HLS 200-1510] Running: set_directive_array_partition -dim 1 -type complete invstripe hist 
+INFO: [HLS 200-1510] Running: csynth_design 
+INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.409 seconds; current allocated memory: 86.121 MB.
+INFO: [HLS 200-10] Analyzing design file 'PYNQ-Z2/hls/invstripe.cpp' ... 
+WARNING: [HLS 207-5292] unused parameter 'frame' (PYNQ-Z2/hls/invstripe.cpp:170:56)
+INFO: [HLS 200-111] Finished Source Code Analysis and Preprocessing: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 6.073 seconds; current allocated memory: 88.223 MB.
+INFO: [HLS 200-777] Using interface defaults for 'Vivado' flow target.
+INFO: [HLS 214-178] Inlining function 'fp_struct<float>::fp_struct(float)' into 'unsigned char generic_cast_IEEE754<unsigned char, (ap_q_mode)6, float>(float, bool, hls::enable_if<!(std::numeric_limits<unsigned char>::is_signed), bool>::type)' (C:\scratch\2023.1\hls_product\1026\2023.1\src\shared\hls\clib/hlsmath/include/FloatingPoint\hls_case_IEEE754.h:65:0)
+INFO: [HLS 214-178] Inlining function 'fp_struct<float>::mantissa() const' into 'unsigned char generic_cast_IEEE754<unsigned char, (ap_q_mode)6, float>(float, bool, hls::enable_if<!(std::numeric_limits<unsigned char>::is_signed), bool>::type)' (C:\scratch\2023.1\hls_product\1026\2023.1\src\shared\hls\clib/hlsmath/include/FloatingPoint\hls_case_IEEE754.h:65:0)
+INFO: [HLS 214-178] Inlining function 'fp_struct<float>::expv() const' into 'unsigned char generic_cast_IEEE754<unsigned char, (ap_q_mode)6, float>(float, bool, hls::enable_if<!(std::numeric_limits<unsigned char>::is_signed), bool>::type)' (C:\scratch\2023.1\hls_product\1026\2023.1\src\shared\hls\clib/hlsmath/include/FloatingPoint\hls_case_IEEE754.h:65:0)
+INFO: [HLS 214-178] Inlining function 'unsigned char generic_cast_IEEE754<unsigned char, (ap_q_mode)6, float>(float, bool, hls::enable_if<!(std::numeric_limits<unsigned char>::is_signed), bool>::type)' into 'unsigned char generic_cast_IEEE754<unsigned char, float>(float, bool)' (C:\scratch\2023.1\hls_product\1026\2023.1\src\shared\hls\clib/hlsmath/include/FloatingPoint\hls_case_IEEE754.h:116:0)
+INFO: [HLS 214-178] Inlining function 'unsigned char generic_cast_IEEE754<unsigned char, float>(float, bool)' into '__hls_fptoui_float_i8' (C:\scratch\2023.1\hls_product\1026\2023.1\src\shared\hls\clib\hlsmath\src\lib_floatconversion.cpp:63:0)
+INFO: [HLS 214-178] Inlining function 'fp_struct<float>::fp_struct(float)' into 'unsigned int generic_cast_IEEE754<unsigned int, (ap_q_mode)6, float>(float, bool, hls::enable_if<!(std::numeric_limits<unsigned int>::is_signed), bool>::type)' (C:\scratch\2023.1\hls_product\1026\2023.1\src\shared\hls\clib/hlsmath/include/FloatingPoint\hls_case_IEEE754.h:65:0)
+INFO: [HLS 214-178] Inlining function 'fp_struct<float>::mantissa() const' into 'unsigned int generic_cast_IEEE754<unsigned int, (ap_q_mode)6, float>(float, bool, hls::enable_if<!(std::numeric_limits<unsigned int>::is_signed), bool>::type)' (C:\scratch\2023.1\hls_product\1026\2023.1\src\shared\hls\clib/hlsmath/include/FloatingPoint\hls_case_IEEE754.h:65:0)
+INFO: [HLS 214-178] Inlining function 'fp_struct<float>::expv() const' into 'unsigned int generic_cast_IEEE754<unsigned int, (ap_q_mode)6, float>(float, bool, hls::enable_if<!(std::numeric_limits<unsigned int>::is_signed), bool>::type)' (C:\scratch\2023.1\hls_product\1026\2023.1\src\shared\hls\clib/hlsmath/include/FloatingPoint\hls_case_IEEE754.h:65:0)
+INFO: [HLS 214-178] Inlining function 'unsigned int generic_cast_IEEE754<unsigned int, (ap_q_mode)6, float>(float, bool, hls::enable_if<!(std::numeric_limits<unsigned int>::is_signed), bool>::type)' into 'unsigned int generic_cast_IEEE754<unsigned int, float>(float, bool)' (C:\scratch\2023.1\hls_product\1026\2023.1\src\shared\hls\clib/hlsmath/include/FloatingPoint\hls_case_IEEE754.h:116:0)
+INFO: [HLS 214-178] Inlining function 'unsigned int generic_cast_IEEE754<unsigned int, float>(float, bool)' into '__hls_fptoui_float_i32' (C:\scratch\2023.1\hls_product\1026\2023.1\src\shared\hls\clib\hlsmath\src\lib_floatconversion.cpp:65:0)
+INFO: [HLS 214-178] Inlining function '__hls_fptoui_float_i32' into 'invstripe(hls::stream<hls::axis<ap_uint<32>, 1ul, 1ul, 1ul>, 0>&, hls::stream<hls::axis<ap_uint<32>, 1ul, 1ul, 1ul>, 0>&, float)' (PYNQ-Z2/hls/invstripe.cpp:20:0)
+INFO: [HLS 214-248] Applying array_partition to '_ZZ9invstripeRN3hls6streamINS_4axisI7ap_uintILi32EELm1ELm1ELm1EEELi0EEES6_fE4hist': Complete partitioning on dimension 1. (PYNQ-Z2/hls/invstripe.cpp:29:0)
+INFO: [HLS 200-111] Finished Compiling Optimization and Transform: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 4.763 seconds; current allocated memory: 89.508 MB.
+INFO: [HLS 200-111] Finished Checking Pragmas: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.006 seconds; current allocated memory: 89.508 MB.
+INFO: [HLS 200-10] Starting code transformations ...
+INFO: [HLS 200-111] Finished Standard Transforms: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.057 seconds; current allocated memory: 97.023 MB.
+INFO: [HLS 200-10] Checking synthesizability ...
+INFO: [XFORM 203-602] Inlining function '__hls_fptoui_float_i8' into 'invstripe' (PYNQ-Z2/hls/invstripe.cpp:74) automatically.
+INFO: [HLS 200-111] Finished Checking Synthesizability: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.058 seconds; current allocated memory: 101.008 MB.
+INFO: [XFORM 203-602] Inlining function '__hls_fptoui_float_i8' into 'invstripe' (PYNQ-Z2/hls/invstripe.cpp:74) automatically.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (PYNQ-Z2/hls/invstripe.cpp:68:4) to (PYNQ-Z2/hls/invstripe.cpp:82:3) in function 'invstripe'... converting 10 basic blocks.
+INFO: [HLS 200-111] Finished Loop, function and other optimizations: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.202 seconds; current allocated memory: 125.738 MB.
+INFO: [HLS 200-111] Finished Architecture Synthesis: CPU user time: 1 seconds. CPU system time: 1 seconds. Elapsed time: 0.144 seconds; current allocated memory: 125.859 MB.
+INFO: [HLS 200-10] Starting hardware synthesis ...
+INFO: [HLS 200-10] Synthesizing 'invstripe' ...
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'invstripe' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining function 'invstripe'.
+WARNING: [HLS 200-880] The II Violation in module 'invstripe' (function 'invstripe'): Unable to enforce a carried dependence constraint (II = 1, distance = 1, offset = 1) between 'store' operation ('invstripe_stream_stream_axis_ap_uint_32_1ul_1ul_1ul_0_float_hist_addr_write_ln68', PYNQ-Z2/hls/invstripe.cpp:68) of variable 'add_ln68', PYNQ-Z2/hls/invstripe.cpp:68 on array 'invstripe_stream_stream_axis_ap_uint_32_1ul_1ul_1ul_0_float_hist' and 'load' operation ('invstripe_stream_stream_axis_ap_uint_32_1ul_1ul_1ul_0_float_hist_load', PYNQ-Z2/hls/invstripe.cpp:68) on array 'invstripe_stream_stream_axis_ap_uint_32_1ul_1ul_1ul_0_float_hist'.
+WARNING: [HLS 200-880] The II Violation in module 'invstripe' (function 'invstripe'): Unable to enforce a carried dependence constraint (II = 2, distance = 1, offset = 1) between 'store' operation ('invstripe_stream_stream_axis_ap_uint_32_1ul_1ul_1ul_0_float_hist_addr_3_write_ln148', PYNQ-Z2/hls/invstripe.cpp:148) of constant 0 on array 'invstripe_stream_stream_axis_ap_uint_32_1ul_1ul_1ul_0_float_hist' and 'load' operation ('invstripe_stream_stream_axis_ap_uint_32_1ul_1ul_1ul_0_float_hist_load', PYNQ-Z2/hls/invstripe.cpp:68) on array 'invstripe_stream_stream_axis_ap_uint_32_1ul_1ul_1ul_0_float_hist'.
+WARNING: [HLS 200-880] The II Violation in module 'invstripe' (function 'invstripe'): Unable to enforce a carried dependence constraint (II = 3, distance = 1, offset = 0) between 'load' operation ('invstripe_stream_stream_axis_ap_uint_32_1ul_1ul_1ul_0_float_hist_2_load_2', PYNQ-Z2/hls/invstripe.cpp:103) on array 'invstripe_stream_stream_axis_ap_uint_32_1ul_1ul_1ul_0_float_hist_2' and 'store' operation ('invstripe_stream_stream_axis_ap_uint_32_1ul_1ul_1ul_0_float_hist_2_addr_write_ln70', PYNQ-Z2/hls/invstripe.cpp:70) of variable 'add_ln70', PYNQ-Z2/hls/invstripe.cpp:70 on array 'invstripe_stream_stream_axis_ap_uint_32_1ul_1ul_1ul_0_float_hist_2'.
+WARNING: [HLS 200-880] The II Violation in module 'invstripe' (function 'invstripe'): Unable to enforce a carried dependence constraint (II = 4, distance = 1, offset = 0) between 'load' operation ('invstripe_stream_stream_axis_ap_uint_32_1ul_1ul_1ul_0_float_hist_2_load_2', PYNQ-Z2/hls/invstripe.cpp:103) on array 'invstripe_stream_stream_axis_ap_uint_32_1ul_1ul_1ul_0_float_hist_2' and 'store' operation ('invstripe_stream_stream_axis_ap_uint_32_1ul_1ul_1ul_0_float_hist_2_addr_write_ln70', PYNQ-Z2/hls/invstripe.cpp:70) of variable 'add_ln70', PYNQ-Z2/hls/invstripe.cpp:70 on array 'invstripe_stream_stream_axis_ap_uint_32_1ul_1ul_1ul_0_float_hist_2'.
+WARNING: [HLS 200-885] The II Violation in module 'invstripe' (function 'invstripe'): Unable to schedule 'store' operation ('invstripe_stream_stream_axis_ap_uint_32_1ul_1ul_1ul_0_float_hist_2_addr_4_write_ln144', PYNQ-Z2/hls/invstripe.cpp:144) of constant 0 on array 'invstripe_stream_stream_axis_ap_uint_32_1ul_1ul_1ul_0_float_hist_2' due to limited memory ports (II = 19). Please consider using a memory core with more ports or partitioning the array 'invstripe_stream_stream_axis_ap_uint_32_1ul_1ul_1ul_0_float_hist_2'.
+INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 20, Depth = 44, function 'invstripe'
+WARNING: [HLS 200-871] Estimated clock period (7.394 ns) exceeds the target (target clock period: 7.000 ns, clock uncertainty: 1.890 ns, effective delay budget: 5.110 ns).
+WARNING: [HLS 200-1016] The critical path in module 'invstripe' consists of the following:
+	'load' operation ('invstripe_stream_stream_axis_ap_uint_32_1ul_1ul_1ul_0_float_hist_2_load_1', PYNQ-Z2/hls/invstripe.cpp:89) on array 'invstripe_stream_stream_axis_ap_uint_32_1ul_1ul_1ul_0_float_hist_2' [219]  (3.254 ns)
+	'icmp' operation ('icmp_ln89', PYNQ-Z2/hls/invstripe.cpp:89) [220]  (2.552 ns)
+	multiplexor before 'phi' operation ('empty_19', PYNQ-Z2/hls/invstripe.cpp:89) with incoming values : ('max_load', PYNQ-Z2/hls/invstripe.cpp:89) ('invstripe_stream_stream_axis_ap_uint_32_1ul_1ul_1ul_0_float_hist_2_load_1', PYNQ-Z2/hls/invstripe.cpp:89) [226]  (1.588 ns)
+
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 1 seconds. CPU system time: 0 seconds. Elapsed time: 1.615 seconds; current allocated memory: 131.293 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 1 seconds. CPU system time: 0 seconds. Elapsed time: 0.762 seconds; current allocated memory: 132.637 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'invstripe' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+WARNING: [RTGEN 206-101] Design contains AXI ports. Reset is fixed to synchronous and active low.
+INFO: [RTGEN 206-500] Setting interface mode on port 'invstripe/src_V_data_V' to 'axis' (register, both mode).
+INFO: [RTGEN 206-500] Setting interface mode on port 'invstripe/src_V_keep_V' to 'axis' (register, both mode).
+INFO: [RTGEN 206-500] Setting interface mode on port 'invstripe/src_V_strb_V' to 'axis' (register, both mode).
+INFO: [RTGEN 206-500] Setting interface mode on port 'invstripe/src_V_user_V' to 'axis' (register, both mode).
+INFO: [RTGEN 206-500] Setting interface mode on port 'invstripe/src_V_last_V' to 'axis' (register, both mode).
+INFO: [RTGEN 206-500] Setting interface mode on port 'invstripe/src_V_id_V' to 'axis' (register, both mode).
+INFO: [RTGEN 206-500] Setting interface mode on port 'invstripe/src_V_dest_V' to 'axis' (register, both mode).
+INFO: [RTGEN 206-500] Setting interface mode on port 'invstripe/dst_V_data_V' to 'axis' (register, both mode).
+INFO: [RTGEN 206-500] Setting interface mode on port 'invstripe/dst_V_keep_V' to 'axis' (register, both mode).
+INFO: [RTGEN 206-500] Setting interface mode on port 'invstripe/dst_V_strb_V' to 'axis' (register, both mode).
+INFO: [RTGEN 206-500] Setting interface mode on port 'invstripe/dst_V_user_V' to 'axis' (register, both mode).
+INFO: [RTGEN 206-500] Setting interface mode on port 'invstripe/dst_V_last_V' to 'axis' (register, both mode).
+INFO: [RTGEN 206-500] Setting interface mode on port 'invstripe/dst_V_id_V' to 'axis' (register, both mode).
+INFO: [RTGEN 206-500] Setting interface mode on port 'invstripe/dst_V_dest_V' to 'axis' (register, both mode).
+INFO: [RTGEN 206-500] Setting interface mode on port 'invstripe/f' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on function 'invstripe' to 'ap_ctrl_none'.
+WARNING: [RTGEN 206-101] Register 'y' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'x' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'first_r' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'last_r' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'first_g' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'last_g' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'first_b' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'last_b' is power-on initialization.
+INFO: [SYN 201-210] Renamed object name 'invstripe_stream_stream_axis_ap_uint_32_1ul_1ul_1ul_0_float_hist_1_RAM_AUTO_1R1W' to 'invstripe_stream_stream_axis_ap_uint_32_1ul_1ul_1ul_0_float_hist_1_RAM_AUTO_1bkb' due to the length limit 80
+INFO: [SYN 201-210] Renamed object name 'invstripe_stream_stream_axis_ap_uint_32_1ul_1ul_1ul_0_float_hist_2_RAM_AUTO_1R1W' to 'invstripe_stream_stream_axis_ap_uint_32_1ul_1ul_1ul_0_float_hist_2_RAM_AUTO_1cud' due to the length limit 80
+WARNING: [RTGEN 206-101] Register 'scale_r' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'scale_g' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'scale_b' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'threshold' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'stop' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'max' is power-on initialization.
+INFO: [HLS 200-1030] Apply Unified Pipeline Control on module 'invstripe' pipeline 'invstripe' pipeline type 'function pipeline'
+INFO: [RTGEN 206-100] Generating core module 'fmul_32ns_32ns_32_5_max_dsp_1': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'fsub_32ns_32ns_32_9_full_dsp_1': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'sdiv_9ns_9ns_9_13_1': 3 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'sitofp_32ns_32_7_no_dsp_1': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'uitofp_32ns_32_7_no_dsp_1': 1 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'invstripe'.
+INFO: [RTMG 210-278] Implementing memory 'invstripe_invstripe_stream_stream_axis_ap_uint_32_1ul_1ul_1ul_0_float_hist_RAM_AUTO_1R1W_ram' using auto RAMs.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.562 seconds; current allocated memory: 138.602 MB.
+INFO: [HLS 200-111] Finished Generating all RTL models: CPU user time: 2 seconds. CPU system time: 1 seconds. Elapsed time: 3.539 seconds; current allocated memory: 149.754 MB.
+INFO: [HLS 200-111] Finished Updating report files: CPU user time: 1 seconds. CPU system time: 1 seconds. Elapsed time: 1.117 seconds; current allocated memory: 154.492 MB.
+INFO: [VHDL 208-304] Generating VHDL RTL for invstripe.
+INFO: [VLOG 209-307] Generating Verilog RTL for invstripe.
+INFO: [HLS 200-789] **** Estimated Fmax: 135.24 MHz
+INFO: [HLS 200-111] Finished Command csynth_design CPU user time: 6 seconds. CPU system time: 3 seconds. Elapsed time: 19.335 seconds; current allocated memory: 68.633 MB.
+==============================================================
+Vitis HLS - High-Level Synthesis from C, C++ and OpenCL v2023.1 (64-bit)
+Tool Version Limit: 2023.05
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
+
+==============================================================
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 7ns.
+INFO: [HLS 200-1611] Setting target device to 'xc7z020-clg400-1'
+INFO: [HLS 200-1505] Using flow_target 'vivado'
+INFO: [HLS 200-1464] Running solution command: config_export -vivado_clock=7
+INFO: [HLS 200-1510] Running: set_part xc7z020-clg400-1 
+INFO: [HLS 200-1510] Running: create_clock -period 7 -name default 
+INFO: [HLS 200-1510] Running: config_export -vivado_clock 7 
+INFO: [HLS 200-1510] Running: source ./LAB_2/solution2/directives.tcl
+INFO: [HLS 200-1510] Running: set_directive_top -name invstripe invstripe 
+INFO: [HLS 200-1510] Running: set_directive_reset invstripe hist 
+INFO: [HLS 200-1510] Running: set_directive_array_partition -type complete -dim 1 invstripe hist 
+INFO: [HLS 200-1510] Running: set_directive_array_partition -dim 2 -factor 2 -type block invstripe hist 
+INFO: [HLS 200-1510] Running: csynth_design 
+INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.46 seconds; current allocated memory: 93.105 MB.
+INFO: [HLS 200-10] Analyzing design file 'PYNQ-Z2/hls/invstripe.cpp' ... 
+WARNING: [HLS 207-5292] unused parameter 'frame' (PYNQ-Z2/hls/invstripe.cpp:170:56)
+INFO: [HLS 200-111] Finished Source Code Analysis and Preprocessing: CPU user time: 0 seconds. CPU system time: 1 seconds. Elapsed time: 6.39 seconds; current allocated memory: 95.566 MB.
+INFO: [HLS 200-777] Using interface defaults for 'Vivado' flow target.
+INFO: [HLS 214-178] Inlining function 'fp_struct<float>::fp_struct(float)' into 'unsigned char generic_cast_IEEE754<unsigned char, (ap_q_mode)6, float>(float, bool, hls::enable_if<!(std::numeric_limits<unsigned char>::is_signed), bool>::type)' (C:\scratch\2023.1\hls_product\1026\2023.1\src\shared\hls\clib/hlsmath/include/FloatingPoint\hls_case_IEEE754.h:65:0)
+INFO: [HLS 214-178] Inlining function 'fp_struct<float>::mantissa() const' into 'unsigned char generic_cast_IEEE754<unsigned char, (ap_q_mode)6, float>(float, bool, hls::enable_if<!(std::numeric_limits<unsigned char>::is_signed), bool>::type)' (C:\scratch\2023.1\hls_product\1026\2023.1\src\shared\hls\clib/hlsmath/include/FloatingPoint\hls_case_IEEE754.h:65:0)
+INFO: [HLS 214-178] Inlining function 'fp_struct<float>::expv() const' into 'unsigned char generic_cast_IEEE754<unsigned char, (ap_q_mode)6, float>(float, bool, hls::enable_if<!(std::numeric_limits<unsigned char>::is_signed), bool>::type)' (C:\scratch\2023.1\hls_product\1026\2023.1\src\shared\hls\clib/hlsmath/include/FloatingPoint\hls_case_IEEE754.h:65:0)
+INFO: [HLS 214-178] Inlining function 'unsigned char generic_cast_IEEE754<unsigned char, (ap_q_mode)6, float>(float, bool, hls::enable_if<!(std::numeric_limits<unsigned char>::is_signed), bool>::type)' into 'unsigned char generic_cast_IEEE754<unsigned char, float>(float, bool)' (C:\scratch\2023.1\hls_product\1026\2023.1\src\shared\hls\clib/hlsmath/include/FloatingPoint\hls_case_IEEE754.h:116:0)
+INFO: [HLS 214-178] Inlining function 'unsigned char generic_cast_IEEE754<unsigned char, float>(float, bool)' into '__hls_fptoui_float_i8' (C:\scratch\2023.1\hls_product\1026\2023.1\src\shared\hls\clib\hlsmath\src\lib_floatconversion.cpp:63:0)
+INFO: [HLS 214-178] Inlining function 'fp_struct<float>::fp_struct(float)' into 'unsigned int generic_cast_IEEE754<unsigned int, (ap_q_mode)6, float>(float, bool, hls::enable_if<!(std::numeric_limits<unsigned int>::is_signed), bool>::type)' (C:\scratch\2023.1\hls_product\1026\2023.1\src\shared\hls\clib/hlsmath/include/FloatingPoint\hls_case_IEEE754.h:65:0)
+INFO: [HLS 214-178] Inlining function 'fp_struct<float>::mantissa() const' into 'unsigned int generic_cast_IEEE754<unsigned int, (ap_q_mode)6, float>(float, bool, hls::enable_if<!(std::numeric_limits<unsigned int>::is_signed), bool>::type)' (C:\scratch\2023.1\hls_product\1026\2023.1\src\shared\hls\clib/hlsmath/include/FloatingPoint\hls_case_IEEE754.h:65:0)
+INFO: [HLS 214-178] Inlining function 'fp_struct<float>::expv() const' into 'unsigned int generic_cast_IEEE754<unsigned int, (ap_q_mode)6, float>(float, bool, hls::enable_if<!(std::numeric_limits<unsigned int>::is_signed), bool>::type)' (C:\scratch\2023.1\hls_product\1026\2023.1\src\shared\hls\clib/hlsmath/include/FloatingPoint\hls_case_IEEE754.h:65:0)
+INFO: [HLS 214-178] Inlining function 'unsigned int generic_cast_IEEE754<unsigned int, (ap_q_mode)6, float>(float, bool, hls::enable_if<!(std::numeric_limits<unsigned int>::is_signed), bool>::type)' into 'unsigned int generic_cast_IEEE754<unsigned int, float>(float, bool)' (C:\scratch\2023.1\hls_product\1026\2023.1\src\shared\hls\clib/hlsmath/include/FloatingPoint\hls_case_IEEE754.h:116:0)
+INFO: [HLS 214-178] Inlining function 'unsigned int generic_cast_IEEE754<unsigned int, float>(float, bool)' into '__hls_fptoui_float_i32' (C:\scratch\2023.1\hls_product\1026\2023.1\src\shared\hls\clib\hlsmath\src\lib_floatconversion.cpp:65:0)
+INFO: [HLS 214-178] Inlining function '__hls_fptoui_float_i32' into 'invstripe(hls::stream<hls::axis<ap_uint<32>, 1ul, 1ul, 1ul>, 0>&, hls::stream<hls::axis<ap_uint<32>, 1ul, 1ul, 1ul>, 0>&, float)' (PYNQ-Z2/hls/invstripe.cpp:20:0)
+INFO: [HLS 214-248] Applying array_partition to '_ZZ9invstripeRN3hls6streamINS_4axisI7ap_uintILi32EELm1ELm1ELm1EEELi0EEES6_fE4hist': Complete partitioning on dimension 1. Block partitioning with factor 2 on dimension 2. (PYNQ-Z2/hls/invstripe.cpp:29:0)
+INFO: [HLS 200-111] Finished Compiling Optimization and Transform: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 5.011 seconds; current allocated memory: 96.855 MB.
+INFO: [HLS 200-111] Finished Checking Pragmas: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.007 seconds; current allocated memory: 96.855 MB.
+INFO: [HLS 200-10] Starting code transformations ...
+INFO: [HLS 200-111] Finished Standard Transforms: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.165 seconds; current allocated memory: 104.430 MB.
+INFO: [HLS 200-10] Checking synthesizability ...
+INFO: [XFORM 203-602] Inlining function '__hls_fptoui_float_i8' into 'invstripe' (PYNQ-Z2/hls/invstripe.cpp:74) automatically.
+INFO: [HLS 200-111] Finished Checking Synthesizability: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.077 seconds; current allocated memory: 108.762 MB.
+INFO: [XFORM 203-602] Inlining function '__hls_fptoui_float_i8' into 'invstripe' (PYNQ-Z2/hls/invstripe.cpp:74) automatically.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (PYNQ-Z2/hls/invstripe.cpp:74:17) to (PYNQ-Z2/hls/invstripe.cpp:82:3) in function 'invstripe'... converting 10 basic blocks.
+INFO: [HLS 200-111] Finished Loop, function and other optimizations: CPU user time: 1 seconds. CPU system time: 0 seconds. Elapsed time: 0.279 seconds; current allocated memory: 133.516 MB.
+INFO: [HLS 200-111] Finished Architecture Synthesis: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.198 seconds; current allocated memory: 133.742 MB.
+INFO: [HLS 200-10] Starting hardware synthesis ...
+INFO: [HLS 200-10] Synthesizing 'invstripe' ...
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'invstripe' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining function 'invstripe'.
+WARNING: [HLS 200-880] The II Violation in module 'invstripe' (function 'invstripe'): Unable to enforce a carried dependence constraint (II = 1, distance = 1, offset = 1) between 'store' operation ('invstripe_hls_stream_hls_axis_ap_uint_32_1ul_1ul_1ul_0_hls_stream_hls_axis_ap_uint_32_1ul_1ul_1ul_0_float_his_s_28_write_ln70', PYNQ-Z2/hls/invstripe.cpp:70) of variable 'add_ln70', PYNQ-Z2/hls/invstripe.cpp:70 on array 'invstripe_hls_stream_hls_axis_ap_uint_32_1ul_1ul_1ul_0_hls_stream_hls_axis_ap_uint_32_1ul_1ul_1ul_0_float_his_s' and 'load' operation ('invstripe_hls_stream_hls_axis_ap_uint_32_1ul_1ul_1ul_0_hls_stream_hls_axis_ap_uint_32_1ul_1ul_1ul_0_float_his_s_32', PYNQ-Z2/hls/invstripe.cpp:70) on array 'invstripe_hls_stream_hls_axis_ap_uint_32_1ul_1ul_1ul_0_hls_stream_hls_axis_ap_uint_32_1ul_1ul_1ul_0_float_his_s'.
+WARNING: [HLS 200-880] The II Violation in module 'invstripe' (function 'invstripe'): Unable to enforce a carried dependence constraint (II = 2, distance = 1, offset = 0) between 'load' operation ('invstripe_hls_stream_hls_axis_ap_uint_32_1ul_1ul_1ul_0_hls_stream_hls_axis_ap_uint_32_1ul_1ul_1ul_0_float_his_s_40', PYNQ-Z2/hls/invstripe.cpp:103) on array 'invstripe_hls_stream_hls_axis_ap_uint_32_1ul_1ul_1ul_0_hls_stream_hls_axis_ap_uint_32_1ul_1ul_1ul_0_float_his_s' and 'store' operation ('invstripe_hls_stream_hls_axis_ap_uint_32_1ul_1ul_1ul_0_hls_stream_hls_axis_ap_uint_32_1ul_1ul_1ul_0_float_his_s_28_write_ln70', PYNQ-Z2/hls/invstripe.cpp:70) of variable 'add_ln70', PYNQ-Z2/hls/invstripe.cpp:70 on array 'invstripe_hls_stream_hls_axis_ap_uint_32_1ul_1ul_1ul_0_hls_stream_hls_axis_ap_uint_32_1ul_1ul_1ul_0_float_his_s'.
+WARNING: [HLS 200-880] The II Violation in module 'invstripe' (function 'invstripe'): Unable to enforce a carried dependence constraint (II = 3, distance = 1, offset = 0) between 'load' operation ('invstripe_hls_stream_hls_axis_ap_uint_32_1ul_1ul_1ul_0_hls_stream_hls_axis_ap_uint_32_1ul_1ul_1ul_0_float_his_s_40', PYNQ-Z2/hls/invstripe.cpp:103) on array 'invstripe_hls_stream_hls_axis_ap_uint_32_1ul_1ul_1ul_0_hls_stream_hls_axis_ap_uint_32_1ul_1ul_1ul_0_float_his_s' and 'store' operation ('invstripe_hls_stream_hls_axis_ap_uint_32_1ul_1ul_1ul_0_hls_stream_hls_axis_ap_uint_32_1ul_1ul_1ul_0_float_his_s_28_write_ln70', PYNQ-Z2/hls/invstripe.cpp:70) of variable 'add_ln70', PYNQ-Z2/hls/invstripe.cpp:70 on array 'invstripe_hls_stream_hls_axis_ap_uint_32_1ul_1ul_1ul_0_hls_stream_hls_axis_ap_uint_32_1ul_1ul_1ul_0_float_his_s'.
+WARNING: [HLS 200-880] The II Violation in module 'invstripe' (function 'invstripe'): Unable to enforce a carried dependence constraint (II = 4, distance = 1, offset = 0) between 'load' operation ('invstripe_hls_stream_hls_axis_ap_uint_32_1ul_1ul_1ul_0_hls_stream_hls_axis_ap_uint_32_1ul_1ul_1ul_0_float_his_s_40', PYNQ-Z2/hls/invstripe.cpp:103) on array 'invstripe_hls_stream_hls_axis_ap_uint_32_1ul_1ul_1ul_0_hls_stream_hls_axis_ap_uint_32_1ul_1ul_1ul_0_float_his_s' and 'store' operation ('invstripe_hls_stream_hls_axis_ap_uint_32_1ul_1ul_1ul_0_hls_stream_hls_axis_ap_uint_32_1ul_1ul_1ul_0_float_his_s_28_write_ln70', PYNQ-Z2/hls/invstripe.cpp:70) of variable 'add_ln70', PYNQ-Z2/hls/invstripe.cpp:70 on array 'invstripe_hls_stream_hls_axis_ap_uint_32_1ul_1ul_1ul_0_hls_stream_hls_axis_ap_uint_32_1ul_1ul_1ul_0_float_his_s'.
+WARNING: [HLS 200-880] The II Violation in module 'invstripe' (function 'invstripe'): Unable to enforce a carried dependence constraint (II = 11, distance = 1, offset = 0) between 'load' operation ('invstripe_hls_stream_hls_axis_ap_uint_32_1ul_1ul_1ul_0_hls_stream_hls_axis_ap_uint_32_1ul_1ul_1ul_0_float_his_s_40', PYNQ-Z2/hls/invstripe.cpp:103) on array 'invstripe_hls_stream_hls_axis_ap_uint_32_1ul_1ul_1ul_0_hls_stream_hls_axis_ap_uint_32_1ul_1ul_1ul_0_float_his_s' and 'store' operation ('invstripe_hls_stream_hls_axis_ap_uint_32_1ul_1ul_1ul_0_hls_stream_hls_axis_ap_uint_32_1ul_1ul_1ul_0_float_his_s_28_write_ln70', PYNQ-Z2/hls/invstripe.cpp:70) of variable 'add_ln70', PYNQ-Z2/hls/invstripe.cpp:70 on array 'invstripe_hls_stream_hls_axis_ap_uint_32_1ul_1ul_1ul_0_hls_stream_hls_axis_ap_uint_32_1ul_1ul_1ul_0_float_his_s'.
+WARNING: [HLS 200-880] The II Violation in module 'invstripe' (function 'invstripe'): Unable to enforce a carried dependence constraint (II = 13, distance = 1, offset = 1) between 'store' operation ('invstripe_hls_stream_hls_axis_ap_uint_32_1ul_1ul_1ul_0_hls_stream_hls_axis_ap_uint_32_1ul_1ul_1ul_0_float_his_s_57_write_ln144', PYNQ-Z2/hls/invstripe.cpp:144) of constant 0 on array 'invstripe_hls_stream_hls_axis_ap_uint_32_1ul_1ul_1ul_0_hls_stream_hls_axis_ap_uint_32_1ul_1ul_1ul_0_float_his_s' and 'load' operation ('invstripe_hls_stream_hls_axis_ap_uint_32_1ul_1ul_1ul_0_hls_stream_hls_axis_ap_uint_32_1ul_1ul_1ul_0_float_his_s_32', PYNQ-Z2/hls/invstripe.cpp:70) on array 'invstripe_hls_stream_hls_axis_ap_uint_32_1ul_1ul_1ul_0_hls_stream_hls_axis_ap_uint_32_1ul_1ul_1ul_0_float_his_s'.
+WARNING: [HLS 200-880] The II Violation in module 'invstripe' (function 'invstripe'): Unable to enforce a carried dependence constraint (II = 14, distance = 1, offset = 1) between 'store' operation ('invstripe_hls_stream_hls_axis_ap_uint_32_1ul_1ul_1ul_0_hls_stream_hls_axis_ap_uint_32_1ul_1ul_1ul_0_float_his_s_59_write_ln145', PYNQ-Z2/hls/invstripe.cpp:145) of constant 0 on array 'invstripe_hls_stream_hls_axis_ap_uint_32_1ul_1ul_1ul_0_hls_stream_hls_axis_ap_uint_32_1ul_1ul_1ul_0_float_his_s' and 'load' operation ('invstripe_hls_stream_hls_axis_ap_uint_32_1ul_1ul_1ul_0_hls_stream_hls_axis_ap_uint_32_1ul_1ul_1ul_0_float_his_s_32', PYNQ-Z2/hls/invstripe.cpp:70) on array 'invstripe_hls_stream_hls_axis_ap_uint_32_1ul_1ul_1ul_0_hls_stream_hls_axis_ap_uint_32_1ul_1ul_1ul_0_float_his_s'.
+INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 15, Depth = 36, function 'invstripe'
+WARNING: [HLS 200-871] Estimated clock period (16.027 ns) exceeds the target (target clock period: 7.000 ns, clock uncertainty: 1.890 ns, effective delay budget: 5.110 ns).
+WARNING: [HLS 200-1016] The critical path in module 'invstripe' consists of the following:
+	'icmp' operation ('icmp_ln119', PYNQ-Z2/hls/invstripe.cpp:119) [371]  (2.552 ns)
+	'xor' operation ('xor_ln119', PYNQ-Z2/hls/invstripe.cpp:119) [372]  (0.000 ns)
+	'or' operation ('or_ln119', PYNQ-Z2/hls/invstripe.cpp:119) [374]  (0.978 ns)
+	multiplexor before 'phi' operation ('empty_50', PYNQ-Z2/hls/invstripe.cpp:100) with incoming values : ('stop_load', PYNQ-Z2/hls/invstripe.cpp:100) ('or_ln105', PYNQ-Z2/hls/invstripe.cpp:105) ('or_ln110', PYNQ-Z2/hls/invstripe.cpp:110) ('or_ln115', PYNQ-Z2/hls/invstripe.cpp:115) ('or_ln121', PYNQ-Z2/hls/invstripe.cpp:121) [384]  (1.588 ns)
+	'phi' operation ('empty_50', PYNQ-Z2/hls/invstripe.cpp:100) with incoming values : ('stop_load', PYNQ-Z2/hls/invstripe.cpp:100) ('or_ln105', PYNQ-Z2/hls/invstripe.cpp:105) ('or_ln110', PYNQ-Z2/hls/invstripe.cpp:110) ('or_ln115', PYNQ-Z2/hls/invstripe.cpp:115) ('or_ln121', PYNQ-Z2/hls/invstripe.cpp:121) [384]  (0.000 ns)
+	'or' operation ('or_ln124', PYNQ-Z2/hls/invstripe.cpp:124) [390]  (0.978 ns)
+	multiplexor before 'phi' operation ('empty_53', PYNQ-Z2/hls/invstripe.cpp:100) with incoming values : ('stop_load', PYNQ-Z2/hls/invstripe.cpp:100) ('or_ln105', PYNQ-Z2/hls/invstripe.cpp:105) ('or_ln110', PYNQ-Z2/hls/invstripe.cpp:110) ('or_ln115', PYNQ-Z2/hls/invstripe.cpp:115) ('or_ln121', PYNQ-Z2/hls/invstripe.cpp:121) ('or_ln126', PYNQ-Z2/hls/invstripe.cpp:126) [401]  (1.588 ns)
+	'phi' operation ('empty_53', PYNQ-Z2/hls/invstripe.cpp:100) with incoming values : ('stop_load', PYNQ-Z2/hls/invstripe.cpp:100) ('or_ln105', PYNQ-Z2/hls/invstripe.cpp:105) ('or_ln110', PYNQ-Z2/hls/invstripe.cpp:110) ('or_ln115', PYNQ-Z2/hls/invstripe.cpp:115) ('or_ln121', PYNQ-Z2/hls/invstripe.cpp:121) ('or_ln126', PYNQ-Z2/hls/invstripe.cpp:126) [401]  (0.000 ns)
+	'or' operation ('or_ln129', PYNQ-Z2/hls/invstripe.cpp:129) [407]  (0.978 ns)
+	multiplexor before 'phi' operation ('last_r_loc_0', PYNQ-Z2/hls/invstripe.cpp:74) with incoming values : ('last_r_load', PYNQ-Z2/hls/invstripe.cpp:74) ('xor_ln130', PYNQ-Z2/hls/invstripe.cpp:130) [415]  (1.707 ns)
+	'phi' operation ('last_r_loc_0', PYNQ-Z2/hls/invstripe.cpp:74) with incoming values : ('last_r_load', PYNQ-Z2/hls/invstripe.cpp:74) ('xor_ln130', PYNQ-Z2/hls/invstripe.cpp:130) [415]  (0.000 ns)
+	'sub' operation ('sub_ln136', PYNQ-Z2/hls/invstripe.cpp:136) [433]  (1.915 ns)
+	'sdiv' operation ('sdiv_ln136', PYNQ-Z2/hls/invstripe.cpp:136) [434]  (3.743 ns)
+
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 2 seconds. CPU system time: 0 seconds. Elapsed time: 1.923 seconds; current allocated memory: 140.316 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.653 seconds; current allocated memory: 141.621 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'invstripe' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+WARNING: [RTGEN 206-101] Design contains AXI ports. Reset is fixed to synchronous and active low.
+INFO: [RTGEN 206-500] Setting interface mode on port 'invstripe/src_V_data_V' to 'axis' (register, both mode).
+INFO: [RTGEN 206-500] Setting interface mode on port 'invstripe/src_V_keep_V' to 'axis' (register, both mode).
+INFO: [RTGEN 206-500] Setting interface mode on port 'invstripe/src_V_strb_V' to 'axis' (register, both mode).
+INFO: [RTGEN 206-500] Setting interface mode on port 'invstripe/src_V_user_V' to 'axis' (register, both mode).
+INFO: [RTGEN 206-500] Setting interface mode on port 'invstripe/src_V_last_V' to 'axis' (register, both mode).
+INFO: [RTGEN 206-500] Setting interface mode on port 'invstripe/src_V_id_V' to 'axis' (register, both mode).
+INFO: [RTGEN 206-500] Setting interface mode on port 'invstripe/src_V_dest_V' to 'axis' (register, both mode).
+INFO: [RTGEN 206-500] Setting interface mode on port 'invstripe/dst_V_data_V' to 'axis' (register, both mode).
+INFO: [RTGEN 206-500] Setting interface mode on port 'invstripe/dst_V_keep_V' to 'axis' (register, both mode).
+INFO: [RTGEN 206-500] Setting interface mode on port 'invstripe/dst_V_strb_V' to 'axis' (register, both mode).
+INFO: [RTGEN 206-500] Setting interface mode on port 'invstripe/dst_V_user_V' to 'axis' (register, both mode).
+INFO: [RTGEN 206-500] Setting interface mode on port 'invstripe/dst_V_last_V' to 'axis' (register, both mode).
+INFO: [RTGEN 206-500] Setting interface mode on port 'invstripe/dst_V_id_V' to 'axis' (register, both mode).
+INFO: [RTGEN 206-500] Setting interface mode on port 'invstripe/dst_V_dest_V' to 'axis' (register, both mode).
+INFO: [RTGEN 206-500] Setting interface mode on port 'invstripe/f' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on function 'invstripe' to 'ap_ctrl_none'.
+WARNING: [RTGEN 206-101] Register 'y' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'x' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'first_r' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'last_r' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'first_g' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'last_g' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'first_b' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'last_b' is power-on initialization.
+INFO: [SYN 201-210] Renamed object name 'invstripe_hls_stream_hls_axis_ap_uint_32_1ul_1ul_1ul_0_hls_stream_hls_axis_ap_uint_32_1ul_1ul_1ul_0_float_his_s_3_RAM_AUTO_1R1W' to 'invstripe_hls_stream_hls_axis_ap_uint_32_1ul_1ul_1ul_0_hls_stream_hls_axis_apbkb' due to the length limit 80
+INFO: [SYN 201-210] Renamed object name 'p_ZZ9invstripeRN3hls6streamINS_4axisI7ap_uintILi32EELm1ELm1ELm1EEELi0EEES6_fE4his_RAM_AUTO_1R1W' to 'p_ZZ9invstripeRN3hls6streamINS_4axisI7ap_uintILi32EELm1ELm1ELm1EEELi0EEES6_fEcud' due to the length limit 80
+INFO: [SYN 201-210] Renamed object name 'invstripe_hls_stream_hls_axis_ap_uint_32_1ul_1ul_1ul_0_hls_stream_hls_axis_ap_uint_32_1ul_1ul_1ul_0_float_his_s_1_RAM_AUTO_1R1W' to 'invstripe_hls_stream_hls_axis_ap_uint_32_1ul_1ul_1ul_0_hls_stream_hls_axis_apdEe' due to the length limit 80
+INFO: [SYN 201-210] Renamed object name 'invstripe_hls_stream_hls_axis_ap_uint_32_1ul_1ul_1ul_0_hls_stream_hls_axis_ap_uint_32_1ul_1ul_1ul_0_float_his_s_2_RAM_AUTO_1R1W' to 'invstripe_hls_stream_hls_axis_ap_uint_32_1ul_1ul_1ul_0_hls_stream_hls_axis_apeOg' due to the length limit 80
+INFO: [SYN 201-210] Renamed object name 'invstripe_hls_stream_hls_axis_ap_uint_32_1ul_1ul_1ul_0_hls_stream_hls_axis_ap_uint_32_1ul_1ul_1ul_0_float_his_s_RAM_AUTO_1R1W' to 'invstripe_hls_stream_hls_axis_ap_uint_32_1ul_1ul_1ul_0_hls_stream_hls_axis_apfYi' due to the length limit 80
+INFO: [SYN 201-210] Renamed object name 'invstripe_hls_stream_hls_axis_ap_uint_32_1ul_1ul_1ul_0_hls_stream_hls_axis_ap_uint_32_1ul_1ul_1ul_0_float_his_s_0_RAM_AUTO_1R1W' to 'invstripe_hls_stream_hls_axis_ap_uint_32_1ul_1ul_1ul_0_hls_stream_hls_axis_apg8j' due to the length limit 80
+WARNING: [RTGEN 206-101] Register 'scale_r' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'scale_g' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'scale_b' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'threshold' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'stop' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'max' is power-on initialization.
+INFO: [HLS 200-1030] Apply Unified Pipeline Control on module 'invstripe' pipeline 'invstripe' pipeline type 'function pipeline'
+INFO: [RTGEN 206-100] Generating core module 'fmul_32ns_32ns_32_5_max_dsp_1': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'fsub_32ns_32ns_32_9_full_dsp_1': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'mux_2_1_32_1_1': 4 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'sdiv_9ns_9ns_9_13_1': 3 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'sitofp_32ns_32_7_no_dsp_1': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'uitofp_32ns_32_7_no_dsp_1': 1 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'invstripe'.
+INFO: [RTMG 210-278] Implementing memory 'invstripe_invstripe_hls_stream_hls_axis_ap_uint_32_1ul_1ul_1ul_0_hls_stream_hls_axis_apbkb_ram' using auto RAMs.
+INFO: [RTMG 210-278] Implementing memory 'invstripe_p_ZZ9invstripeRN3hls6streamINS_4axisI7ap_uintILi32EELm1ELm1ELm1EEELi0EEES6_fEcud_ram' using auto RAMs.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 1 seconds. CPU system time: 0 seconds. Elapsed time: 0.69 seconds; current allocated memory: 146.520 MB.
+INFO: [HLS 200-111] Finished Generating all RTL models: CPU user time: 2 seconds. CPU system time: 1 seconds. Elapsed time: 3.615 seconds; current allocated memory: 158.051 MB.
+INFO: [HLS 200-111] Finished Updating report files: CPU user time: 0 seconds. CPU system time: 1 seconds. Elapsed time: 1.131 seconds; current allocated memory: 163.465 MB.
+INFO: [VHDL 208-304] Generating VHDL RTL for invstripe.
+INFO: [VLOG 209-307] Generating Verilog RTL for invstripe.
+INFO: [HLS 200-789] **** Estimated Fmax: 62.39 MHz
+INFO: [HLS 200-111] Finished Command csynth_design CPU user time: 6 seconds. CPU system time: 3 seconds. Elapsed time: 20.632 seconds; current allocated memory: 70.633 MB.
+==============================================================
+Vitis HLS - High-Level Synthesis from C, C++ and OpenCL v2023.1 (64-bit)
+Tool Version Limit: 2023.05
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
+
+==============================================================
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 7ns.
+INFO: [HLS 200-1611] Setting target device to 'xc7z020-clg400-1'
+INFO: [HLS 200-1505] Using flow_target 'vivado'
+INFO: [HLS 200-1464] Running solution command: config_export -vivado_clock=7
+INFO: [HLS 200-1510] Running: set_part xc7z020-clg400-1 
+INFO: [HLS 200-1510] Running: create_clock -period 7 -name default 
+INFO: [HLS 200-1510] Running: config_export -vivado_clock 7 
+INFO: [HLS 200-1510] Running: source ./LAB_2/solution2/directives.tcl
+INFO: [HLS 200-1510] Running: set_directive_top -name invstripe invstripe 
+INFO: [HLS 200-1510] Running: set_directive_reset invstripe hist 
+INFO: [HLS 200-1510] Running: set_directive_array_partition -type block -dim 2 -factor 2 invstripe hist 
+INFO: [HLS 200-1510] Running: csynth_design 
+INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.393 seconds; current allocated memory: 86.191 MB.
+INFO: [HLS 200-10] Analyzing design file 'PYNQ-Z2/hls/invstripe.cpp' ... 
+WARNING: [HLS 207-5292] unused parameter 'frame' (PYNQ-Z2/hls/invstripe.cpp:170:56)
+INFO: [HLS 200-111] Finished Source Code Analysis and Preprocessing: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 6.004 seconds; current allocated memory: 88.598 MB.
+INFO: [HLS 200-777] Using interface defaults for 'Vivado' flow target.
+INFO: [HLS 214-178] Inlining function 'fp_struct<float>::fp_struct(float)' into 'unsigned char generic_cast_IEEE754<unsigned char, (ap_q_mode)6, float>(float, bool, hls::enable_if<!(std::numeric_limits<unsigned char>::is_signed), bool>::type)' (C:\scratch\2023.1\hls_product\1026\2023.1\src\shared\hls\clib/hlsmath/include/FloatingPoint\hls_case_IEEE754.h:65:0)
+INFO: [HLS 214-178] Inlining function 'fp_struct<float>::mantissa() const' into 'unsigned char generic_cast_IEEE754<unsigned char, (ap_q_mode)6, float>(float, bool, hls::enable_if<!(std::numeric_limits<unsigned char>::is_signed), bool>::type)' (C:\scratch\2023.1\hls_product\1026\2023.1\src\shared\hls\clib/hlsmath/include/FloatingPoint\hls_case_IEEE754.h:65:0)
+INFO: [HLS 214-178] Inlining function 'fp_struct<float>::expv() const' into 'unsigned char generic_cast_IEEE754<unsigned char, (ap_q_mode)6, float>(float, bool, hls::enable_if<!(std::numeric_limits<unsigned char>::is_signed), bool>::type)' (C:\scratch\2023.1\hls_product\1026\2023.1\src\shared\hls\clib/hlsmath/include/FloatingPoint\hls_case_IEEE754.h:65:0)
+INFO: [HLS 214-178] Inlining function 'unsigned char generic_cast_IEEE754<unsigned char, (ap_q_mode)6, float>(float, bool, hls::enable_if<!(std::numeric_limits<unsigned char>::is_signed), bool>::type)' into 'unsigned char generic_cast_IEEE754<unsigned char, float>(float, bool)' (C:\scratch\2023.1\hls_product\1026\2023.1\src\shared\hls\clib/hlsmath/include/FloatingPoint\hls_case_IEEE754.h:116:0)
+INFO: [HLS 214-178] Inlining function 'unsigned char generic_cast_IEEE754<unsigned char, float>(float, bool)' into '__hls_fptoui_float_i8' (C:\scratch\2023.1\hls_product\1026\2023.1\src\shared\hls\clib\hlsmath\src\lib_floatconversion.cpp:63:0)
+INFO: [HLS 214-178] Inlining function 'fp_struct<float>::fp_struct(float)' into 'unsigned int generic_cast_IEEE754<unsigned int, (ap_q_mode)6, float>(float, bool, hls::enable_if<!(std::numeric_limits<unsigned int>::is_signed), bool>::type)' (C:\scratch\2023.1\hls_product\1026\2023.1\src\shared\hls\clib/hlsmath/include/FloatingPoint\hls_case_IEEE754.h:65:0)
+INFO: [HLS 214-178] Inlining function 'fp_struct<float>::mantissa() const' into 'unsigned int generic_cast_IEEE754<unsigned int, (ap_q_mode)6, float>(float, bool, hls::enable_if<!(std::numeric_limits<unsigned int>::is_signed), bool>::type)' (C:\scratch\2023.1\hls_product\1026\2023.1\src\shared\hls\clib/hlsmath/include/FloatingPoint\hls_case_IEEE754.h:65:0)
+INFO: [HLS 214-178] Inlining function 'fp_struct<float>::expv() const' into 'unsigned int generic_cast_IEEE754<unsigned int, (ap_q_mode)6, float>(float, bool, hls::enable_if<!(std::numeric_limits<unsigned int>::is_signed), bool>::type)' (C:\scratch\2023.1\hls_product\1026\2023.1\src\shared\hls\clib/hlsmath/include/FloatingPoint\hls_case_IEEE754.h:65:0)
+INFO: [HLS 214-178] Inlining function 'unsigned int generic_cast_IEEE754<unsigned int, (ap_q_mode)6, float>(float, bool, hls::enable_if<!(std::numeric_limits<unsigned int>::is_signed), bool>::type)' into 'unsigned int generic_cast_IEEE754<unsigned int, float>(float, bool)' (C:\scratch\2023.1\hls_product\1026\2023.1\src\shared\hls\clib/hlsmath/include/FloatingPoint\hls_case_IEEE754.h:116:0)
+INFO: [HLS 214-178] Inlining function 'unsigned int generic_cast_IEEE754<unsigned int, float>(float, bool)' into '__hls_fptoui_float_i32' (C:\scratch\2023.1\hls_product\1026\2023.1\src\shared\hls\clib\hlsmath\src\lib_floatconversion.cpp:65:0)
+INFO: [HLS 214-178] Inlining function '__hls_fptoui_float_i32' into 'invstripe(hls::stream<hls::axis<ap_uint<32>, 1ul, 1ul, 1ul>, 0>&, hls::stream<hls::axis<ap_uint<32>, 1ul, 1ul, 1ul>, 0>&, float)' (PYNQ-Z2/hls/invstripe.cpp:20:0)
+INFO: [HLS 214-248] Applying array_partition to '_ZZ9invstripeRN3hls6streamINS_4axisI7ap_uintILi32EELm1ELm1ELm1EEELi0EEES6_fE4hist': Block partitioning with factor 2 on dimension 2. (PYNQ-Z2/hls/invstripe.cpp:29:0)
+INFO: [HLS 200-111] Finished Compiling Optimization and Transform: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 4.711 seconds; current allocated memory: 89.941 MB.
+INFO: [HLS 200-111] Finished Checking Pragmas: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.008 seconds; current allocated memory: 89.941 MB.
+INFO: [HLS 200-10] Starting code transformations ...
+INFO: [HLS 200-111] Finished Standard Transforms: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.066 seconds; current allocated memory: 97.570 MB.
+INFO: [HLS 200-10] Checking synthesizability ...
+INFO: [XFORM 203-602] Inlining function '__hls_fptoui_float_i8' into 'invstripe' (PYNQ-Z2/hls/invstripe.cpp:74) automatically.
+INFO: [HLS 200-111] Finished Checking Synthesizability: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.068 seconds; current allocated memory: 102.035 MB.
+INFO: [XFORM 203-602] Inlining function '__hls_fptoui_float_i8' into 'invstripe' (PYNQ-Z2/hls/invstripe.cpp:74) automatically.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (PYNQ-Z2/hls/invstripe.cpp:74:17) to (PYNQ-Z2/hls/invstripe.cpp:82:3) in function 'invstripe'... converting 10 basic blocks.
+INFO: [HLS 200-111] Finished Loop, function and other optimizations: CPU user time: 1 seconds. CPU system time: 0 seconds. Elapsed time: 0.247 seconds; current allocated memory: 126.688 MB.
+INFO: [HLS 200-111] Finished Architecture Synthesis: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.175 seconds; current allocated memory: 126.816 MB.
+INFO: [HLS 200-10] Starting hardware synthesis ...
+INFO: [HLS 200-10] Synthesizing 'invstripe' ...
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'invstripe' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining function 'invstripe'.
+WARNING: [HLS 200-880] The II Violation in module 'invstripe' (function 'invstripe'): Unable to enforce a carried dependence constraint (II = 1, distance = 1, offset = 1) between 'store' operation ('invstripe_stream_stream_axis_ap_uint_32_1ul_1ul_1ul_0_float_hist_addr_write_ln68', PYNQ-Z2/hls/invstripe.cpp:68) of variable 'add_ln68', PYNQ-Z2/hls/invstripe.cpp:68 on array 'invstripe_stream_stream_axis_ap_uint_32_1ul_1ul_1ul_0_float_hist' and 'load' operation ('invstripe_stream_stream_axis_ap_uint_32_1ul_1ul_1ul_0_float_hist_load', PYNQ-Z2/hls/invstripe.cpp:68) on array 'invstripe_stream_stream_axis_ap_uint_32_1ul_1ul_1ul_0_float_hist'.
+WARNING: [HLS 200-880] The II Violation in module 'invstripe' (function 'invstripe'): Unable to enforce a carried dependence constraint (II = 2, distance = 1, offset = 1) between 'store' operation ('invstripe_stream_stream_axis_ap_uint_32_1ul_1ul_1ul_0_float_hist_addr_9_write_ln148', PYNQ-Z2/hls/invstripe.cpp:148) of constant 0 on array 'invstripe_stream_stream_axis_ap_uint_32_1ul_1ul_1ul_0_float_hist' and 'load' operation ('invstripe_stream_stream_axis_ap_uint_32_1ul_1ul_1ul_0_float_hist_load', PYNQ-Z2/hls/invstripe.cpp:68) on array 'invstripe_stream_stream_axis_ap_uint_32_1ul_1ul_1ul_0_float_hist'.
+WARNING: [HLS 200-880] The II Violation in module 'invstripe' (function 'invstripe'): Unable to enforce a carried dependence constraint (II = 3, distance = 1, offset = 1) between 'store' operation ('invstripe_stream_stream_axis_ap_uint_32_1ul_1ul_1ul_0_float_hist_addr_12_write_ln149', PYNQ-Z2/hls/invstripe.cpp:149) of constant 0 on array 'invstripe_stream_stream_axis_ap_uint_32_1ul_1ul_1ul_0_float_hist' and 'load' operation ('invstripe_stream_stream_axis_ap_uint_32_1ul_1ul_1ul_0_float_hist_load', PYNQ-Z2/hls/invstripe.cpp:68) on array 'invstripe_stream_stream_axis_ap_uint_32_1ul_1ul_1ul_0_float_hist'.
+WARNING: [HLS 200-880] The II Violation in module 'invstripe' (function 'invstripe'): Unable to enforce a carried dependence constraint (II = 4, distance = 1, offset = 0) between 'load' operation ('invstripe_stream_stream_axis_ap_uint_32_1ul_1ul_1ul_0_float_hist_load_4', PYNQ-Z2/hls/invstripe.cpp:108) on array 'invstripe_stream_stream_axis_ap_uint_32_1ul_1ul_1ul_0_float_hist' and 'store' operation ('invstripe_stream_stream_axis_ap_uint_32_1ul_1ul_1ul_0_float_hist_addr_2_write_ln70', PYNQ-Z2/hls/invstripe.cpp:70) of variable 'add_ln70', PYNQ-Z2/hls/invstripe.cpp:70 on array 'invstripe_stream_stream_axis_ap_uint_32_1ul_1ul_1ul_0_float_hist'.
+WARNING: [HLS 200-885] The II Violation in module 'invstripe' (function 'invstripe'): Unable to schedule 'load' operation ('invstripe_stream_stream_axis_ap_uint_32_1ul_1ul_1ul_0_float_hist_1_load_5', PYNQ-Z2/hls/invstripe.cpp:113) on array 'invstripe_stream_stream_axis_ap_uint_32_1ul_1ul_1ul_0_float_hist_1' due to limited memory ports (II = 19). Please consider using a memory core with more ports or partitioning the array 'invstripe_stream_stream_axis_ap_uint_32_1ul_1ul_1ul_0_float_hist_1'.
+INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 20, Depth = 45, function 'invstripe'
+WARNING: [HLS 200-871] Estimated clock period (8.701 ns) exceeds the target (target clock period: 7.000 ns, clock uncertainty: 1.890 ns, effective delay budget: 5.110 ns).
+WARNING: [HLS 200-1016] The critical path in module 'invstripe' consists of the following:
+	'fmul' operation ('mul', PYNQ-Z2/hls/invstripe.cpp:74) [141]  (4.353 ns)
+	multiplexor before operation 'fsub' with delay (1.707 ns)
+'fsub' operation ('sub', PYNQ-Z2/hls/invstripe.cpp:74) [144]  (2.641 ns)
+
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 2 seconds. CPU system time: 0 seconds. Elapsed time: 1.96 seconds; current allocated memory: 133.289 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.774 seconds; current allocated memory: 134.535 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'invstripe' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+WARNING: [RTGEN 206-101] Design contains AXI ports. Reset is fixed to synchronous and active low.
+INFO: [RTGEN 206-500] Setting interface mode on port 'invstripe/src_V_data_V' to 'axis' (register, both mode).
+INFO: [RTGEN 206-500] Setting interface mode on port 'invstripe/src_V_keep_V' to 'axis' (register, both mode).
+INFO: [RTGEN 206-500] Setting interface mode on port 'invstripe/src_V_strb_V' to 'axis' (register, both mode).
+INFO: [RTGEN 206-500] Setting interface mode on port 'invstripe/src_V_user_V' to 'axis' (register, both mode).
+INFO: [RTGEN 206-500] Setting interface mode on port 'invstripe/src_V_last_V' to 'axis' (register, both mode).
+INFO: [RTGEN 206-500] Setting interface mode on port 'invstripe/src_V_id_V' to 'axis' (register, both mode).
+INFO: [RTGEN 206-500] Setting interface mode on port 'invstripe/src_V_dest_V' to 'axis' (register, both mode).
+INFO: [RTGEN 206-500] Setting interface mode on port 'invstripe/dst_V_data_V' to 'axis' (register, both mode).
+INFO: [RTGEN 206-500] Setting interface mode on port 'invstripe/dst_V_keep_V' to 'axis' (register, both mode).
+INFO: [RTGEN 206-500] Setting interface mode on port 'invstripe/dst_V_strb_V' to 'axis' (register, both mode).
+INFO: [RTGEN 206-500] Setting interface mode on port 'invstripe/dst_V_user_V' to 'axis' (register, both mode).
+INFO: [RTGEN 206-500] Setting interface mode on port 'invstripe/dst_V_last_V' to 'axis' (register, both mode).
+INFO: [RTGEN 206-500] Setting interface mode on port 'invstripe/dst_V_id_V' to 'axis' (register, both mode).
+INFO: [RTGEN 206-500] Setting interface mode on port 'invstripe/dst_V_dest_V' to 'axis' (register, both mode).
+INFO: [RTGEN 206-500] Setting interface mode on port 'invstripe/f' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on function 'invstripe' to 'ap_ctrl_none'.
+WARNING: [RTGEN 206-101] Register 'y' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'x' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'first_r' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'last_r' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'first_g' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'last_g' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'first_b' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'last_b' is power-on initialization.
+INFO: [SYN 201-210] Renamed object name 'invstripe_stream_stream_axis_ap_uint_32_1ul_1ul_1ul_0_float_hist_1_RAM_AUTO_1R1W' to 'invstripe_stream_stream_axis_ap_uint_32_1ul_1ul_1ul_0_float_hist_1_RAM_AUTO_1bkb' due to the length limit 80
+WARNING: [RTGEN 206-101] Register 'scale_r' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'scale_g' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'scale_b' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'threshold' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'stop' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'max' is power-on initialization.
+INFO: [HLS 200-1030] Apply Unified Pipeline Control on module 'invstripe' pipeline 'invstripe' pipeline type 'function pipeline'
+INFO: [RTGEN 206-100] Generating core module 'fmul_32ns_32ns_32_5_max_dsp_1': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'fsub_32ns_32ns_32_9_full_dsp_1': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'mux_2_1_32_1_1': 4 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'sdiv_9ns_9ns_9_13_1': 3 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'sitofp_32ns_32_7_no_dsp_1': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'uitofp_32ns_32_7_no_dsp_1': 1 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'invstripe'.
+INFO: [RTMG 210-278] Implementing memory 'invstripe_invstripe_stream_stream_axis_ap_uint_32_1ul_1ul_1ul_0_float_hist_1_RAM_AUTO_1bkb_ram' using auto RAMs.
+INFO: [RTMG 210-278] Implementing memory 'invstripe_invstripe_stream_stream_axis_ap_uint_32_1ul_1ul_1ul_0_float_hist_RAM_AUTO_1R1W_ram' using auto RAMs.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 1 seconds. CPU system time: 1 seconds. Elapsed time: 0.674 seconds; current allocated memory: 140.418 MB.
+INFO: [HLS 200-111] Finished Generating all RTL models: CPU user time: 2 seconds. CPU system time: 1 seconds. Elapsed time: 3.524 seconds; current allocated memory: 152.281 MB.
+INFO: [HLS 200-111] Finished Updating report files: CPU user time: 0 seconds. CPU system time: 1 seconds. Elapsed time: 1.154 seconds; current allocated memory: 157.539 MB.
+INFO: [VHDL 208-304] Generating VHDL RTL for invstripe.
+INFO: [VLOG 209-307] Generating Verilog RTL for invstripe.
+INFO: [HLS 200-789] **** Estimated Fmax: 114.93 MHz
+INFO: [HLS 200-111] Finished Command csynth_design CPU user time: 6 seconds. CPU system time: 3 seconds. Elapsed time: 19.788 seconds; current allocated memory: 71.586 MB.
+==============================================================
+Vitis HLS - High-Level Synthesis from C, C++ and OpenCL v2023.1 (64-bit)
+Tool Version Limit: 2023.05
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
+
+==============================================================
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 7ns.
+INFO: [HLS 200-1611] Setting target device to 'xc7z020-clg400-1'
+INFO: [HLS 200-1505] Using flow_target 'vivado'
+INFO: [HLS 200-1464] Running solution command: config_export -vivado_clock=7
+INFO: [HLS 200-1510] Running: set_part xc7z020-clg400-1 
+INFO: [HLS 200-1510] Running: create_clock -period 7 -name default 
+INFO: [HLS 200-1510] Running: config_export -vivado_clock 7 
+INFO: [HLS 200-1510] Running: source ./LAB_2/solution2/directives.tcl
+INFO: [HLS 200-1510] Running: set_directive_top -name invstripe invstripe 
+INFO: [HLS 200-1510] Running: set_directive_reset invstripe hist 
+INFO: [HLS 200-1510] Running: set_directive_array_partition -dim 0 -type complete invstripe hist 
+INFO: [HLS 200-1510] Running: csynth_design 
+INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.384 seconds; current allocated memory: 86.625 MB.
+INFO: [HLS 200-10] Analyzing design file 'PYNQ-Z2/hls/invstripe.cpp' ... 
+WARNING: [HLS 207-5292] unused parameter 'frame' (PYNQ-Z2/hls/invstripe.cpp:170:56)
+INFO: [HLS 200-111] Finished Source Code Analysis and Preprocessing: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 5.954 seconds; current allocated memory: 88.715 MB.
+INFO: [HLS 200-777] Using interface defaults for 'Vivado' flow target.
+INFO: [HLS 214-178] Inlining function 'fp_struct<float>::fp_struct(float)' into 'unsigned char generic_cast_IEEE754<unsigned char, (ap_q_mode)6, float>(float, bool, hls::enable_if<!(std::numeric_limits<unsigned char>::is_signed), bool>::type)' (C:\scratch\2023.1\hls_product\1026\2023.1\src\shared\hls\clib/hlsmath/include/FloatingPoint\hls_case_IEEE754.h:65:0)
+INFO: [HLS 214-178] Inlining function 'fp_struct<float>::mantissa() const' into 'unsigned char generic_cast_IEEE754<unsigned char, (ap_q_mode)6, float>(float, bool, hls::enable_if<!(std::numeric_limits<unsigned char>::is_signed), bool>::type)' (C:\scratch\2023.1\hls_product\1026\2023.1\src\shared\hls\clib/hlsmath/include/FloatingPoint\hls_case_IEEE754.h:65:0)
+INFO: [HLS 214-178] Inlining function 'fp_struct<float>::expv() const' into 'unsigned char generic_cast_IEEE754<unsigned char, (ap_q_mode)6, float>(float, bool, hls::enable_if<!(std::numeric_limits<unsigned char>::is_signed), bool>::type)' (C:\scratch\2023.1\hls_product\1026\2023.1\src\shared\hls\clib/hlsmath/include/FloatingPoint\hls_case_IEEE754.h:65:0)
+INFO: [HLS 214-178] Inlining function 'unsigned char generic_cast_IEEE754<unsigned char, (ap_q_mode)6, float>(float, bool, hls::enable_if<!(std::numeric_limits<unsigned char>::is_signed), bool>::type)' into 'unsigned char generic_cast_IEEE754<unsigned char, float>(float, bool)' (C:\scratch\2023.1\hls_product\1026\2023.1\src\shared\hls\clib/hlsmath/include/FloatingPoint\hls_case_IEEE754.h:116:0)
+INFO: [HLS 214-178] Inlining function 'unsigned char generic_cast_IEEE754<unsigned char, float>(float, bool)' into '__hls_fptoui_float_i8' (C:\scratch\2023.1\hls_product\1026\2023.1\src\shared\hls\clib\hlsmath\src\lib_floatconversion.cpp:63:0)
+INFO: [HLS 214-178] Inlining function 'fp_struct<float>::fp_struct(float)' into 'unsigned int generic_cast_IEEE754<unsigned int, (ap_q_mode)6, float>(float, bool, hls::enable_if<!(std::numeric_limits<unsigned int>::is_signed), bool>::type)' (C:\scratch\2023.1\hls_product\1026\2023.1\src\shared\hls\clib/hlsmath/include/FloatingPoint\hls_case_IEEE754.h:65:0)
+INFO: [HLS 214-178] Inlining function 'fp_struct<float>::mantissa() const' into 'unsigned int generic_cast_IEEE754<unsigned int, (ap_q_mode)6, float>(float, bool, hls::enable_if<!(std::numeric_limits<unsigned int>::is_signed), bool>::type)' (C:\scratch\2023.1\hls_product\1026\2023.1\src\shared\hls\clib/hlsmath/include/FloatingPoint\hls_case_IEEE754.h:65:0)
+INFO: [HLS 214-178] Inlining function 'fp_struct<float>::expv() const' into 'unsigned int generic_cast_IEEE754<unsigned int, (ap_q_mode)6, float>(float, bool, hls::enable_if<!(std::numeric_limits<unsigned int>::is_signed), bool>::type)' (C:\scratch\==============================================================
+Vitis HLS - High-Level Synthesis from C, C++ and OpenCL v2023.1 (64-bit)
+Tool Version Limit: 2023.05
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
+
+==============================================================
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 7ns.
+INFO: [HLS 200-1611] Setting target device to 'xc7z020-clg400-1'
+INFO: [HLS 200-1505] Using flow_target 'vivado'
+INFO: [HLS 200-1464] Running solution command: config_export -vivado_clock=7
+INFO: [HLS 200-1510] Running: set_part xc7z020-clg400-1 
+INFO: [HLS 200-1510] Running: create_clock -period 7 -name default 
+INFO: [HLS 200-1510] Running: config_export -vivado_clock 7 
+INFO: [HLS 200-1510] Running: source ./LAB_2/solution2/directives.tcl
+INFO: [HLS 200-1510] Running: set_directive_top -name invstripe invstripe 
+INFO: [HLS 200-1510] Running: set_directive_reset invstripe hist 
+INFO: [HLS 200-1510] Running: set_directive_array_partition -dim 1 -type complete invstripe hist 
+INFO: [HLS 200-1510] Running: csynth_design 
+INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.392 seconds; current allocated memory: 84.727 MB.
+INFO: [HLS 200-10] Analyzing design file 'PYNQ-Z2/hls/invstripe.cpp' ... 
+WARNING: [HLS 207-5292] unused parameter 'frame' (PYNQ-Z2/hls/invstripe.cpp:170:56)
+INFO: [HLS 200-111] Finished Source Code Analysis and Preprocessing: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 5.978 seconds; current allocated memory: 87.184 MB.
+INFO: [HLS 200-777] Using interface defaults for 'Vivado' flow target.
+INFO: [HLS 214-178] Inlining function 'fp_struct<float>::fp_struct(float)' into 'unsigned char generic_cast_IEEE754<unsigned char, (ap_q_mode)6, float>(float, bool, hls::enable_if<!(std::numeric_limits<unsigned char>::is_signed), bool>::type)' (C:\scratch\2023.1\hls_product\1026\2023.1\src\shared\hls\clib/hlsmath/include/FloatingPoint\hls_case_IEEE754.h:65:0)
+INFO: [HLS 214-178] Inlining function 'fp_struct<float>::mantissa() const' into 'unsigned char generic_cast_IEEE754<unsigned char, (ap_q_mode)6, float>(float, bool, hls::enable_if<!(std::numeric_limits<unsigned char>::is_signed), bool>::type)' (C:\scratch\2023.1\hls_product\1026\2023.1\src\shared\hls\clib/hlsmath/include/FloatingPoint\hls_case_IEEE754.h:65:0)
+INFO: [HLS 214-178] Inlining function 'fp_struct<float>::expv() const' into 'unsigned char generic_cast_IEEE754<unsigned char, (ap_q_mode)6, float>(float, bool, hls::enable_if<!(std::numeric_limits<unsigned char>::is_signed), bool>::type)' (C:\scratch\2023.1\hls_product\1026\2023.1\src\shared\hls\clib/hlsmath/include/FloatingPoint\hls_case_IEEE754.h:65:0)
+INFO: [HLS 214-178] Inlining function 'unsigned char generic_cast_IEEE754<unsigned char, (ap_q_mode)6, float>(float, bool, hls::enable_if<!(std::numeric_limits<unsigned char>::is_signed), bool>::type)' into 'unsigned char generic_cast_IEEE754<unsigned char, float>(float, bool)' (C:\scratch\2023.1\hls_product\1026\2023.1\src\shared\hls\clib/hlsmath/include/FloatingPoint\hls_case_IEEE754.h:116:0)
+INFO: [HLS 214-178] Inlining function 'unsigned char generic_cast_IEEE754<unsigned char, float>(float, bool)' into '__hls_fptoui_float_i8' (C:\scratch\2023.1\hls_product\1026\2023.1\src\shared\hls\clib\hlsmath\src\lib_floatconversion.cpp:63:0)
+INFO: [HLS 214-178] Inlining function 'fp_struct<float>::fp_struct(float)' into 'unsigned int generic_cast_IEEE754<unsigned int, (ap_q_mode)6, float>(float, bool, hls::enable_if<!(std::numeric_limits<unsigned int>::is_signed), bool>::type)' (C:\scratch\2023.1\hls_product\1026\2023.1\src\shared\hls\clib/hlsmath/include/FloatingPoint\hls_case_IEEE754.h:65:0)
+INFO: [HLS 214-178] Inlining function 'fp_struct<float>::mantissa() const' into 'unsigned int generic_cast_IEEE754<unsigned int, (ap_q_mode)6, float>(float, bool, hls::enable_if<!(std::numeric_limits<unsigned int>::is_signed), bool>::type)' (C:\scratch\2023.1\hls_product\1026\2023.1\src\shared\hls\clib/hlsmath/include/FloatingPoint\hls_case_IEEE754.h:65:0)
+INFO: [HLS 214-178] Inlining function 'fp_struct<float>::expv() const' into 'unsigned int generic_cast_IEEE754<unsigned int, (ap_q_mode)6, float>(float, bool, hls::enable_if<!(std::numeric_limits<unsigned int>::is_signed), bool>::type)' (C:\scratch\2023.1\hls_product\1026\2023.1\src\shared\hls\clib/hlsmath/include/FloatingPoint\hls_case_IEEE754.h:65:0)
+INFO: [HLS 214-178] Inlining function 'unsigned int generic_cast_IEEE754<unsigned int, (ap_q_mode)6, float>(float, bool, hls::enable_if<!(std::numeric_limits<unsigned int>::is_signed), bool>::type)' into 'unsigned int generic_cast_IEEE754<unsigned int, float>(float, bool)' (C:\scratch\2023.1\hls_product\1026\2023.1\src\shared\hls\clib/hlsmath/include/FloatingPoint\hls_case_IEEE754.h:116:0)
+INFO: [HLS 214-178] Inlining function 'unsigned int generic_cast_IEEE754<unsigned int, float>(float, bool)' into '__hls_fptoui_float_i32' (C:\scratch\2023.1\hls_product\1026\2023.1\src\shared\hls\clib\hlsmath\src\lib_floatconversion.cpp:65:0)
+INFO: [HLS 214-178] Inlining function '__hls_fptoui_float_i32' into 'invstripe(hls::stream<hls::axis<ap_uint<32>, 1ul, 1ul, 1ul>, 0>&, hls::stream<hls::axis<ap_uint<32>, 1ul, 1ul, 1ul>, 0>&, float)' (PYNQ-Z2/hls/invstripe.cpp:20:0)
+INFO: [HLS 214-248] Applying array_partition to '_ZZ9invstripeRN3hls6streamINS_4axisI7ap_uintILi32EELm1ELm1ELm1EEELi0EEES6_fE4hist': Complete partitioning on dimension 1. (PYNQ-Z2/hls/invstripe.cpp:29:0)
+INFO: [HLS 200-111] Finished Compiling Optimization and Transform: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 4.743 seconds; current allocated memory: 88.500 MB.
+INFO: [HLS 200-111] Finished Checking Pragmas: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.009 seconds; current allocated memory: 88.500 MB.
+INFO: [HLS 200-10] Starting code transformations ...
+INFO: [HLS 200-111] Finished Standard Transforms: CPU user time: 0 seconds. CPU system time: 1 seconds. Elapsed time: 0.049 seconds; current allocated memory: 95.801 MB.
+INFO: [HLS 200-10] Checking synthesizability ...
+INFO: [XFORM 203-602] Inlining function '__hls_fptoui_float_i8' into 'invstripe' (PYNQ-Z2/hls/invstripe.cpp:74) automatically.
+INFO: [HLS 200-111] Finished Checking Synthesizability: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.067 seconds; current allocated memory: 99.961 MB.
+INFO: [XFORM 203-602] Inlining function '__hls_fptoui_float_i8' into 'invstripe' (PYNQ-Z2/hls/invstripe.cpp:74) automatically.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (PYNQ-Z2/hls/invstripe.cpp:68:4) to (PYNQ-Z2/hls/invstripe.cpp:82:3) in function 'invstripe'... converting 10 basic blocks.
+INFO: [HLS 200-111] Finished Loop, function and other optimizations: CPU user time: 1 seconds. CPU system time: 0 seconds. Elapsed time: 0.22 seconds; current allocated memory: 124.695 MB.
+INFO: [HLS 200-111] Finished Architecture Synthesis: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.142 seconds; current allocated memory: 124.910 MB.
+INFO: [HLS 200-10] Starting hardware synthesis ...
+INFO: [HLS 200-10] Synthesizing 'invstripe' ...
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'invstripe' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining function 'invstripe'.
+WARNING: [HLS 200-880] The II Violation in module 'invstripe' (function 'invstripe'): Unable to enforce a carried dependence constraint (II = 1, distance = 1, offset = 1) between 'store' operation ('invstripe_stream_stream_axis_ap_uint_32_1ul_1ul_1ul_0_float_hist_addr_write_ln68', PYNQ-Z2/hls/invstripe.cpp:68) of variable 'add_ln68', PYNQ-Z2/hls/invstripe.cpp:68 on array 'invstripe_stream_stream_axis_ap_uint_32_1ul_1ul_1ul_0_float_hist' and 'load' operation ('invstripe_stream_stream_axis_ap_uint_32_1ul_1ul_1ul_0_float_hist_load', PYNQ-Z2/hls/invstripe.cpp:68) on array 'invstripe_stream_stream_axis_ap_uint_32_1ul_1ul_1ul_0_float_hist'.
+WARNING: [HLS 200-880] The II Violation in module 'invstripe' (function 'invstripe'): Unable to enforce a carried dependence constraint (II = 2, distance = 1, offset = 1) between 'store' operation ('invstripe_stream_stream_axis_ap_uint_32_1ul_1ul_1ul_0_float_hist_addr_3_write_ln148', PYNQ-Z2/hls/invstripe.cpp:148) of constant 0 on array 'invstripe_stream_stream_axis_ap_uint_32_1ul_1ul_1ul_0_float_hist' and 'load' operation ('invstripe_stream_stream_axis_ap_uint_32_1ul_1ul_1ul_0_float_hist_load', PYNQ-Z2/hls/invstripe.cpp:68) on array 'invstripe_stream_stream_axis_ap_uint_32_1ul_1ul_1ul_0_float_hist'.
+WARNING: [HLS 200-880] The II Violation in module 'invstripe' (function 'invstripe'): Unable to enforce a carried dependence constraint (II = 3, distance = 1, offset = 0) between 'load' operation ('invstripe_stream_stream_axis_ap_uint_32_1ul_1ul_1ul_0_float_hist_2_load_2', PYNQ-Z2/hls/invstripe.cpp:103) on array 'invstripe_stream_stream_axis_ap_uint_32_1ul_1ul_1ul_0_float_hist_2' and 'store' operation ('invstripe_stream_stream_axis_ap_uint_32_1ul_1ul_1ul_0_float_hist_2_addr_write_ln70', PYNQ-Z2/hls/invstripe.cpp:70) of variable 'add_ln70', PYNQ-Z2/hls/invstripe.cpp:70 on array 'invstripe_stream_stream_axis_ap_uint_32_1ul_1ul_1ul_0_float_hist_2'.
+WARNING: [HLS 200-880] The II Violation in module 'invstripe' (function 'invstripe'): Unable to enforce a carried dependence constraint (II = 4, distance = 1, offset = 0) between 'load' operation ('invstripe_stream_stream_axis_ap_uint_32_1ul_1ul_1ul_0_float_hist_2_load_2', PYNQ-Z2/hls/invstripe.cpp:103) on array 'invstripe_stream_stream_axis_ap_uint_32_1ul_1ul_1ul_0_float_hist_2' and 'store' operation ('invstripe_stream_stream_axis_ap_uint_32_1ul_1ul_1ul_0_float_hist_2_addr_write_ln70', PYNQ-Z2/hls/invstripe.cpp:70) of variable 'add_ln70', PYNQ-Z2/hls/invstripe.cpp:70 on array 'invstripe_stream_stream_axis_ap_uint_32_1ul_1ul_1ul_0_float_hist_2'.
+WARNING: [HLS 200-885] The II Violation in module 'invstripe' (function 'invstripe'): Unable to schedule 'store' operation ('invstripe_stream_stream_axis_ap_uint_32_1ul_1ul_1ul_0_float_hist_2_addr_4_write_ln144', PYNQ-Z2/hls/invstripe.cpp:144) of constant 0 on array 'invstripe_stream_stream_axis_ap_uint_32_1ul_1ul_1ul_0_float_hist_2' due to limited memory ports (II = 19). Please consider using a memory core with more ports or partitioning the array 'invstripe_stream_stream_axis_ap_uint_32_1ul_1ul_1ul_0_float_hist_2'.
+INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 20, Depth = 44, function 'invstripe'
+WARNING: [HLS 200-871] Estimated clock period (7.394 ns) exceeds the target (target clock period: 7.000 ns, clock uncertainty: 1.890 ns, effective delay budget: 5.110 ns).
+WARNING: [HLS 200-1016] The critical path in module 'invstripe' consists of the following:
+	'load' operation ('invstripe_stream_stream_axis_ap_uint_32_1ul_1ul_1ul_0_float_hist_2_load_1', PYNQ-Z2/hls/invstripe.cpp:89) on array 'invstripe_stream_stream_axis_ap_uint_32_1ul_1ul_1ul_0_float_hist_2' [219]  (3.254 ns)
+	'icmp' operation ('icmp_ln89', PYNQ-Z2/hls/invstripe.cpp:89) [220]  (2.552 ns)
+	multiplexor before 'phi' operation ('empty_19', PYNQ-Z2/hls/invstripe.cpp:89) with incoming values : ('max_load', PYNQ-Z2/hls/invstripe.cpp:89) ('invstripe_stream_stream_axis_ap_uint_32_1ul_1ul_1ul_0_float_hist_2_load_1', PYNQ-Z2/hls/invstripe.cpp:89) [226]  (1.588 ns)
+
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 1 seconds. CPU system time: 0 seconds. Elapsed time: 1.602 seconds; current allocated memory: 130.230 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 1 seconds. CPU system time: 0 seconds. Elapsed time: 0.752 seconds; current allocated memory: 131.539 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'invstripe' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+WARNING: [RTGEN 206-101] Design contains AXI ports. Reset is fixed to synchronous and active low.
+INFO: [RTGEN 206-500] Setting interface mode on port 'invstripe/src_V_data_V' to 'axis' (register, both mode).
+INFO: [RTGEN 206-500] Setting interface mode on port 'invstripe/src_V_keep_V' to 'axis' (register, both mode).
+INFO: [RTGEN 206-500] Setting interface mode on port 'invstripe/src_V_strb_V' to 'axis' (register, both mode).
+INFO: [RTGEN 206-500] Setting interface mode on port 'invstripe/src_V_user_V' to 'axis' (register, both mode).
+INFO: [RTGEN 206-500] Setting interface mode on port 'invstripe/src_V_last_V' to 'axis' (register, both mode).
+INFO: [RTGEN 206-500] Setting interface mode on port 'invstripe/src_V_id_V' to 'axis' (register, both mode).
+INFO: [RTGEN 206-500] Setting interface mode on port 'invstripe/src_V_dest_V' to 'axis' (register, both mode).
+INFO: [RTGEN 206-500] Setting interface mode on port 'invstripe/dst_V_data_V' to 'axis' (register, both mode).
+INFO: [RTGEN 206-500] Setting interface mode on port 'invstripe/dst_V_keep_V' to 'axis' (register, both mode).
+INFO: [RTGEN 206-500] Setting interface mode on port 'invstripe/dst_V_strb_V' to 'axis' (register, both mode).
+INFO: [RTGEN 206-500] Setting interface mode on port 'invstripe/dst_V_user_V' to 'axis' (register, both mode).
+INFO: [RTGEN 206-500] Setting interface mode on port 'invstripe/dst_V_last_V' to 'axis' (register, both mode).
+INFO: [RTGEN 206-500] Setting interface mode on port 'invstripe/dst_V_id_V' to 'axis' (register, both mode).
+INFO: [RTGEN 206-500] Setting interface mode on port 'invstripe/dst_V_dest_V' to 'axis' (register, both mode).
+INFO: [RTGEN 206-500] Setting interface mode on port 'invstripe/f' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on function 'invstripe' to 'ap_ctrl_none'.
+WARNING: [RTGEN 206-101] Register 'y' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'x' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'first_r' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'last_r' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'first_g' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'last_g' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'first_b' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'last_b' is power-on initialization.
+INFO: [SYN 201-210] Renamed object name 'invstripe_stream_stream_axis_ap_uint_32_1ul_1ul_1ul_0_float_hist_1_RAM_AUTO_1R1W' to 'invstripe_stream_stream_axis_ap_uint_32_1ul_1ul_1ul_0_float_hist_1_RAM_AUTO_1bkb' due to the length limit 80
+INFO: [SYN 201-210] Renamed object name 'invstripe_stream_stream_axis_ap_uint_32_1ul_1ul_1ul_0_float_hist_2_RAM_AUTO_1R1W' to 'invstripe_stream_stream_axis_ap_uint_32_1ul_1ul_1ul_0_float_hist_2_RAM_AUTO_1cud' due to the length limit 80
+WARNING: [RTGEN 206-101] Register 'scale_r' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'scale_g' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'scale_b' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'threshold' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'stop' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'max' is power-on initialization.
+INFO: [HLS 200-1030] Apply Unified Pipeline Control on module 'invstripe' pipeline 'invstripe' pipeline type 'function pipeline'
+INFO: [RTGEN 206-100] Generating core module 'fmul_32ns_32ns_32_5_max_dsp_1': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'fsub_32ns_32ns_32_9_full_dsp_1': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'sdiv_9ns_9ns_9_13_1': 3 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'sitofp_32ns_32_7_no_dsp_1': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'uitofp_32ns_32_7_no_dsp_1': 1 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'invstripe'.
+INFO: [RTMG 210-278] Implementing memory 'invstripe_invstripe_stream_stream_axis_ap_uint_32_1ul_1ul_1ul_0_float_hist_RAM_AUTO_1R1W_ram' using auto RAMs.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.633 seconds; current allocated memory: 137.305 MB.
+INFO: [HLS 200-111] Finished Generating all RTL models: CPU user time: 2 seconds. CPU system time: 1 seconds. Elapsed time: 3.386 seconds; current allocated memory: 148.629 MB.
+INFO: [HLS 200-111] Finished Updating report files: CPU user time: 1 seconds. CPU system time: 1 seconds. Elapsed time: 1.152 seconds; current allocated memory: 153.449 MB.
+INFO: [VHDL 208-304] Generating VHDL RTL for invstripe.
+INFO: [VLOG 209-307] Generating Verilog RTL for invstripe.
+INFO: [HLS 200-789] **** Estimated Fmax: 135.24 MHz
+INFO: [HLS 200-111] Finished Command csynth_design CPU user time: 6 seconds. CPU system time: 3 seconds. Elapsed time: 19.154 seconds; current allocated memory: 69.102 MB.

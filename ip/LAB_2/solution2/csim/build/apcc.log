@@ -1,0 +1,16 @@
+ECHO disattivato.
+ECHO disattivato.
+INFO: [HLS 200-10] Running 'C:/Xilinx/Vitis_HLS/2023.1/bin/unwrapped/win64.o/apcc.exe'
+INFO: [HLS 200-10] For user 'User' on host 'desktop-l41rhqk' (Windows NT_amd64 version 6.2) on Sat Dec 16 18:06:27 +0100 2023
+INFO: [HLS 200-10] In directory 'C:/Users/User/Desktop/UNI/DELFT/Reconfigurable_Computing/LAB/LAB_2/solution2/csim/build'
+../../../../PYNQ-Z2/hls/streamulator/spng.c:1212:13: warning: inflateValidate() not available, SPNG_CTX_IGNORE_ADLER32 will be ignored [-W#pragma-messages]
+    #pragma message ("inflateValidate() not available, SPNG_CTX_IGNORE_ADLER32 will be ignored")
+            ^
+1 warning generated.
+../../../../PYNQ-Z2/hls/streamulator/spng.c:1212:13: warning: inflateValidate() not available, SPNG_CTX_IGNORE_ADLER32 will be ignored [-W#pragma-messages]
+    #pragma message ("inflateValidate() not available, SPNG_CTX_IGNORE_ADLER32 will be ignored")
+            ^
+1 warning generated.
+INFO: [APCC 202-3] Tmp directory is apcc_db
+INFO: [APCC 202-1] APCC is done.
+INFO: [HLS 200-112] Total CPU user time: 1 seconds. Total CPU system time: 1 seconds. Total elapsed time: 29.632 seconds; peak allocated memory: 5.398 MB.

@@ -1,0 +1,25 @@
+C:\Users\User\Desktop\UNI\DELFT\Reconfigurable_Computing\LAB\LAB_2\solution2\.autopilot\db\invstripe.pp.0.cpp:1722:7: warning: Added loop label VITIS_LOOP_1213_1:   [xilinx-label-all-loops]
+      for (i = 0; i < __N - 1; ++i) {
+      ^~~
+      VITIS_LOOP_1213_1: 
+C:\Users\User\Desktop\UNI\DELFT\Reconfigurable_Computing\LAB\LAB_2\solution2\.autopilot\db\invstripe.pp.0.cpp:1722:7: note: FIX-IT applied suggested code changes
+C:\Users\User\Desktop\UNI\DELFT\Reconfigurable_Computing\LAB\LAB_2\solution2\.autopilot\db\invstripe.pp.0.cpp:2696:5: warning: Added loop label VITIS_LOOP_676_1:   [xilinx-label-all-loops]
+    for (unsigned i = low; i != high; ++i) {
+    ^~~
+    VITIS_LOOP_676_1: 
+C:\Users\User\Desktop\UNI\DELFT\Reconfigurable_Computing\LAB\LAB_2\solution2\.autopilot\db\invstripe.pp.0.cpp:2696:5: note: FIX-IT applied suggested code changes
+C:\Users\User\Desktop\UNI\DELFT\Reconfigurable_Computing\LAB\LAB_2\solution2\.autopilot\db\invstripe.pp.0.cpp:2710:5: warning: Added loop label VITIS_LOOP_690_1:   [xilinx-label-all-loops]
+    for (unsigned i = low; i != high; ++i) {
+    ^~~
+    VITIS_LOOP_690_1: 
+C:\Users\User\Desktop\UNI\DELFT\Reconfigurable_Computing\LAB\LAB_2\solution2\.autopilot\db\invstripe.pp.0.cpp:2710:5: note: FIX-IT applied suggested code changes
+C:\Users\User\Desktop\UNI\DELFT\Reconfigurable_Computing\LAB\LAB_2\solution2\.autopilot\db\invstripe.pp.0.cpp:2724:5: warning: Added loop label VITIS_LOOP_704_1:   [xilinx-label-all-loops]
+    for (unsigned i = low; i != high; ++i) {
+    ^~~
+    VITIS_LOOP_704_1: 
+C:\Users\User\Desktop\UNI\DELFT\Reconfigurable_Computing\LAB\LAB_2\solution2\.autopilot\db\invstripe.pp.0.cpp:2724:5: note: FIX-IT applied suggested code changes
+C:\Users\User\Desktop\UNI\DELFT\Reconfigurable_Computing\LAB\LAB_2\solution2\.autopilot\db\invstripe.pp.0.cpp:4335:7: warning: Added loop label VITIS_LOOP_1247_1:   [xilinx-label-all-loops]
+      for (i = 0; i < __N - 1; ++i) {
+      ^~~
+      VITIS_LOOP_1247_1: 
+C:\Users\User\Desktop\UNI\DELFT\Reconfigurable_Computing\LAB\LAB_2\solution2\.autopilot\db\invstripe.pp.0.cpp:4335:7: note: FIX-IT applied suggested code changes

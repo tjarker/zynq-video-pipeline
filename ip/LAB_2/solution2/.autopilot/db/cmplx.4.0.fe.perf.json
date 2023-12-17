@@ -1,0 +1,28 @@
+{
+  "0": {
+    "basicblocks": 43,
+    "calls": "1 1 1",
+    "file": "invstripe.cpp",
+    "fileloc": 19,
+    "instructions": 385,
+    "loads": {
+      "G": 31,
+      "L": 7
+    },
+    "name": "invstripe",
+    "stores": {
+      "G": 32,
+      "L": 21
+    },
+    "total_instructions": 454
+  },
+  "1": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "lib_floatconversion.cpp",
+    "fileloc": 63,
+    "instructions": 23,
+    "name": "__hls_fptoui_float_i8",
+    "total_instructions": 23
+  }
+}

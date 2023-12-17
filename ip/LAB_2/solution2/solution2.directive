@@ -1,0 +1,27 @@
+<AutoPilot:ProjectResources xmlns:AutoPilot="com.autoesl.autopilot.ui.directiveView">
+    <sourceFile name="">
+        <directive functionName="invstripe" label="" functionLabel="">
+            <pragma name="TOP">
+                <option name="name" value="invstripe"/>
+            </pragma>
+        </directive>
+        <directive functionName="invstripe" label="" functionLabel="">
+            <pragma name="RESET">
+                <option name="variable" positionalBoolean="4" value="hist"/>
+            </pragma>
+        </directive>
+        <directive functionName="invstripe" label="" functionLabel="">
+            <pragma name="ARRAY_PARTITION">
+                <option name="complete" value="" positionalBoolean="type"/>
+                <option name="dim" value="1"/>
+                <option name="variable" positionalBoolean="4" value="hist"/>
+            </pragma>
+        </directive>
+        <directive functionName="invstripe" label="" functionLabel="">
+            <pragma name="TOP">
+                <option name="name" value="invstripe"/>
+            </pragma>
+        </directive>
+    </sourceFile>
+</AutoPilot:ProjectResources>
+

@@ -1,0 +1,94 @@
+[
+  {
+    "functionLabel": "",
+    "functionName": "invstripe",
+    "id": 0,
+    "ifcond": "",
+    "insert_position": "",
+    "label": "",
+    "pragma": {
+      "name": "TOP",
+      "option": [
+        {
+          "name": "name",
+          "value": "invstripe"
+        }
+      ]
+    },
+    "slx": false,
+    "sourceFile": "C:/Users/User/Desktop/UNI/DELFT/Reconfigurable_Computing/LAB/LAB_2/solution2/directives.tcl",
+    "sourceLine": 7,
+    "success": true
+  },
+  {
+    "functionLabel": "",
+    "functionName": "invstripe",
+    "id": 1,
+    "ifcond": "",
+    "insert_position": "",
+    "label": "",
+    "pragma": {
+      "name": "RESET",
+      "option": [
+        {
+          "name": "variable",
+          "value": "hist"
+        }
+      ]
+    },
+    "slx": false,
+    "sourceFile": "C:/Users/User/Desktop/UNI/DELFT/Reconfigurable_Computing/LAB/LAB_2/solution2/directives.tcl",
+    "sourceLine": 8,
+    "success": true
+  },
+  {
+    "functionLabel": "",
+    "functionName": "invstripe",
+    "id": 2,
+    "ifcond": "",
+    "insert_position": "",
+    "label": "",
+    "pragma": {
+      "name": "ARRAY_PARTITION",
+      "option": [
+        {
+          "name": "complete",
+          "value": ""
+        },
+        {
+          "name": "dim",
+          "value": "1"
+        },
+        {
+          "name": "variable",
+          "value": "hist"
+        }
+      ]
+    },
+    "slx": false,
+    "sourceFile": "C:/Users/User/Desktop/UNI/DELFT/Reconfigurable_Computing/LAB/LAB_2/solution2/directives.tcl",
+    "sourceLine": 9,
+    "success": true
+  },
+  {
+    "functionLabel": "",
+    "functionName": "invstripe",
+    "id": 3,
+    "ifcond": "",
+    "insert_position": "",
+    "label": "",
+    "pragma": {
+      "name": "TOP",
+      "option": [
+        {
+          "name": "name",
+          "value": "invstripe"
+        }
+      ]
+    },
+    "slx": false,
+    "sourceFile": "C:/Users/User/Desktop/UNI/DELFT/Reconfigurable_Computing/LAB/LAB_2/solution2/csynth.tcl",
+    "sourceLine": 23,
+    "success": true
+  }
+]

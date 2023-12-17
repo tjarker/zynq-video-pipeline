@@ -14,13 +14,14 @@
 
 typedef ap_axiu<32,1,1,1> pixel_data;
 typedef hls::stream<pixel_data> pixel_stream;
+typedef ap_fixed<16, 8> fixed_t;
 
 void invstripe (pixel_stream &src, pixel_stream &dst, float f)
 {
+#pragma HLS INTERFACE mode=ap_vld port=f
 #pragma HLS INTERFACE ap_ctrl_none port=return
-#pragma HLS INTERFACE axis port=&src
-#pragma HLS INTERFACE axis port=&dst
-#pragma HLS INTERFACE s_axilite port=f
+#pragma HLS INTERFACE axis port=src
+#pragma HLS INTERFACE axis port=dst
 #pragma HLS PIPELINE II=1
 
 
@@ -29,34 +30,33 @@ void invstripe (pixel_stream &src, pixel_stream &dst, float f)
 		static uint16_t x = 0;
 		static uint16_t y = 0;
 		static uint32_t max = 0;
-		static uint8_t first_r = 50;
-		static uint8_t last_r = 205;
-		static uint8_t first_b = 50;
-		static uint8_t last_b = 205;
-		static uint8_t first_g = 50;
-		static uint8_t last_g = 205;
-		static float scale_r = 1.645;
-		static float scale_g = 1.645;
-		static float scale_b = 1.645;
+		static uint8_t first_r = 0;
+		static uint8_t last_r = 255;
+		static uint8_t first_b = 0;
+		static uint8_t last_b = 255;
+		static uint8_t first_g = 0;
+		static uint8_t last_g = 255;
+		static float scale_r = 2;
+		static float scale_g = 2;
+		static float scale_b = 2;
 		static uint16_t counter;
-		static uint8_t stop = 0;
-		static uint16_t threshold = 0;
+		static uint8_t stop;
+		static uint32_t threshold = 0;
 
 		pixel_data p;
-		uint8_t r,g,b;
+		uint8_t r_in,g_in,b_in;
+		uint8_t r_out,g_out,b_out;
 
 
 		// Load pixel data from source
 		src >> p;
-		r = GR(p.data);
-		b = GB(p.data);
-		g = GG(p.data);
+		r_in = GR(p.data);
+		b_in = GB(p.data);
+		g_in = GG(p.data);
 
 		// Reset X and Y counters on user signal
 		if (p.user){
 			x = y = 0;
-			max = 0;
-			stop = 0;
 
 		}
 
@@ -65,18 +65,19 @@ void invstripe (pixel_stream &src, pixel_stream &dst, float f)
 		if(y < HEIGHT - 1){
 
 			// increase histogram entries
-			hist[2][GR(p.data)]++;
-			hist[1][GG(p.data)]++;
-			hist[0][GB(p.data)]++;
+			hist[2][r_in]++;
+			hist[1][g_in]++;
+			hist[0][b_in]++;
 
 			//apply transformation first on blues
-			r = r < first_r ? 0 : r > last_r ? 255 : (r * scale_r) - first_r;
-			g = g < first_g ? 0 : g > last_g ? 255 : (g  * scale_g) - first_g;
-			b = b < first_b ? 0 : b > last_b ? 255 : (b * scale_b) - first_b;
+
+			r_out = r_in < first_r ? 0 : r_in > last_r ? 255 : ((r_in * scale_r)) - first_r;
+			g_out = g_in < first_g ? 0 : g_in > last_g ? 255 : ((g_in * scale_g)) - first_g;
+			b_out = b_in < first_b ? 0 : b_in > last_b ? 255 : ((b_in * scale_b)) - first_b;
 
 
 			// COMPUTE OUTGOING PIXEL DATA
-			uint32_t d = SR(r) | SG(g) | SB(b);
+			uint32_t d = SR(r_out) | SG(g_out) | SB(b_out);
 			p.data = d;
 		}
 
@@ -85,8 +86,13 @@ void invstripe (pixel_stream &src, pixel_stream &dst, float f)
 		if(y == HEIGHT - 1){
 			if(x >= WIDTH - 514 and x < WIDTH - 257){
 				counter = x - WIDTH + 514;
-				max = max < hist[0][counter]?hist[0][counter]: max;
-				threshold = counter == 255? max * f : 0;
+				if(max < hist[0][counter]){
+					max = hist[0][counter];
+				}
+				if(counter == 255){
+					threshold = max * f;
+					stop = 0;
+				}
 			}
 
 			//find FIRTS and LAST
@@ -127,9 +133,9 @@ void invstripe (pixel_stream &src, pixel_stream &dst, float f)
 			}
 
 			if(stop == 231){
-				scale_r = 255.0f/(last_r - first_r);
-				scale_b = 255.0f/(last_b - first_b);
-				scale_g = 255.0f/(last_g - first_g);
+				scale_r = 255/(last_r - first_r);
+				scale_b = 255/(last_b - first_b);
+				scale_g = 255/(last_g - first_g);
 			}
 
 
@@ -163,5 +169,5 @@ void invstripe (pixel_stream &src, pixel_stream &dst, float f)
 
 void stream (pixel_stream &src, pixel_stream &dst, int frame)
 {
-	invstripe(src, dst, 0.01);
+	invstripe(src, dst, 0.02);
 }

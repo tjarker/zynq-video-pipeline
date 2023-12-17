@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AutoPilot:ProjectResources xmlns:AutoPilot="com.autoesl.autopilot.ui.directiveView">
+  <sourceFile>
+    <directive functionName="invstripe" label="" functionLabel="">
+      <pragma name="TOP">
+        <option name="name" value="invstripe"/>
+      </pragma>
+    </directive>
+    <directive functionName="invstripe" label="" functionLabel="">
+      <pragma name="TOP">
+        <option name="name" value="invstripe"/>
+      </pragma>
+    </directive>
+  </sourceFile>
+</AutoPilot:ProjectResources>
