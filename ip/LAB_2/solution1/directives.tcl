@@ -5,3 +5,5 @@
 ## Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 ############################################################
 set_directive_top -name invstripe "invstripe"
+set_directive_reset "invstripe" hist
+set_directive_array_partition -type complete -dim 1 "invstripe" hist
