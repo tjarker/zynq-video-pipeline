@@ -18,7 +18,7 @@
 #define in_range(x, a, b) ((x) >= (a + MAX_PXL_CNT - 1) && (x) <= (b + MAX_PXL_CNT - 1))
 #define at(x, a) (x == (a + MAX_PXL_CNT - 1))
 
-// #define PRINT
+#define PRINT
 
 #ifdef PRINT
 #define debug(x) std::cout << x << std::endl;
@@ -30,7 +30,19 @@ typedef ap_axiu<32,1,1,1> pixel_data;
 typedef hls::stream<pixel_data> pixel_stream;
 typedef ap_fixed<16, 8> fixed_t;
 
-void invstripe (pixel_stream &src, pixel_stream &dst, float f)
+typedef struct {
+	uint8_t r;
+	uint8_t g;
+	uint8_t b;
+} vec3_u8_t;
+
+typedef struct {
+	float r;
+	float g;
+	float b;
+} vec3_fixed_t;
+
+void invstripe (pixel_stream &src, pixel_stream &dst, fixed_t f)
 {
 #pragma HLS INTERFACE mode=ap_vld port=f
 #pragma HLS INTERFACE ap_ctrl_none port=return
@@ -41,25 +53,19 @@ void invstripe (pixel_stream &src, pixel_stream &dst, float f)
 
 	// Data to be stored across 'function calls'
 		static uint32_t hist_r[256], hist_g[256], hist_b[256];
+		static vec3_u8_t first = {0,0,0}, last = {255,255,255};
+		static uint8_t stop_r, stop_g, stop_b;
+		static uint32_t max = 0;
+		static uint32_t threshold = 0;
+
+		static vec3_fixed_t scale = {2,2,2};
+		static vec3_u8_t lower = {0,0,0};
+		static vec3_u8_t upper = {255,255,255};
+
 		static uint16_t x = 0;
 		static uint16_t y = 0;
 		static uint32_t pxl_cnt = 0;
-		static uint32_t max = 0;
-		static uint8_t first_r = 0;
-		static uint8_t last_r = 255;
-		static uint8_t first_b = 0;
-		static uint8_t last_b = 255;
-		static uint8_t first_g = 0;
-		static uint8_t last_g = 255;
-		static float scale_r = 2;
-		static float scale_g = 2;
-		static float scale_b = 2;
-		static uint8_t offset_r = 0;
-		static uint8_t offset_g = 0;
-		static uint8_t offset_b = 0;
 		static uint8_t counter;
-		static uint8_t stop_r, stop_g, stop_b;
-		static uint32_t threshold = 0;
 
 		pixel_data p;
 		uint8_t r_in,g_in,b_in;
@@ -80,8 +86,7 @@ void invstripe (pixel_stream &src, pixel_stream &dst, float f)
 
 		////////////////////////////////
 		//COMPUTE NEW INTENSITIES
-		if(y < HEIGHT - 1){
-
+		{
 			// increase histogram entries
 			hist_r[r_in]++;
 			hist_g[g_in]++;
@@ -89,19 +94,23 @@ void invstripe (pixel_stream &src, pixel_stream &dst, float f)
 
 			//apply transformation first on blues
 
-			r_out = r_in < first_r ? 0 : r_in > last_r ? 255 : ((r_in * scale_r)) - offset_r;
-			g_out = g_in < first_g ? 0 : g_in > last_g ? 255 : ((g_in * scale_g)) - offset_g;
-			b_out = b_in < first_b ? 0 : b_in > last_b ? 255 : ((b_in * scale_b)) - offset_b;
+			uint8_t enhanced_r = ((r_in * scale.r)) - lower.r;
+			uint8_t enhanced_g = ((g_in * scale.g)) - lower.g;
+			uint8_t enhanced_b = ((b_in * scale.b)) - lower.b;
+
+			r_out = r_in < lower.r ? 0 : r_in > upper.r ? 255 : enhanced_r;
+			g_out = g_in < lower.g ? 0 : g_in > upper.g ? 255 : enhanced_g;
+			b_out = b_in < lower.b ? 0 : b_in > upper.b ? 255 : enhanced_b;
 
 
 			// COMPUTE OUTGOING PIXEL DATA
 			uint32_t d = SR(r_out) | SG(g_out) | SB(b_out);
 			p.data = d;
+			
+
+			// WRITE PIXEL TO DESTINATION
+			dst << p;
 		}
-
-		// WRITE PIXEL TO DESTINATION
-		dst << p;
-
 		
 
 		//SCALE & OFFSET COMPUTATION
@@ -130,12 +139,12 @@ void invstripe (pixel_stream &src, pixel_stream &dst, float f)
 
 			threshold = max * f;
 
-			first_r = 10;
-			last_r = 255;
-			first_b = 10;
-			last_b = 255;
-			first_g = 10;
-			last_g = 255;
+			first.r = 10;
+			last.r = 255;
+			first.b = 10;
+			last.b = 255;
+			first.g = 10;
+			last.g = 255;
 
 			stop_r = 0;
 			stop_g = 0;
@@ -153,52 +162,59 @@ void invstripe (pixel_stream &src, pixel_stream &dst, float f)
 			uint32_t count_b = hist_b[counter];
 
 			if(count_r > threshold && !stop_r){
-				first_r = counter;
+				first.r = counter;
 				stop_r = 1;
 			}
-													//128 = 10000000
+
 			if(count_r > threshold){
-				last_r = counter;
+				last.r = counter;
 			}
-													//2 = 00000010
+
 			if(count_g > threshold && !stop_g){
-				first_g = counter;
+				first.g = counter;
 				stop_g = 1;
 			}
 
-													//64 = 01000000
 			if(count_g > threshold){
-				last_g = counter;
+				last.g = counter;
 			}
-													//4 = 00000100
+
 			if(count_b > threshold && !stop_b){
-				first_b = counter;
+				first.b = counter;
 				stop_b = 1;
 			}
-													//32 = 00100000
+
 			if(count_b > threshold){
-				last_b = counter;
+				last.b = counter;
 			}
+
+			hist_r[counter] = 0;
+			hist_g[counter] = 0;
+			hist_b[counter] = 0;
 
 			counter++;
 
 		} else if (at(pxl_cnt, 0)) {
 
-			scale_r = 255/((float) (last_r - first_r));
-			scale_b = 255/((float) (last_g - first_g));
-			scale_g = 255/((float) (last_b - first_b));
+			scale.r = 255/((float) (last.r - first.r));
+			scale.b = 255/((float) (last.g - first.g));
+			scale.g = 255/((float) (last.b - first.b));
 
-			offset_r = first_r;
-			offset_g = first_g;
-			offset_b = first_b;
+			lower.r = first.r;
+			lower.g = first.g;
+			lower.b = first.b;
 
-			debug("r range = " << (int)first_r << " - " << (int)last_r);
-			debug("g range = " << (int)first_g << " - " << (int)last_g);
-			debug("b range = " << (int)first_b << " - " << (int)last_b);
+			upper.r = last.r;
+			upper.g = last.g;
+			upper.b = last.b;
 
-			debug("scale_r = " << scale_r);
-			debug("scale_g = " << scale_g);
-			debug("scale_b = " << scale_b);
+			debug("r range = " << (int)first.r << " - " << (int)last.r);
+			debug("g range = " << (int)first.g << " - " << (int)last.g);
+			debug("b range = " << (int)first.b << " - " << (int)last.b);
+
+			debug("scale_r = " << scale.r);
+			debug("scale_g = " << scale.g);
+			debug("scale_b = " << scale.b);
 		}
 		
 

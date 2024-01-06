@@ -57,7 +57,7 @@
         </SimFlow>
     </Simulation>
     <name>
-        <value string="solution2"/>
+        <value string="solution1"/>
     </name>
     <project>
         <value string="LAB_2"/>
@@ -70,7 +70,7 @@
         <library value="xilinx/zynq/zynq" name="DefaultPlatform"/>
     </libraryList>
     <clockList>
-        <clock name="default" default="false" period="7"/>
+        <clock default="false" name="default" period="7"/>
     </clockList>
 </solution>
 
