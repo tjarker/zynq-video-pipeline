@@ -18,7 +18,7 @@
 #define in_range(x, a, b) ((x) >= (a + MAX_PXL_CNT - 1) && (x) <= (b + MAX_PXL_CNT - 1))
 #define at(x, a) (x == (a + MAX_PXL_CNT - 1))
 
-#define PRINT
+// #define PRINT
 
 #ifdef PRINT
 #define debug(x) std::cout << x << std::endl;
@@ -28,7 +28,7 @@
 
 typedef ap_axiu<32,1,1,1> pixel_data;
 typedef hls::stream<pixel_data> pixel_stream;
-typedef ap_fixed<16, 8> fixed_t;
+typedef ap_ufixed<16, 8> fixed_t;
 
 typedef struct {
 	uint8_t r;
@@ -36,13 +36,15 @@ typedef struct {
 	uint8_t b;
 } vec3_u8_t;
 
+#define comma_t fixed_t
+
 typedef struct {
-	float r;
-	float g;
-	float b;
+	comma_t r;
+	comma_t g;
+	comma_t b;
 } vec3_fixed_t;
 
-void invstripe (pixel_stream &src, pixel_stream &dst, fixed_t f)
+void invstripe (pixel_stream &src, pixel_stream &dst, comma_t f)
 {
 #pragma HLS INTERFACE mode=ap_vld port=f
 #pragma HLS INTERFACE ap_ctrl_none port=return
@@ -58,7 +60,7 @@ void invstripe (pixel_stream &src, pixel_stream &dst, fixed_t f)
 		static uint32_t max = 0;
 		static uint32_t threshold = 0;
 
-		static vec3_fixed_t scale = {2,2,2};
+		static vec3_fixed_t scale = {2.0,2.0,2.0};
 		static vec3_u8_t lower = {0,0,0};
 		static vec3_u8_t upper = {255,255,255};
 
@@ -139,11 +141,11 @@ void invstripe (pixel_stream &src, pixel_stream &dst, fixed_t f)
 
 			threshold = max * f;
 
-			first.r = 10;
+			first.r = 0;
 			last.r = 255;
-			first.b = 10;
+			first.b = 0;
 			last.b = 255;
-			first.g = 10;
+			first.g = 0;
 			last.g = 255;
 
 			stop_r = 0;
@@ -196,9 +198,22 @@ void invstripe (pixel_stream &src, pixel_stream &dst, fixed_t f)
 
 		} else if (at(pxl_cnt, 0)) {
 
-			scale.r = 255/((float) (last.r - first.r));
-			scale.b = 255/((float) (last.g - first.g));
-			scale.g = 255/((float) (last.b - first.b));
+			if (first.r == last.r) {
+				first.r = 0;
+				last.r = 255;
+			}
+			if (first.g == last.g) {
+				first.g = 0;
+				last.g = 255;
+			}
+			if (first.b == last.b) {
+				first.b = 0;
+				last.b = 255;
+			}
+
+			scale.r = (comma_t(255.0)) / (comma_t(last.r - first.r));
+			scale.b = (comma_t(255.0)) / (comma_t(last.g - first.g));
+			scale.g = (comma_t(255.0)) / (comma_t(last.b - first.b));
 
 			lower.r = first.r;
 			lower.g = first.g;
@@ -220,13 +235,13 @@ void invstripe (pixel_stream &src, pixel_stream &dst, fixed_t f)
 
 		// Increment X and Y counters
 		pxl_cnt++;
-		if (p.last)
-		{
+
+		if (p.last) {
 			x = 0;
 			y++;
-		}
-		else
+		} else {
 			x++;
+		}
 
 }
 

@@ -17,6 +17,11 @@
                 <option name="variable" positionalBoolean="4" value="hist"/>
             </pragma>
         </directive>
+        <directive functionName="invstripe" label="" functionLabel="">
+            <pragma name="TOP">
+                <option name="name" value="invstripe"/>
+            </pragma>
+        </directive>
     </sourceFile>
 </AutoPilot:ProjectResources>
 
