@@ -18,7 +18,7 @@
 #define in_range(x, a, b) ((x) >= (a + MAX_PXL_CNT - 1) && (x) <= (b + MAX_PXL_CNT - 1))
 #define at(x, a) (x == (a + MAX_PXL_CNT - 1))
 
-// #define PRINT
+//#define PRINT
 
 #ifdef PRINT
 #define debug(x) std::cout << x << std::endl;
@@ -35,6 +35,12 @@ typedef struct {
 	uint8_t g;
 	uint8_t b;
 } vec3_u8_t;
+
+typedef struct {
+	uint32_t r;
+	uint32_t g;
+	uint32_t b;
+} vec3_u32_t;
 
 #define comma_t fixed_t
 
@@ -60,6 +66,9 @@ void invstripe (pixel_stream &src, pixel_stream &dst, comma_t f)
 		static uint32_t max = 0;
 		static uint32_t threshold = 0;
 
+		static vec3_u8_t hist_buf_indices = {0,0,0};
+		static vec3_u32_t hist_buf = {0,0,0};
+
 		static vec3_fixed_t scale = {2.0,2.0,2.0};
 		static vec3_u8_t lower = {0,0,0};
 		static vec3_u8_t upper = {255,255,255};
@@ -84,15 +93,30 @@ void invstripe (pixel_stream &src, pixel_stream &dst, comma_t f)
 		if (p.user){
 			x = y = 0;
 			pxl_cnt = 0;
+			hist_buf = {0,0,0};
 		}
+
+
+
+		if (y != HEIGHT - 1) {
+			hist_r[hist_buf_indices.r] = hist_buf.r;
+			hist_g[hist_buf_indices.g] = hist_buf.g;
+			hist_b[hist_buf_indices.b] = hist_buf.b;
+			hist_buf_indices.r = r_in;
+			hist_buf_indices.g = g_in;
+			hist_buf_indices.b = b_in;
+			hist_buf.r = hist_r[r_in] + 1; // forwarding is implicit since we first write and then read
+			hist_buf.g = hist_g[g_in] + 1;
+			hist_buf.b = hist_b[b_in] + 1;
+		}
+
+
+		
 
 		////////////////////////////////
 		//COMPUTE NEW INTENSITIES
 		{
-			// increase histogram entries
-			hist_r[r_in]++;
-			hist_g[g_in]++;
-			hist_b[b_in]++;
+
 
 			//apply transformation first on blues
 
@@ -247,5 +271,5 @@ void invstripe (pixel_stream &src, pixel_stream &dst, comma_t f)
 
 void stream (pixel_stream &src, pixel_stream &dst, int frame)
 {
-	invstripe(src, dst, 0.01);
+	invstripe(src, dst, 0.005);
 }

@@ -1,2 +1,3 @@
-parrot.png 2
+parrot.png 3
+cow.png 3
 - 1
