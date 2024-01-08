@@ -52,7 +52,7 @@ typedef struct {
 
 void invstripe (pixel_stream &src, pixel_stream &dst, comma_t f)
 {
-#pragma HLS INTERFACE mode=ap_vld port=f
+#pragma HLS interface s_axilite port=f
 #pragma HLS INTERFACE ap_ctrl_none port=return
 #pragma HLS INTERFACE axis port=src
 #pragma HLS INTERFACE axis port=dst
@@ -93,21 +93,23 @@ void invstripe (pixel_stream &src, pixel_stream &dst, comma_t f)
 		if (p.user){
 			x = y = 0;
 			pxl_cnt = 0;
-			hist_buf = {0,0,0};
+			hist_buf.r = 0;
+			hist_buf.g = 0;
+			hist_buf.b = 0;
 		}
 
 
 
 		if (y != HEIGHT - 1) {
-			hist_r[hist_buf_indices.r] = hist_buf.r;
-			hist_g[hist_buf_indices.g] = hist_buf.g;
-			hist_b[hist_buf_indices.b] = hist_buf.b;
+			hist_r[hist_buf_indices.r] = hist_buf.r + 1;
+			hist_g[hist_buf_indices.g] = hist_buf.g + 1;
+			hist_b[hist_buf_indices.b] = hist_buf.b + 1;
 			hist_buf_indices.r = r_in;
 			hist_buf_indices.g = g_in;
 			hist_buf_indices.b = b_in;
-			hist_buf.r = hist_r[r_in] + 1; // forwarding is implicit since we first write and then read
-			hist_buf.g = hist_g[g_in] + 1;
-			hist_buf.b = hist_b[b_in] + 1;
+			hist_buf.r = hist_r[r_in]; // forwarding is implicit since we first write and then read
+			hist_buf.g = hist_g[g_in];
+			hist_buf.b = hist_b[b_in];
 		}
 
 
