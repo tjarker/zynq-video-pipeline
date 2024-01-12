@@ -48,7 +48,7 @@ typedef struct {
 	fixed_t b;
 } vec3_fixed_t;
 
-void invstripe (pixel_stream &src, pixel_stream &dst, fixed_t f, fixed_t s)
+void invstripe (pixel_stream &src, pixel_stream &dst, fixed_t f)
 {
 #pragma HLS interface s_axilite port=f
 #pragma HLS INTERFACE ap_ctrl_none port=return
