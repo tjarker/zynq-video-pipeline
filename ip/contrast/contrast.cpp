@@ -55,20 +55,23 @@ void contrast (pixel_stream &src, pixel_stream &dst, fixed_t f) {
 #pragma HLS PIPELINE II=1
 
 
-	// Data to be stored across 'function calls'
+	// histogram memories
 	static uint32_t hist_r[256], hist_g[256], hist_b[256];
+
+	// histogram increment pipeline registers
+	static vec3_u8_t hist_buf_indices = {0,0,0};
+	static vec3_u32_t hist_buf = {0,0,0};
+
+	// contrast enhancement parameters
 	static vec3_u8_t first = {0,0,0}, last = {255,255,255};
 	static uint8_t stop_r, stop_g, stop_b;
 	static uint32_t max_b = 0, max_g = 0, max_r = 0;
 	static uint32_t threshold_b = 0, threshold_g = 0, threshold_r = 0;
-
-	static vec3_u8_t hist_buf_indices = {0,0,0};
-	static vec3_u32_t hist_buf = {0,0,0};
-
 	static vec3_fixed_t scale = {2.0,2.0,2.0};
 	static vec3_u8_t lower = {0,0,0};
 	static vec3_u8_t upper = {255,255,255};
 
+	// coordinate counters
 	static uint16_t x = 0;
 	static uint16_t y = 0;
 	static uint32_t pxl_cnt = 0;
@@ -82,13 +85,13 @@ void contrast (pixel_stream &src, pixel_stream &dst, fixed_t f) {
 #pragma HLS DEPENDENCE variable=hist_buf intra RAW false
 
 
-	// Load pixel data from source
+	// load pixel data from source
 	src >> p;
 	r_in = GR(p.data);
 	b_in = GB(p.data);
 	g_in = GG(p.data);
 
-	// Reset X and Y counters on user signal
+	// reset X and Y counters on user signal
 	if (p.user){
 		x = y = 0;
 		pxl_cnt = 0;
@@ -97,36 +100,28 @@ void contrast (pixel_stream &src, pixel_stream &dst, fixed_t f) {
 		hist_buf.b = 0;
 	}
 
-	////////////////////////////////
-	//COMPUTE NEW INTENSITIES
-	{
 
+	{ // computation of output pixel data
 
-		//apply transformation first on blues
-
+		// calculate scaled and offset pixel data
 		uint8_t enhanced_r = ((r_in * scale.r)) - lower.r;
 		uint8_t enhanced_g = ((g_in * scale.g)) - lower.g;
 		uint8_t enhanced_b = ((b_in * scale.b)) - lower.b;
 
+		// apply thresholding
 		r_out = r_in < lower.r ? 0 : r_in > upper.r ? 255 : enhanced_r;
 		g_out = g_in < lower.g ? 0 : g_in > upper.g ? 255 : enhanced_g;
 		b_out = b_in < lower.b ? 0 : b_in > upper.b ? 255 : enhanced_b;
 
+		// compose pixel data
+		p.data = SR(r_out) | SG(g_out) | SB(b_out);
 
-		// COMPUTE OUTGOING PIXEL DATA
-		uint32_t d = SR(r_out) | SG(g_out) | SB(b_out);
-		p.data = d;
-		
-
-		// WRITE PIXEL TO DESTINATION
+		// push pixel to output stream
 		dst << p;
 	}
 	
-
-	//SCALE & OFFSET COMPUTATION
-	//first find MAX_b in blues histograms
-
-	if (pxl_cnt < (MAX_PXL_CNT - 1 - 514)) {
+	// contrast parameter calcultion steps
+	if (pxl_cnt < (MAX_PXL_CNT - 1 - 514)) { // collect histogram data
 
 		hist_r[hist_buf_indices.r] = hist_buf.r + 1;
 		hist_g[hist_buf_indices.g] = hist_buf.g + 1;
@@ -140,14 +135,16 @@ void contrast (pixel_stream &src, pixel_stream &dst, fixed_t f) {
 		hist_buf.g = hist_g[g_in];
 		hist_buf.b = hist_b[b_in];
 
-	} else if (at(pxl_cnt, -514)) {
+	} else if (at(pxl_cnt, -514)) { // reset max's
 
+		max_r = 0;
+		max_g = 0;
 		max_b = 0;
 		counter = 0;
 
 		debug("reset");
 
-	} else if (in_range(pxl_cnt, -513, -258)){
+	} else if (in_range(pxl_cnt, -513, -258)){ // find max's
 
 		uint32_t count_r = hist_r[counter];
 		uint32_t count_g = hist_g[counter];
@@ -167,7 +164,7 @@ void contrast (pixel_stream &src, pixel_stream &dst, fixed_t f) {
 
 		counter++;
 
-	} else if (at(pxl_cnt, -257)) {
+	} else if (at(pxl_cnt, -257)) { // calculate thresholds
 
 		threshold_r = max_r * f;
 		threshold_g = max_g * f;
@@ -189,7 +186,7 @@ void contrast (pixel_stream &src, pixel_stream &dst, fixed_t f) {
 		debug("max_b = " << max_b);
 		debug("threshold_b = " << threshold_b);
 
-	} else if (in_range(pxl_cnt, -256, -1)){
+	} else if (in_range(pxl_cnt, -256, -1)){ // find first and last
 		
 		uint32_t count_r = hist_r[counter];
 		uint32_t count_g = hist_g[counter];
@@ -228,7 +225,7 @@ void contrast (pixel_stream &src, pixel_stream &dst, fixed_t f) {
 
 		counter++;
 
-	} else if (at(pxl_cnt, 0)) {
+	} else if (at(pxl_cnt, 0)) { // calculate scale and offset
 
 		if (first.r == last.r) {
 			first.r = 0;
