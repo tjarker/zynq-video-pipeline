@@ -13,10 +13,9 @@
 #define SG(v) (((v)&0xFF)<<8)
 #define SB(v) (((v)&0xFF)<<16)
 
-#define MAX_b_PXL_CNT (WIDTH * HEIGHT)
-
-#define in_range(x, a, b) ((x) >= (a + MAX_b_PXL_CNT - 1) && (x) <= (b + MAX_b_PXL_CNT - 1))
-#define at(x, a) (x == (a + MAX_b_PXL_CNT - 1))
+#define MAX_PXL_CNT (WIDTH * HEIGHT)
+#define in_range(x, a, b) ((x) >= (a + MAX_PXL_CNT - 1) && (x) <= (b + MAX_PXL_CNT - 1))
+#define at(x, a) (x == (a + MAX_PXL_CNT - 1))
 
 // #define PRINT
 
@@ -28,7 +27,7 @@
 
 typedef ap_axiu<32,1,1,1> pixel_data;
 typedef hls::stream<pixel_data> pixel_stream;
-typedef ap_ufixed<16, 8> fixed_t;
+typedef ap_ufixed<32, 16> fixed_t;
 
 typedef struct {
 	uint8_t r;
@@ -48,8 +47,7 @@ typedef struct {
 	fixed_t b;
 } vec3_fixed_t;
 
-void invstripe (pixel_stream &src, pixel_stream &dst, fixed_t f)
-{
+void contrast (pixel_stream &src, pixel_stream &dst, fixed_t f) {
 #pragma HLS interface s_axilite port=f
 #pragma HLS INTERFACE ap_ctrl_none port=return
 #pragma HLS INTERFACE axis port=src
@@ -128,7 +126,7 @@ void invstripe (pixel_stream &src, pixel_stream &dst, fixed_t f)
 	//SCALE & OFFSET COMPUTATION
 	//first find MAX_b in blues histograms
 
-	if (pxl_cnt < (MAX_b_PXL_CNT - 1 - 514)) {
+	if (pxl_cnt < (MAX_PXL_CNT - 1 - 514)) {
 
 		hist_r[hist_buf_indices.r] = hist_buf.r + 1;
 		hist_g[hist_buf_indices.g] = hist_buf.g + 1;
@@ -267,9 +265,7 @@ void invstripe (pixel_stream &src, pixel_stream &dst, fixed_t f)
 	}
 	
 
-	// Increment X and Y counters
-	pxl_cnt++;
-
+	// manage coodinates
 	if (p.last) {
 		x = 0;
 		y++;
@@ -277,9 +273,10 @@ void invstripe (pixel_stream &src, pixel_stream &dst, fixed_t f)
 		x++;
 	}
 
+	pxl_cnt++;
+
 }
 
-void stream (pixel_stream &src, pixel_stream &dst, int frame)
-{
-	invstripe(src, dst, 0.01);
+void stream (pixel_stream &src, pixel_stream &dst, int frame) {
+	contrast(src, dst, 0.08);
 }
