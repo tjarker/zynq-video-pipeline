@@ -8,8 +8,7 @@
 typedef ap_axiu<32,1,1,1> pixel_data;
 typedef hls::stream<pixel_data> pixel_stream;
 
-void convo (pixel_stream &src, pixel_stream &dst)
-{
+void convo (pixel_stream &src, pixel_stream &dst) {
 #pragma HLS INTERFACE ap_ctrl_none port=return
 #pragma HLS INTERFACE axis port=src
 #pragma HLS INTERFACE axis port=dst
@@ -21,7 +20,7 @@ void convo (pixel_stream &src, pixel_stream &dst)
 	
 	// Buffer to 4 lines of pixels
 	// the buffer is addressed by the lower two bits of a y coordinate
-	uint32_t buf[4][WIDTH];
+	static uint32_t buf[4][WIDTH];
 	#pragma HLS DEPENDENCE variable=buf intra RAW false
 
 	// Read data from stream
