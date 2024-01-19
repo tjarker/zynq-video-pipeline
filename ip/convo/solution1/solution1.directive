@@ -5,11 +5,6 @@
                 <option name="name" value="convo"/>
             </pragma>
         </directive>
-        <directive functionName="convo" label="" functionLabel="">
-            <pragma name="TOP">
-                <option name="name" value="convo"/>
-            </pragma>
-        </directive>
     </sourceFile>
 </AutoPilot:ProjectResources>
 

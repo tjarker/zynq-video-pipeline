@@ -47,8 +47,9 @@ typedef struct {
 	fixed_t b;
 } vec3_fixed_t;
 
-void contrast (pixel_stream &src, pixel_stream &dst, fixed_t f) {
+void contrast (pixel_stream &src, pixel_stream &dst, fixed_t f, bool bypass = true) {
 #pragma HLS interface s_axilite port=f
+#pragma HLS interface s_axilite port=bypass
 #pragma HLS INTERFACE ap_ctrl_none port=return
 #pragma HLS INTERFACE axis port=src
 #pragma HLS INTERFACE axis port=dst
@@ -104,17 +105,21 @@ void contrast (pixel_stream &src, pixel_stream &dst, fixed_t f) {
 	{ // computation of output pixel data
 
 		// calculate scaled and offset pixel data
-		uint8_t enhanced_r = ((r_in * scale.r)) - lower.r;
-		uint8_t enhanced_g = ((g_in * scale.g)) - lower.g;
-		uint8_t enhanced_b = ((b_in * scale.b)) - lower.b;
+		int16_t enhanced_r = ((r_in * scale.r)) - lower.r;
+		int16_t enhanced_g = ((g_in * scale.g)) - lower.g;
+		int16_t enhanced_b = ((b_in * scale.b)) - lower.b;
+
+		uint8_t r = enhanced_r > 255 ? 255 : enhanced_r < 0 ? 0 : enhanced_r;
+		uint8_t g = enhanced_g > 255 ? 255 : enhanced_g < 0 ? 0 : enhanced_g;
+		uint8_t b = enhanced_b > 255 ? 255 : enhanced_b < 0 ? 0 : enhanced_b;
 
 		// apply thresholding
-		r_out = r_in < lower.r ? 0 : r_in > upper.r ? 255 : enhanced_r;
-		g_out = g_in < lower.g ? 0 : g_in > upper.g ? 255 : enhanced_g;
-		b_out = b_in < lower.b ? 0 : b_in > upper.b ? 255 : enhanced_b;
+		r_out = r_in < lower.r ? 0 : r_in > upper.r ? 255 : r;
+		g_out = g_in < lower.g ? 0 : g_in > upper.g ? 255 : g;
+		b_out = b_in < lower.b ? 0 : b_in > upper.b ? 255 : b;
 
 		// compose pixel data
-		p.data = SR(r_out) | SG(g_out) | SB(b_out);
+		if (!bypass) p.data = SR(r_out) | SG(g_out) | SB(b_out);
 
 		// push pixel to output stream
 		dst << p;
