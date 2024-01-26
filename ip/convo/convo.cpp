@@ -17,7 +17,7 @@ typedef struct {
 	uint8_t b;
 } color_t;
 
-void convo (pixel_stream &src, pixel_stream &dst, bool bypass = true) {
+void convo (pixel_stream &src, pixel_stream &dst, bool bypass) {
 #pragma HLS INTERFACE ap_ctrl_none port=return
 #pragma HLS interface s_axilite port=bypass
 #pragma HLS INTERFACE axis port=src
@@ -101,5 +101,5 @@ void convo (pixel_stream &src, pixel_stream &dst, bool bypass = true) {
 }
 
 void stream (pixel_stream &src, pixel_stream &dst, int frame) {
-	convo(src, dst);
+	convo(src, dst, false);
 }

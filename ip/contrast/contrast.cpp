@@ -47,7 +47,7 @@ typedef struct {
 	fixed_t b;
 } vec3_fixed_t;
 
-void contrast (pixel_stream &src, pixel_stream &dst, fixed_t f, bool bypass = true) {
+void contrast (pixel_stream &src, pixel_stream &dst, bool bypass, fixed_t f) {
 #pragma HLS interface s_axilite port=f
 #pragma HLS interface s_axilite port=bypass
 #pragma HLS INTERFACE ap_ctrl_none port=return
@@ -280,5 +280,5 @@ void contrast (pixel_stream &src, pixel_stream &dst, fixed_t f, bool bypass = tr
 }
 
 void stream (pixel_stream &src, pixel_stream &dst, int frame) {
-	contrast(src, dst, 0.08);
+	contrast(src, dst, false, 0.08);
 }

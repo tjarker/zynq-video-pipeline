@@ -18,6 +18,7 @@ add_files -tb streamulator/streamulator.h -cflags "-Wno-unknown-pragmas"
 open_solution "solution1" -flow_target vivado
 set_part {xc7z020-clg400-1}
 create_clock -period 7 -name default
+config_export -format ip_catalog -rtl verilog
 source "./convo/solution1/directives.tcl"
 csim_design
 csynth_design
