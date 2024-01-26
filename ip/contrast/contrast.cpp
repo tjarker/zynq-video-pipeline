@@ -29,6 +29,8 @@ typedef ap_axiu<32,1,1,1> pixel_data;
 typedef hls::stream<pixel_data> pixel_stream;
 typedef ap_ufixed<32, 16> fixed_t;
 
+typedef ap_fixed<32, 16> sfixed_t;
+
 typedef struct {
 	uint8_t r;
 	uint8_t g;
@@ -47,9 +49,10 @@ typedef struct {
 	fixed_t b;
 } vec3_fixed_t;
 
-void contrast (pixel_stream &src, pixel_stream &dst, fixed_t f, bool bypass = true) {
+void contrast (pixel_stream &src, pixel_stream &dst, fixed_t f, bool bypass, ap_fixed<9,1> prop) {
 #pragma HLS interface s_axilite port=f
 #pragma HLS interface s_axilite port=bypass
+#pragma HLS interface s_axilite port=prop
 #pragma HLS INTERFACE ap_ctrl_none port=return
 #pragma HLS INTERFACE axis port=src
 #pragma HLS INTERFACE axis port=dst
@@ -67,10 +70,13 @@ void contrast (pixel_stream &src, pixel_stream &dst, fixed_t f, bool bypass = tr
 	static vec3_u8_t first = {0,0,0}, last = {255,255,255};
 	static uint8_t stop_r, stop_g, stop_b;
 	static uint32_t max_b = 0, max_g = 0, max_r = 0;
+	static uint32_t new_max_b = 0, new_max_g = 0, new_max_r = 0;
 	static uint32_t threshold_b = 0, threshold_g = 0, threshold_r = 0;
 	static vec3_fixed_t scale = {2.0,2.0,2.0};
 	static vec3_u8_t lower = {0,0,0};
 	static vec3_u8_t upper = {255,255,255};
+
+	static int32_t correction_r = 0, correction_g = 0, correction_b = 0;
 
 	// coordinate counters
 	static uint16_t x = 0;
@@ -126,7 +132,7 @@ void contrast (pixel_stream &src, pixel_stream &dst, fixed_t f, bool bypass = tr
 	}
 	
 	// contrast parameter calcultion steps
-	if (pxl_cnt < (MAX_PXL_CNT - 1 - 514)) { // collect histogram data
+	if (pxl_cnt < (MAX_PXL_CNT - 1 - 515)) { // collect histogram data
 
 		hist_r[hist_buf_indices.r] = hist_buf.r + 1;
 		hist_g[hist_buf_indices.g] = hist_buf.g + 1;
@@ -140,36 +146,51 @@ void contrast (pixel_stream &src, pixel_stream &dst, fixed_t f, bool bypass = tr
 		hist_buf.g = hist_g[g_in];
 		hist_buf.b = hist_b[b_in];
 
-	} else if (at(pxl_cnt, -514)) { // reset max's
+	} else if (at(pxl_cnt, -515)) { // reset max's
 
-		max_r = 0;
-		max_g = 0;
-		max_b = 0;
+		new_max_r = 0;
+		new_max_g = 0;
+		new_max_b = 0;
 		counter = 0;
 
 		debug("reset");
 
-	} else if (in_range(pxl_cnt, -513, -258)){ // find max's
+	} else if (in_range(pxl_cnt, -514, -259)){ // find max's
 
 		uint32_t count_r = hist_r[counter];
 		uint32_t count_g = hist_g[counter];
 		uint32_t count_b = hist_b[counter];
 
-		if(max_r < count_r){
-			max_r = count_r;
+		if(new_max_r < count_r){
+			new_max_r = count_r;
 		}
 
-		if(max_g < count_g){
-			max_g = count_g;
+		if(new_max_g < count_g){
+			new_max_g = count_g;
 		}
 
-		if(max_b < count_b){
-			max_b = count_b;
+		if(new_max_b < count_b){
+			new_max_b = count_b;
 		}
 
 		counter++;
 
+	} else if (at(pxl_cnt, -258)) {
+
+		int16_t diff_r = new_max_r - max_r;
+		int16_t diff_g = new_max_g - max_g;
+		int16_t diff_b = new_max_b - max_b;
+
+		correction_r = diff_r * prop;
+		correction_g = diff_g * prop;
+		correction_b = diff_b * prop;
+
 	} else if (at(pxl_cnt, -257)) { // calculate thresholds
+		
+
+		max_r += correction_r;
+		max_g += correction_g;
+		max_b += correction_b;
 
 		threshold_r = max_r * f;
 		threshold_g = max_g * f;
@@ -280,5 +301,5 @@ void contrast (pixel_stream &src, pixel_stream &dst, fixed_t f, bool bypass = tr
 }
 
 void stream (pixel_stream &src, pixel_stream &dst, int frame) {
-	contrast(src, dst, 0.08);
+	contrast(src, dst, 0.1, false, 0.2);
 }
