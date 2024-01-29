@@ -80,9 +80,6 @@ void contrast (pixel_stream &src, pixel_stream &dst, bool bypass, ap_ufixed<8, 0
 	static vec3_u8_t lower = {0,0,0};
 	static vec3_u8_t upper = {255,255,255};
 
-	// coordinate counters
-	static uint16_t x = 0;
-	static uint16_t y = 0;
 	static uint32_t pxl_cnt = 0;
 	static uint8_t counter;
 
@@ -102,7 +99,6 @@ void contrast (pixel_stream &src, pixel_stream &dst, bool bypass, ap_ufixed<8, 0
 
 	// reset X and Y counters on user signal
 	if (p.user){
-		x = y = 0;
 		pxl_cnt = 0;
 		hist_buf.r = 0;
 		hist_buf.g = 0;
@@ -272,15 +268,6 @@ void contrast (pixel_stream &src, pixel_stream &dst, bool bypass, ap_ufixed<8, 0
 		debug("scale_r = " << scale.r);
 		debug("scale_g = " << scale.g);
 		debug("scale_b = " << scale.b);
-	}
-	
-
-	// manage coodinates
-	if (p.last) {
-		x = 0;
-		y++;
-	} else {
-		x++;
 	}
 
 	pxl_cnt++;
