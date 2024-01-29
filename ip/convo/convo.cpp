@@ -30,7 +30,7 @@ void convo (pixel_stream &src, pixel_stream &dst, bool bypass) {
 	
 	// Buffer to 4 lines of pixels
 	// the buffer is addressed by the lower two bits of a y coordinate
-	static uint32_t buf[4][WIDTH];
+	static ap_uint<24> buf[4][WIDTH] = {0};
 	#pragma HLS DEPENDENCE variable=buf intra RAW false
 	#pragma HLS ARRAY_PARTITION variable=buf dim=1 block factor=4
 	#pragma HLS ARRAY_PARTITION variable=buf dim=2 cyclic factor=4
@@ -53,10 +53,10 @@ void convo (pixel_stream &src, pixel_stream &dst, bool bypass) {
 	
 	// Read data from buffer
 	uint32_t center_port = buf[tail_y % 4][x];
-	uint32_t left_port = x == 0 ? 0 : buf[tail_y % 4][x - 1];
-	uint32_t right_port = x == (WIDTH - 1) ? 0 : buf[tail_y % 4][x + 1];
-	uint32_t top_port = tail_y == 0 ? 0 : buf[(tail_y - 1) % 4][x];
-	uint32_t bottom_port = tail_y == (HEIGHT - 1) ? 0 : buf[(tail_y + 1) % 4][x];
+	uint32_t left_port = x == 0 ? ap_uint<24>(0) : buf[tail_y % 4][x - 1];
+	uint32_t right_port = x == (WIDTH - 1) ? ap_uint<24>(0) : buf[tail_y % 4][x + 1];
+	uint32_t top_port = tail_y == 0 ? ap_uint<24>(0) : buf[(tail_y - 1) % 4][x];
+	uint32_t bottom_port = tail_y == (HEIGHT - 1) ? ap_uint<24>(0) : buf[(tail_y + 1) % 4][x];
 	
 	color_t center = getColor(center_port);
 	color_t left = getColor(left_port);
