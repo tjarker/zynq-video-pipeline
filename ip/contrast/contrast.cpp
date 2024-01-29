@@ -27,7 +27,7 @@
 
 typedef ap_axiu<32,1,1,1> pixel_data;
 typedef hls::stream<pixel_data> pixel_stream;
-typedef ap_ufixed<32, 16> fixed_t;
+typedef ap_ufixed<16, 8> fixed_t;
 
 typedef struct {
 	uint8_t r;
@@ -55,7 +55,7 @@ typedef struct {
 
 typedef ap_uint<20> hist_t;
 
-void contrast (pixel_stream &src, pixel_stream &dst, bool bypass, fixed_t f) {
+void contrast (pixel_stream &src, pixel_stream &dst, bool bypass, ap_ufixed<8, 0> f) {
 #pragma HLS interface s_axilite port=f
 #pragma HLS interface s_axilite port=bypass
 #pragma HLS INTERFACE ap_ctrl_none port=return
@@ -74,8 +74,8 @@ void contrast (pixel_stream &src, pixel_stream &dst, bool bypass, fixed_t f) {
 	// contrast enhancement parameters
 	static vec3_u8_t first = {0,0,0}, last = {255,255,255};
 	static uint8_t stop_r, stop_g, stop_b;
-	static uint32_t max_b = 0, max_g = 0, max_r = 0;
-	static uint32_t threshold_b = 0, threshold_g = 0, threshold_r = 0;
+	static hist_t max_b = 0, max_g = 0, max_r = 0;
+	static hist_t threshold_b = 0, threshold_g = 0, threshold_r = 0;
 	static vec3_fixed_t scale = {2.0,2.0,2.0};
 	static vec3_u8_t lower = {0,0,0};
 	static vec3_u8_t upper = {255,255,255};
@@ -159,9 +159,9 @@ void contrast (pixel_stream &src, pixel_stream &dst, bool bypass, fixed_t f) {
 
 	} else if (in_range(pxl_cnt, -513, -258)){ // find max's
 
-		uint32_t count_r = hist_r[counter];
-		uint32_t count_g = hist_g[counter];
-		uint32_t count_b = hist_b[counter];
+		hist_t count_r = hist_r[counter];
+		hist_t count_g = hist_g[counter];
+		hist_t count_b = hist_b[counter];
 
 		if(max_r < count_r){
 			max_r = count_r;
@@ -201,9 +201,9 @@ void contrast (pixel_stream &src, pixel_stream &dst, bool bypass, fixed_t f) {
 
 	} else if (in_range(pxl_cnt, -256, -1)){ // find first and last
 		
-		uint32_t count_r = hist_r[counter];
-		uint32_t count_g = hist_g[counter];
-		uint32_t count_b = hist_b[counter];
+		hist_t count_r = hist_r[counter];
+		hist_t count_g = hist_g[counter];
+		hist_t count_b = hist_b[counter];
 
 		if(count_r > threshold_r && !stop_r){
 			first.r = counter;
@@ -289,5 +289,5 @@ void contrast (pixel_stream &src, pixel_stream &dst, bool bypass, fixed_t f) {
 
 
 void stream (pixel_stream &src, pixel_stream &dst, int frame) {
-	contrast(src, dst, false, 0.01);
+	contrast(src, dst, false, 0.08);
 }
