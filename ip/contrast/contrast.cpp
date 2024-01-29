@@ -42,10 +42,18 @@ typedef struct {
 } vec3_u32_t;
 
 typedef struct {
+	ap_uint<20> r;
+	ap_uint<20> g;
+	ap_uint<20> b;
+} vec3_u20_t;
+
+typedef struct {
 	fixed_t r;
 	fixed_t g;
 	fixed_t b;
 } vec3_fixed_t;
+
+typedef ap_uint<20> hist_t;
 
 void contrast (pixel_stream &src, pixel_stream &dst, bool bypass, fixed_t f) {
 #pragma HLS interface s_axilite port=f
@@ -57,11 +65,11 @@ void contrast (pixel_stream &src, pixel_stream &dst, bool bypass, fixed_t f) {
 
 
 	// histogram memories
-	static uint32_t hist_r[256], hist_g[256], hist_b[256];
+	static hist_t hist_r[256], hist_g[256], hist_b[256];
 
 	// histogram increment pipeline registers
 	static vec3_u8_t hist_buf_indices = {0,0,0};
-	static vec3_u32_t hist_buf = {0,0,0};
+	static vec3_u20_t hist_buf = {0,0,0};
 
 	// contrast enhancement parameters
 	static vec3_u8_t first = {0,0,0}, last = {255,255,255};
@@ -279,6 +287,7 @@ void contrast (pixel_stream &src, pixel_stream &dst, bool bypass, fixed_t f) {
 
 }
 
+
 void stream (pixel_stream &src, pixel_stream &dst, int frame) {
-	contrast(src, dst, false, 0.08);
+	contrast(src, dst, false, 0.01);
 }
