@@ -1,18 +1,12 @@
 import cv2 as cv
-import imutils
 import sys
 import numpy as np
-import matplotlib.pyplot as plt
+
 def contrast_enh(img, p):
     chans = cv.split(img)
-
-    hists = [cv.calcHist([img], [i], None, [256], [0, 256]) for i in range(3)]
-
-    threshold = max([max(hist) for hist in  hists]) * p
-
-    for i in range(3):
-        channel = chans[i]
-        hist = hists[i]
+    for channel in chans:
+        hist = cv.calcHist([channel], [0], None, [256], [0, 256])
+        threshold = max(hist)*p
         
         for first in range(hist.size):
             if hist[first] > threshold:
@@ -37,3 +31,18 @@ def contrast_enh(img, p):
         final_image = cv.merge([chans[0], chans[1], chans[2]])
     
     return final_image
+
+def image_sharp(image):
+    kernel = np.array([[0, -1, 0], [-1, 5, -1], [0, -1, 0]])
+
+    # Apply the filter matrix to the image
+    sharpened = cv.filter2D(image, -1, kernel)
+    
+    return sharpened
+
+
+if __name__ == "__main__":
+    imm = cv.imread(sys.argv[1])
+    out = image_sharp(contrast_enh(imm, 0.08))
+    cv.imwrite(sys.argv[2], out)
+
